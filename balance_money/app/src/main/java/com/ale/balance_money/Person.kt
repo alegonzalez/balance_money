@@ -2,7 +2,6 @@ package com.ale.balance_money
 
 
 import android.util.Log
-import android.widget.Toast
 import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -45,40 +44,17 @@ class Person {
      * This function save data of user
      */
     fun writeNewUser(typeAuthentication:Authentication): Boolean {
-       //if(!isLoggedIn()){
-        checkIfExistUser()
-           var id = createTransactionID().toString()
-           if(this.name != "" && this.email != "" && validateEmail(this.email)){
+         if(this.name != "" && this.email != "" && validateEmail(this.email)){
+               val id = FirebaseAuth.getInstance().currentUser?.uid
                val person = checkTypeAutentication(typeAuthentication)
                val ref = FirebaseDatabase.getInstance().reference
-               ref.child("balance_money").child("users").setValue(person)
+                ref.child("users").child(id.toString()).setValue(person)
                return true
            }else{
                return false
            }
        }
 
-
-
-    fun checkIfExistUser():Boolean{
-
-
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val rootRef = FirebaseDatabase.getInstance().reference
-        val uidRef = rootRef.child("balance_money").child("users").child(this.email)
-        val eventListener: ValueEventListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (!dataSnapshot.exists()) {
-                    Log.i("Message","Create a new user")
-                }else{
-                    Log.i("Message","User exist")
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {}
-        }
-        uidRef.addListenerForSingleValueEvent(eventListener)
-        return true
-    }
     /**
      * This function check what type authenticacion  do you use
      */
@@ -96,10 +72,7 @@ class Person {
         }
         return person
     }
-    @Throws(Exception::class)
-    fun createTransactionID(): String? {
-        return UUID.randomUUID().toString().replace('-','_')
-    }
+
     /**
      * This function validate if email is correct
      */
@@ -107,7 +80,6 @@ class Person {
         val EMAIL_ADDRESS_PATTERN: Pattern = Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+")
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
-
 
 }
 

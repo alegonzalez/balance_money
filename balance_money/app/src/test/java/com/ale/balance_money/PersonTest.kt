@@ -13,7 +13,7 @@ class PersonTest{
     */
     @Test
     fun emailEmptyValidator() {
-            assertFalse("empty email", person.writeNewUser(person))
+            assertFalse("empty email", person.writeNewUser(Authentication.FACEBOOK))
     }
     /*
         test without name should return false
@@ -22,7 +22,7 @@ class PersonTest{
     fun nameValidator() {
         person.email = "aalvarado@tabacon.com"
         person.name = "";
-        assertFalse("empty name", person.writeNewUser(person))
+        assertFalse("empty name", person.writeNewUser(Authentication.FACEBOOK))
     }
     /*
         test email is valid
@@ -39,14 +39,5 @@ class PersonTest{
     fun emailInvalid() {
         person.email = "aalvaradotabacon.com"
         assertFalse("Email is invalid", person.validateEmail(person.email))
-    }
-    /*
-     test name and email with data, should return true
-     */
-    @Test
-    fun nameAndEmailValidator() {
-        person.email = "aalvarado@tabacon.com"
-        person.name = "Alejandro Alvarado Gonzalez";
-        assertTrue("Validacion con datos erroneos", person.writeNewUser(person))
     }
 }
