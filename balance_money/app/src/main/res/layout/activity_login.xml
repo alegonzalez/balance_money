@@ -42,6 +42,7 @@
         android:background="@color/colorPrimary"
         android:padding="5dp"
         android:text="@string/button_login"
+        android:onClick="login"
         android:textColor="@color/colorLetter"
         android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,5 +94,22 @@
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOr" />
+
+    <Button
+        android:id="@+id/btnCrearAccount"
+        android:layout_width="134dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="156dp"
+        android:text="Crear cuenta"
+        android:drawableLeft="@drawable/add"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorLetter"
+        android:paddingLeft="3dp"
+        android:onClick="createNewAccount"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

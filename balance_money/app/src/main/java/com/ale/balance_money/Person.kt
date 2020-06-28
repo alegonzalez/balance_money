@@ -1,19 +1,18 @@
 package com.ale.balance_money
 
 
-import android.util.Log
+import android.util.Base64
 import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import java.util.*
+import java.io.UnsupportedEncodingException
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.util.regex.Pattern
 
 
 enum class Authentication{
-    FACEBOOK,TWITER
+    FACEBOOK,TWITER,BASIC
 }
 class Person {
      var name:String
@@ -44,31 +43,29 @@ class Person {
      * This function save data of user
      */
     fun writeNewUser(typeAuthentication:Authentication): Boolean {
-         if(this.name != "" && this.email != "" && validateEmail(this.email)){
-               val id = FirebaseAuth.getInstance().currentUser?.uid
-               val person = checkTypeAutentication(typeAuthentication)
-               val ref = FirebaseDatabase.getInstance().reference
-                ref.child("users").child(id.toString()).setValue(person)
-               return true
-           }else{
-               return false
-           }
+        return if(this.name != "" && this.email != "" && validateEmail(this.email)){
+            val id = FirebaseAuth.getInstance().currentUser?.uid
+
+            val person = checkTypeAutentication(typeAuthentication)
+            val ref = FirebaseDatabase.getInstance().reference
+            ref.child("users").child(id.toString()).setValue(person)
+            true
+        }else{
+            false
+        }
        }
 
     /**
      * This function check what type authenticacion  do you use
      */
-    fun checkTypeAutentication(typeAuthentication: Authentication):Person{
+    private fun checkTypeAutentication(typeAuthentication: Authentication):Person{
         val person = Person()
-        if(typeAuthentication.name.equals(Authentication.FACEBOOK)){
-            person.name = this.name
-            person.email = this.email
-        }else if (typeAuthentication.name.equals(Authentication.TWITER)){
-
+        person.name = this.name
+        person.email = this.email
+        if(typeAuthentication.name == Authentication.BASIC.toString()){
+           person.password = this.password
         }else{
-            person.name = this.name
-            person.email = this.email
-            person.password = this.password
+            person.password = ""
         }
         return person
     }
@@ -79,6 +76,35 @@ class Person {
     fun validateEmail(email:CharSequence): Boolean {
         val EMAIL_ADDRESS_PATTERN: Pattern = Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+")
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
+    }
+
+    /**
+     * This function check if password is equal to confirm password
+     * if  two password is equals, the password is encrypted
+     */
+    fun checkPassword(password: String, confirmPassword: String):String {
+        if(password == "" && confirmPassword == "") {
+           // return "El campo contraseña es requerido"
+            return "0"
+        }else if(password == confirmPassword){
+            return getHash(password).toString()
+        }else{
+           // return "Los campos contraseña y confirmar contraseña no coinciden"
+            return "1"
+        }
+    }
+
+    /**
+     * This function check email field, is required
+     */
+    fun checkEmail(email:String):Boolean{
+        return email == ""
+    }
+    @Throws(NoSuchAlgorithmException::class, UnsupportedEncodingException::class)
+     fun getHash(password: String): String? {
+        val md: MessageDigest = MessageDigest.getInstance("MD5")
+        val hashPassword: ByteArray = md.digest(password.toByteArray())
+        return Base64.encodeToString(hashPassword,Base64.NO_WRAP)
     }
 
 }

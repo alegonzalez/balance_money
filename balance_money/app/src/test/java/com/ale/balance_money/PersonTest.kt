@@ -2,6 +2,7 @@ package com.ale.balance_money
 
 
 import junit.framework.Assert.assertTrue
+import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import org.junit.Test
 
@@ -40,4 +41,5 @@ class PersonTest{
         person.email = "aalvaradotabacon.com"
         assertFalse("Email is invalid", person.validateEmail(person.email))
     }
+
 }

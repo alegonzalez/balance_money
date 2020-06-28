@@ -1,13 +1,14 @@
 package com.ale.balance_money
 
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
-import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -16,8 +17,10 @@ import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 
+
 class LoginActivity : AppCompatActivity() {
     var callbackManager = CallbackManager.Factory.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -84,4 +87,42 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intentMenu)
         Animatoo.animateSlideLeft(this);
     }
+
+    /**
+     * This function execute when user wants to create a new account
+     */
+    fun createNewAccount(view: View) {
+        val intentMenu = Intent(this, CreateAccountActivity::class.java)
+        startActivity(intentMenu)
+        Animatoo.animateSlideLeft(this);
+    }
+
+
+
+    fun login(view: View) {
+        var email = findViewById<EditText>(R.id.txtEmail)
+        var password = findViewById<EditText>(R.id.txtPassword)
+        var mAuth:FirebaseAuth = FirebaseAuth.getInstance();
+        val person=Person()
+       var passwordEncrypted =  person.getHash(password.text.toString())
+        mAuth.signInWithEmailAndPassword(email.text.toString(), passwordEncrypted.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intentMenu = Intent(this, MenuActivity::class.java)
+                    startActivity(intentMenu)
+                    Animatoo.animateSlideLeft(this);
+                } else {
+                    // If sign in fails, display a message to the user.
+
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                    // updateUI(null)
+                    // ...
+                }
+
+                // ...
+            }
+    }
+
+
 }

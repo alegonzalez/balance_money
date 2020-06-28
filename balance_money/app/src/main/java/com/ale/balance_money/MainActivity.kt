@@ -22,17 +22,19 @@ class MainActivity : AppCompatActivity() {
     /**
      * This function if user is login or not
      */
-    fun checkLogin(){
+    private fun checkLogin(){
         if(person.isLoggedIn()){
-            /*
+
             val intentMenu = Intent(this, MenuActivity::class.java)
             startActivity(intentMenu)
-            Animatoo.animateZoom(this);
+            Animatoo.animateSlideLeft(this);
 
-             */
+             /*
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
-            Animatoo.animateZoom(this);
+            Animatoo.animateSlideLeft(this);
+
+              */
         }else{
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
