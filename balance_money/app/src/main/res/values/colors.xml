@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#C17900</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorLetter">#ffffff</color>
+    <color name="colorButtonFacebook">#4862A3 </color>
 </resources>

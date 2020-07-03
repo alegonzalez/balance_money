@@ -12,22 +12,25 @@ import java.util.regex.Pattern
 
 
 enum class Authentication{
-    FACEBOOK,TWITER,BASIC
+    FACEBOOK,GOOGLE,BASIC
 }
 class Person {
      var name:String
      var email:String
      var password:String
+     var provider:String
 
-     constructor(name: String, email: String,password: String = "") {
+    constructor(name: String, email: String,password: String = "",provider:String) {
         this.name = name
         this.email = email
         this.password = password;
+         this.provider = provider
     }
     constructor() {
         this.name = ""
         this.email = ""
         this.password = ""
+        this.provider = ""
     }
 
 
@@ -45,7 +48,6 @@ class Person {
     fun writeNewUser(typeAuthentication:Authentication): Boolean {
         return if(this.name != "" && this.email != "" && validateEmail(this.email)){
             val id = FirebaseAuth.getInstance().currentUser?.uid
-
             val person = checkTypeAutentication(typeAuthentication)
             val ref = FirebaseDatabase.getInstance().reference
             ref.child("users").child(id.toString()).setValue(person)
@@ -62,6 +64,7 @@ class Person {
         val person = Person()
         person.name = this.name
         person.email = this.email
+        person.provider = typeAuthentication.name
         if(typeAuthentication.name == Authentication.BASIC.toString()){
            person.password = this.password
         }else{

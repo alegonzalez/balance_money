@@ -7,9 +7,15 @@
     <string name="create_account">Crear cuenta</string>
     <string name="facebook_app_id">2642299346088713</string>
     <string name="fb_login_protocol_scheme">fb2642299346088713</string>
+    <string name="text_createaccount">¿Deseas crear una cuenta?</string>
+    <string name="button_sign_in_google">Continuar con Google</string>
+    <string name="enterWith">Ingresar con</string>
+
     <!-- Create new account -->
     <string name="field_name_create_account">Nombre</string>
     <string name="field_email_create_account">Correo electrónico</string>
     <string name="field_password_create_account">Contraseña</string>
     <string name="field__confirm_password_create_account">Confirmar contraseña</string>
+
+
 </resources>

@@ -12,11 +12,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+      /*
         val handler:Handler =  Handler()
         handler.postDelayed({
             checkLogin()
         }, 5000)
-
+*/
+        checkLogin()
     }
 
     /**
@@ -29,12 +31,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentMenu)
             Animatoo.animateSlideLeft(this);
 
-             /*
+
+ /*
+
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
             Animatoo.animateSlideLeft(this);
 
-              */
+  */
+
         }else{
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
