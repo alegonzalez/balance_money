@@ -16,6 +16,6 @@
     <string name="field_email_create_account">Correo electrónico</string>
     <string name="field_password_create_account">Contraseña</string>
     <string name="field__confirm_password_create_account">Confirmar contraseña</string>
-
+    <string name="button__create_account">Crear</string>
 
 </resources>

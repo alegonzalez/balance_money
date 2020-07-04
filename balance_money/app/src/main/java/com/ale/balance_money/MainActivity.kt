@@ -3,6 +3,8 @@ package com.ale.balance_money
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
@@ -12,13 +14,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-      /*
+        setTheme(R.style.AppTheme)
+
         val handler:Handler =  Handler()
         handler.postDelayed({
             checkLogin()
         }, 5000)
-*/
-        checkLogin()
+
     }
 
     /**

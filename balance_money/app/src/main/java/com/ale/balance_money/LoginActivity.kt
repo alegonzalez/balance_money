@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         var buttonGoogle = findViewById<Button>(R.id.btnSignInGoogle)
         var buttonFacebook = findViewById<LoginButton>(R.id.loginBtnFacebook)
         var txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
-        txtCreateNewAccount.setPaintFlags(txtCreateNewAccount.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+        txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.facebook), null, null, null);
         buttonFacebook.setPermissions("public_profile","email")
         buttonGoogle.setOnClickListener {
