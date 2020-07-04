@@ -75,6 +75,7 @@
         android:drawableStart="@drawable/add"
         android:padding="7dp"
         android:text="@string/button__create_account"
+        android:textAllCaps="false"
         android:textColor="@color/colorLetter"
         android:textSize="19sp"
         android:textAlignment="textStart"

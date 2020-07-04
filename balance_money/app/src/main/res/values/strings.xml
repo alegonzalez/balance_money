@@ -10,12 +10,16 @@
     <string name="text_createaccount">¿Deseas crear una cuenta?</string>
     <string name="button_sign_in_google">Continuar con Google</string>
     <string name="enterWith">Ingresar con</string>
-
     <!-- Create new account -->
     <string name="field_name_create_account">Nombre</string>
     <string name="field_email_create_account">Correo electrónico</string>
     <string name="field_password_create_account">Contraseña</string>
     <string name="field__confirm_password_create_account">Confirmar contraseña</string>
     <string name="button__create_account">Crear</string>
-
+    <!-- Menu -->
+    <string name="btn_account">Cuentas</string>
+    <string name="btn_transactions">Transacciones</string>
+    <string name="btn_categories">Categorias</string>
+    <string name="btn_stadistics">Estadísticas</string>
+    <string name="name_menu">Menu</string>
 </resources>

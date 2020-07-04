@@ -34,6 +34,7 @@
         android:onClick="login"
         android:padding="5dp"
         android:text="@string/button_login"
+        android:textAllCaps="false"
         android:textColor="@color/colorLetter"
         android:textSize="19sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"

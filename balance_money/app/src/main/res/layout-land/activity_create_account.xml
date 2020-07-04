@@ -77,6 +77,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
         android:text="@string/button__create_account"
+        android:textAllCaps="false"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
         android:textSize="19sp"

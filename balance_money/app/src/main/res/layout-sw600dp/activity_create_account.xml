@@ -78,6 +78,7 @@
         android:padding="7dp"
         android:paddingStart="175dp"
         android:text="@string/button__create_account"
+        android:textAllCaps="false"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
         android:textSize="25sp"
@@ -93,14 +94,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="320dp" />
+        app:layout_constraintGuide_begin="135dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="980dp" />
+        app:layout_constraintGuide_end="133dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_balance_money_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateAccountActivity"></activity>
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".MenuActivity"
+            android:label="@string/name_menu"/>
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".MainActivity"
