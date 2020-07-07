@@ -1,4 +1,4 @@
-package com.ale.balance_money
+package com.ale.balance_money.UI.login
 
 
 import android.content.Intent
@@ -9,6 +9,9 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.R
+import com.ale.balance_money.logic.Authentication
+import com.ale.balance_money.logic.Person
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.firebase.auth.FirebaseAuth
 
@@ -32,7 +35,7 @@ class CreateAccountActivity : AppCompatActivity() {
         btnCreateNewAccount.setOnClickListener{
 
 
-            val person=Person()
+            val person= Person()
             var statusValidation:Boolean = false
             if( name.text.toString() == ""){
                 name.error = "El campo nombre es requerido"
@@ -73,7 +76,7 @@ class CreateAccountActivity : AppCompatActivity() {
     /**
      * This function make authentication with firebase with email and password
      */
-    private fun authenticationEmailPassword(progressBar:ProgressBar,email:String,password:String,person:Person){
+    private fun authenticationEmailPassword(progressBar:ProgressBar,email:String,password:String,person: Person){
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

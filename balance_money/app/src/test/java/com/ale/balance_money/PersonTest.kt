@@ -1,14 +1,16 @@
 package com.ale.balance_money
 
 
+import com.ale.balance_money.logic.Authentication
+import com.ale.balance_money.logic.Person
 import junit.framework.Assert.assertTrue
-import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import org.junit.Test
 
 class PersonTest{
 
-    private val person:Person = Person("Alejandro Alvarado","","")
+    private val person: Person =
+        Person("Alejandro Alvarado", "", "",Authentication.BASIC.name)
     /*
     test without email should return false
     */
