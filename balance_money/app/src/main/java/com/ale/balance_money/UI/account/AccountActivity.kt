@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
-import com.ale.balance_money.logic.MyAdapter
+import com.ale.balance_money.logic.AccountAdapter
 import com.ale.balance_money.model.AccountViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,14 +18,14 @@ import kotlinx.android.synthetic.main.content_account.*
 
 class AccountActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter:MyAdapter
+    private lateinit var adapter: AccountAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(AccountViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
         setSupportActionBar(findViewById(R.id.toolbar))
         recyclerView =  findViewById(R.id.rcyAccount)
-        adapter = MyAdapter(this)
+        adapter = AccountAdapter(this)
         val llm = LinearLayoutManager(this)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm

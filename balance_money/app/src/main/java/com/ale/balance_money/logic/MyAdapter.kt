@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
 import kotlinx.android.synthetic.main.item_account.view.*
 
-class MyAdapter(private val context:Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class AccountAdapter(private val context:Context) : RecyclerView.Adapter<AccountAdapter.MyViewHolder>() {
 
     private var dataList = mutableListOf<Account>()
 
@@ -19,7 +19,7 @@ class MyAdapter(private val context:Context) : RecyclerView.Adapter<MyAdapter.My
         dataList = data
     }
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): MyAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): AccountAdapter.MyViewHolder {
      val view = LayoutInflater.from(context).inflate(R.layout.item_account,parent,false)
         // create a new view
       return MyViewHolder(view)
