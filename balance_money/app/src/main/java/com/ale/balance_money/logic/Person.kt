@@ -1,4 +1,4 @@
-package com.ale.balance_money
+package com.ale.balance_money.logic
 
 
 import android.util.Base64
@@ -20,12 +20,14 @@ class Person {
      var password:String
      var provider:String
 
+    //Contructor with all attributes of class
     constructor(name: String, email: String,password: String = "",provider:String) {
         this.name = name
         this.email = email
         this.password = password;
          this.provider = provider
     }
+    //constructor empty
     constructor() {
         this.name = ""
         this.email = ""
@@ -45,7 +47,7 @@ class Person {
     /**
      * This function save data of user
      */
-    fun writeNewUser(typeAuthentication:Authentication): Boolean {
+    fun writeNewUser(typeAuthentication: Authentication): Boolean {
         return if(this.name != "" && this.email != "" && validateEmail(this.email)){
             val id = FirebaseAuth.getInstance().currentUser?.uid
             val person = checkTypeAutentication(typeAuthentication)
@@ -60,7 +62,7 @@ class Person {
     /**
      * This function check what type authenticacion  do you use
      */
-    private fun checkTypeAutentication(typeAuthentication: Authentication):Person{
+    private fun checkTypeAutentication(typeAuthentication: Authentication): Person {
         val person = Person()
         person.name = this.name
         person.email = this.email

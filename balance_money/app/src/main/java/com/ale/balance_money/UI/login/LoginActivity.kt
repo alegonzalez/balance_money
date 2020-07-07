@@ -1,4 +1,4 @@
-package com.ale.balance_money
+package com.ale.balance_money.UI.login
 
 
 import android.content.Intent
@@ -11,11 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.R
+import com.ale.balance_money.UI.menu.MenuActivity
+import com.ale.balance_money.logic.Authentication
+import com.ale.balance_money.logic.Person
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
-import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -39,7 +42,9 @@ class LoginActivity : AppCompatActivity() {
         var buttonFacebook = findViewById<LoginButton>(R.id.loginBtnFacebook)
         var txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
         txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.facebook), null, null, null);
+        buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(
+            R.drawable.facebook
+        ), null, null, null);
         buttonFacebook.setPermissions("public_profile","email")
         buttonGoogle.setOnClickListener {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -100,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
             if (it.isSuccessful) {
                 val person = Person(
                     it.result?.user?.displayName.toString(),
-                    it.result?.user?.email.toString(),"",typeAuthentication.name
+                    it.result?.user?.email.toString(), "", typeAuthentication.name
                 )
                 if (person.writeNewUser(typeAuthentication)) {
                     openMenu()

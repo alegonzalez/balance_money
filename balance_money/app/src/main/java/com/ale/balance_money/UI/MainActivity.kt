@@ -1,11 +1,13 @@
-package com.ale.balance_money
+package com.ale.balance_money.UI
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.R
+import com.ale.balance_money.UI.login.LoginActivity
+import com.ale.balance_money.UI.menu.MenuActivity
+import com.ale.balance_money.logic.Person
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
 

@@ -11,12 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_balance_money_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".MenuActivity"
-            android:label="@string/name_menu"/>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".UI.account.NewAccountActivity"
+            android:label="@string/name_toolbar_create_new_account"
+            />
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.account.AccountActivity"
+            android:label="@string/name_toolbar_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UI.login.CreateAccountActivity" />
+        <activity
+            android:name=".UI.menu.MenuActivity"
+            android:label="@string/name_menu" />
+        <activity android:name=".UI.login.LoginActivity" />
+        <activity
+            android:name=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
