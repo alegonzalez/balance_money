@@ -11,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_balance_money_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.account.NewAccountActivity"
-            android:label="@string/name_toolbar_create_new_account"
-            />
+        <activity android:name=".Prueba"></activity>
+        <activity
+            android:name=".UI.account.AccountUpdateDeleteActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity
+            android:name=".UI.account.NewAccountActivity"
+            android:label="@string/name_toolbar_create_new_account" />
         <activity
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"

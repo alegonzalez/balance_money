@@ -2,6 +2,8 @@ package com.ale.balance_money.logic
 
 import android.graphics.Color
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -62,5 +64,27 @@ class Account {
            return false
        }
         return !status
+    }
+
+    /**
+     * This function set visibiliy money that was selected by user
+     */
+    fun setMoney(money: String?, indicatorColon: ImageView?, indicatorDollar: ImageView?, indicatorEuro: ImageView?) {
+        if(money == Money.COLON.name && indicatorColon!= null){
+            indicatorColon.visibility = View.VISIBLE
+        }else if(money == Money.DOLLAR.name && indicatorDollar!= null){
+            indicatorDollar.visibility = View.VISIBLE
+        }else if(money == Money.DOLLAR.name && indicatorEuro!= null){
+            indicatorEuro.visibility = View.VISIBLE
+        }
+    }
+
+    /**
+     * This function set name, amount and description of account
+     */
+    fun setDataAccountUI(txtName: EditText?, txtAmount: EditText?, txtDescription: EditText?) {
+        txtName?.setText(this.title)
+        txtAmount?.setText(this.amount.toString())
+        txtDescription?.setText(this.description)
     }
 }

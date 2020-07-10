@@ -74,7 +74,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="90dp"
         android:background="@color/colorPrimary"
-        android:drawableStart="@drawable/ic_baseline_add_24"
+        android:drawableStart="@drawable/add"
         android:padding="7dp"
         android:paddingStart="175dp"
         android:text="@string/button__create_account"

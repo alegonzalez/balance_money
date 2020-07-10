@@ -6,4 +6,6 @@
     <color name="colorLetter">#ffffff</color>
     <color name="colorButtonFacebook">#4862A3 </color>
     <color name="placeholder_loading">#dddddd </color>
+    <color name="btnUpdate">#77D353 </color>
+    <color name="btnremove">#F95F62 </color>
 </resources>
