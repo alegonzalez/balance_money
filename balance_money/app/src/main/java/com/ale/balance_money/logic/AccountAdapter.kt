@@ -4,12 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
 import kotlinx.android.synthetic.main.item_account.view.*
 
 
-class AccountAdapter(private val context:Context,private  val onItemClickListener:OnAccountListener) : RecyclerView.Adapter<AccountAdapter.AccountHolder>(){
+class AccountAdapter(private val context: Context?, private val onItemClickListener:OnAccountListener) : RecyclerView.Adapter<AccountAdapter.AccountHolder>(){
 
     private var dataList = mutableListOf<Account>()
 
@@ -26,7 +27,21 @@ class AccountAdapter(private val context:Context,private  val onItemClickListene
     }
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): AccountHolder {
-     val view = LayoutInflater.from(context).inflate(R.layout.item_account,parent,false)
+        val device = Device()
+        val orientation= context?.resources?.configuration?.orientation
+        val view:View
+        val windowManager = context!!.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        if(!device.detectTypeDevice(windowManager)){
+            if(Device().detectOrientationDevice(orientation)){
+                view = LayoutInflater.from(context).inflate(R.layout.item_account_tablet_port,parent,false)
+            } else{
+                view = LayoutInflater.from(context).inflate(R.layout.item_account_tablet_land,parent,false)
+            }
+        }else{
+             view = LayoutInflater.from(context).inflate(R.layout.item_account,parent,false)
+        }
+
+
 
         // create a new view
       return AccountHolder(view)
