@@ -7,7 +7,7 @@ import com.ale.balance_money.logic.Account
 import com.ale.balance_money.repository.FirebaseData
 
 class AccountViewModel:ViewModel() {
-    val firebaseData = FirebaseData()
+    private val firebaseData = FirebaseData()
 
     /**
      * This function get all account of user by id of user from firebase

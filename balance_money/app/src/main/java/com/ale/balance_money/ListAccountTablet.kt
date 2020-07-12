@@ -63,12 +63,14 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
             adapter.notifyDataSetChanged()
         })
     }
-    override fun OnItemClick(title: String, money: String, amount: Double, description: String) {
+    override fun OnItemClick(title: String, money: String, amount: Double, description: String,id:String) {
         val intentUpdateDelete:Intent = Intent(context, AccountUpdateDeleteActivity::class.java)
+        intentUpdateDelete.putExtra("id",id)
         intentUpdateDelete.putExtra("title",title)
         intentUpdateDelete.putExtra("money",money)
         intentUpdateDelete.putExtra("amount",amount)
         intentUpdateDelete.putExtra("description",description)
         startActivity(intentUpdateDelete)
+        Animatoo.animateSlideLeft(context)
     }
 }

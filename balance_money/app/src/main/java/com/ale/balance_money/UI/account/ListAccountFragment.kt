@@ -19,9 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.list_account_fragment.*
 
 
-
-class ListAccountFragment : Fragment(),AccountAdapter.OnAccountListener  {
-   private val viewModel by lazy { ViewModelProvider(this).get(AccountViewModel::class.java) }
+class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
+    private val viewModel by lazy { ViewModelProvider(this).get(AccountViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AccountAdapter
     override fun onCreateView(
@@ -34,13 +33,18 @@ class ListAccountFragment : Fragment(),AccountAdapter.OnAccountListener  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView =  view.findViewById(R.id.rcyAccount)
+        recyclerView = view.findViewById(R.id.rcyAccount)
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
         recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        adapter = AccountAdapter(context,this)
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        adapter = AccountAdapter(context, this)
         recyclerView.adapter = adapter
         observeAccount()
         /**
@@ -50,17 +54,18 @@ class ListAccountFragment : Fragment(),AccountAdapter.OnAccountListener  {
             val intentNewAccount = Intent(context, NewAccountActivity::class.java)
             startActivity(intentNewAccount)
             Animatoo.animateSlideLeft(context);
-         }
+        }
     }
+
     /**
      * this functon is a observable to get all account by user
      */
-    private fun observeAccount(){
-       shimmer_view_container.startShimmer()
-        viewModel.fetchAccount().observe(this, Observer {listAccount->
-           shimmer_view_container.stopShimmer()
+    private fun observeAccount() {
+        shimmer_view_container.startShimmer()
+        viewModel.fetchAccount().observe(this, Observer { listAccount ->
+            shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility = View.GONE
-              adapter.setDataAccount(listAccount)
+            adapter.setDataAccount(listAccount)
             adapter.notifyDataSetChanged()
         })
     }
@@ -69,12 +74,20 @@ class ListAccountFragment : Fragment(),AccountAdapter.OnAccountListener  {
     /**
      * This function is executed when user make click
      */
-    override fun OnItemClick(title: String, money: String, amount: Double, description: String) {
-          val intentUpdateDelete = Intent(context,AccountUpdateDeleteActivity::class.java)
-                intentUpdateDelete.putExtra("title",title)
-                 intentUpdateDelete.putExtra("money",money)
-                 intentUpdateDelete.putExtra("amount",amount)
-                 intentUpdateDelete.putExtra("description",description)
-                 startActivity(intentUpdateDelete)
+    override fun OnItemClick(
+        title: String,
+        money: String,
+        amount: Double,
+        description: String,
+        id: String
+    ) {
+        val intentUpdateDelete = Intent(context, AccountUpdateDeleteActivity::class.java)
+        intentUpdateDelete.putExtra("id", id)
+        intentUpdateDelete.putExtra("title", title)
+        intentUpdateDelete.putExtra("money", money)
+        intentUpdateDelete.putExtra("amount", amount)
+        intentUpdateDelete.putExtra("description", description)
+        startActivity(intentUpdateDelete)
+        Animatoo.animateSlideLeft(context)
     }
 }

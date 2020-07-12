@@ -23,8 +23,10 @@ class FirebaseData {
         var userId: String? =  account.getUidUser()
         ref.child("account").child(userId.toString()).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+               listAccount.clear()
                 for (data in dataSnapshot.children) {
                     val accountData = Account()
+                    accountData.id = data.key.toString()
                     accountData.title  = data.child("title").value.toString()
                     accountData.money = data.child("money").value.toString()
                     accountData.amount = data.child("amount").value.toString().toDouble()

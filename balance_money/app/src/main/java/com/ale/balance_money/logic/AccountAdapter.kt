@@ -16,7 +16,7 @@ class AccountAdapter(private val context: Context?, private val onItemClickListe
 
     //Interface to implement in this class and also AccountActivity
     interface  OnAccountListener{
-        fun OnItemClick(title: String,money:String,amount:Double,description:String)
+        fun OnItemClick(title: String,money:String,amount:Double,description:String,id:String)
     }
 
     /**
@@ -78,7 +78,7 @@ class AccountAdapter(private val context: Context?, private val onItemClickListe
          * For example ImageView to Icon to load
          */
         fun bindView(account:Account){
-            itemView.setOnClickListener{onItemClickListener.OnItemClick(account.title,account.money,account.amount,account.description)}
+            itemView.setOnClickListener{onItemClickListener.OnItemClick(account.title,account.money,account.amount,account.description,account.id)}
             when {
                 Money.COLON.name == account.money -> {
                     itemView.imgTypeMoney.setImageResource(R.drawable.colon_icon_list)

@@ -40,7 +40,8 @@
     <string name="field_select_money_create_account">Seleccione la moneda</string>
     <string name="field_amount_create_account">Monto</string>
     <string name="field_description_create_account">Descripción</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <!-- update or delete account-->
+    <string name="messageDialogTitle">Confirmación</string>
+    <string name="messageDialogUpdate">¿Deseas actualizar la cuenta?</string>
+    <string name="messageDialogDelete">¿Seguro que deseas eliminar la cuenta?</string>
 </resources>
