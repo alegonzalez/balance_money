@@ -47,7 +47,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         var btnRemove = findViewById<FloatingActionButton>(R.id.btnRemove)
         var btnUpdate = findViewById<FloatingActionButton>(R.id.btnUpdate)
         //call function setMoney to set in UI money by user
-        account.setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
+        setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
         //call function to set all data of account in UI
         account.setDataAccountUI(txtName, txtAmount, txtDescription)
         //Onclick of button colon
@@ -145,5 +145,22 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         Animatoo.animateSlideRight(this);
+    }
+    /**
+     * This function set visibiliy money that was selected by user
+     */
+    fun setMoney(
+        money: String?,
+        indicatorColon: ImageView?,
+        indicatorDollar: ImageView?,
+        indicatorEuro: ImageView?
+    ) {
+        if (money == Money.COLON.name && indicatorColon != null) {
+            indicatorColon.visibility = View.VISIBLE
+        } else if (money == Money.DOLLAR.name && indicatorDollar != null) {
+            indicatorDollar.visibility = View.VISIBLE
+        } else if (money == Money.EURO.name && indicatorEuro != null) {
+            indicatorEuro.visibility = View.VISIBLE
+        }
     }
 }

@@ -68,23 +68,7 @@ class Account {
         return !status
     }
 
-    /**
-     * This function set visibiliy money that was selected by user
-     */
-    fun setMoney(
-        money: String?,
-        indicatorColon: ImageView?,
-        indicatorDollar: ImageView?,
-        indicatorEuro: ImageView?
-    ) {
-        if (money == Money.COLON.name && indicatorColon != null) {
-            indicatorColon.visibility = View.VISIBLE
-        } else if (money == Money.DOLLAR.name && indicatorDollar != null) {
-            indicatorDollar.visibility = View.VISIBLE
-        } else if (money == Money.EURO.name && indicatorEuro != null) {
-            indicatorEuro.visibility = View.VISIBLE
-        }
-    }
+
 
     /**
      * This function set name, amount and description of account
