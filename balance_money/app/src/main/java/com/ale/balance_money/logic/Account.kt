@@ -3,7 +3,6 @@ package com.ale.balance_money.logic
 import android.graphics.Color
 import android.view.View
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -96,25 +95,30 @@ class Account {
     /**
      * this function show message successful of any action
      */
-    fun messageSuccessfulSnack(message: String, view: View) {
-        val snack = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
-        snack.show()
+    fun messageSuccessfulSnack(message: String, view: View?) {
+        if(view!= null){
+            val snack = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+            snack.show()
+        }
+
     }
 
     /**
      * this function show message when happen a mistake
      */
     fun messageMistakeSnack(message: String, view: View) {
-        val snack =
-            Snackbar.make(
-                view,
-                message,
-                Snackbar.LENGTH_SHORT
-            )
-        val sandbarView: View = snack.view
-        sandbarView.setBackgroundColor(Color.parseColor("#f44336"))
-        snack.show()
-    }
+
+           val snack =
+               Snackbar.make(
+                   view,
+                   message,
+                   Snackbar.LENGTH_SHORT
+               )
+           val sandbarView: View = snack.view
+           sandbarView.setBackgroundColor(Color.parseColor("#f44336"))
+           snack.show()
+
+   }
 
     /**
      *this function remove a specific account from firebase

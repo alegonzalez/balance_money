@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.UI.account.AccountUpdateDeleteActivity
 import com.ale.balance_money.UI.account.NewAccountActivity
+import com.ale.balance_money.logic.Account
 import com.ale.balance_money.logic.AccountAdapter
 import com.ale.balance_money.model.AccountViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
@@ -55,13 +56,23 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
      * this functon is a observable to get all account by user
      */
     private fun observeAccount(){
+
         shimmer_view_container.startShimmer()
         viewModel.fetchAccount().observe(this, Observer {listAccount->
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility = View.GONE
-            adapter.setDataAccount(listAccount)
-            adapter.notifyDataSetChanged()
+            if(listAccount.size == 0){
+                this.listEmpty()
+            }else{
+                adapter.setDataAccount(listAccount)
+                adapter.notifyDataSetChanged()
+            }
+
         })
+    }
+    private fun listEmpty(){
+
+         Account().messageSuccessfulSnack("No hay cuentas registradas",view)
     }
     override fun OnItemClick(title: String, money: String, amount: Double, description: String,id:String) {
         val intentUpdateDelete:Intent = Intent(context, AccountUpdateDeleteActivity::class.java)

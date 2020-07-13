@@ -169,7 +169,7 @@
         android:layout_height="33dp"
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
-
+android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline40"
         app:layout_constraintEnd_toStartOf="@+id/guideline47"
         app:layout_constraintStart_toStartOf="@+id/guideline48"
@@ -182,7 +182,7 @@
         android:layout_height="33dp"
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
-
+android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline40"
         app:layout_constraintEnd_toStartOf="@+id/guideline46"
         app:layout_constraintStart_toStartOf="@+id/guideline45"
@@ -196,7 +196,7 @@
         android:layout_height="33dp"
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
-
+android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline40"
         app:layout_constraintEnd_toStartOf="@+id/guideline44"
         app:layout_constraintHorizontal_bias="0.505"

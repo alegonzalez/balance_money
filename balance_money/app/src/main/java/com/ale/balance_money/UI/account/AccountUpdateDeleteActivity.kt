@@ -1,7 +1,6 @@
 package com.ale.balance_money.UI.account
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -15,7 +14,6 @@ import com.ale.balance_money.logic.Account
 import com.ale.balance_money.logic.Money
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 
 
 class AccountUpdateDeleteActivity : AppCompatActivity() {
