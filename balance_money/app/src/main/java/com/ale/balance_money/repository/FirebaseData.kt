@@ -16,32 +16,31 @@ class FirebaseData {
      * This function get all account by user
      * get title,money,amount and description
      */
-    fun getAccount():LiveData<MutableList<Account>>{
-        val mutableData = MutableLiveData<MutableList<Account>>()
+    fun getAccount():MutableLiveData<List<Account>>{
+        val mutableData = MutableLiveData<List<Account>>()
         var listAccount = mutableListOf<Account>()
         val account= Account()
         var userId: String? =  account.getUidUser()
-        ref.child("account").child(userId.toString()).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-               listAccount.clear()
-                for (data in dataSnapshot.children) {
-                    val accountData = Account()
-                    accountData.id = data.key.toString()
-                    accountData.title  = data.child("title").value.toString()
-                    accountData.money = data.child("money").value.toString()
-                    accountData.amount = data.child("amount").value.toString().toDouble()
-                    accountData.description = data.child("description").value.toString()
-                   listAccount.add(accountData)
+            ref.child("account").child(userId.toString()).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    listAccount.clear()
+                    for (data in dataSnapshot.children) {
+                        val accountData = Account()
+                        accountData.id = data.key.toString()
+                        accountData.title  = data.child("title").value.toString()
+                        accountData.money = data.child("money").value.toString()
+                        accountData.amount = data.child("amount").value.toString().toDouble()
+                        accountData.description = data.child("description").value.toString()
+                        listAccount.add(accountData)
+                    }
+                    mutableData.value = listAccount
                 }
-                mutableData.value = listAccount
-            }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    //Log.w(TAG, "getUser:onCancelled", databaseError.toException())
+                    // ...
+                }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                //Log.w(TAG, "getUser:onCancelled", databaseError.toException())
-                // ...
-            }
-        })
-
+            })
         return mutableData
     }
 }

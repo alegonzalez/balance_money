@@ -1,13 +1,13 @@
 package com.ale.balance_money
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,8 +42,17 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
         recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         adapter = AccountAdapter(context,this)
         recyclerView.adapter = adapter
-        observeAccount()
-        /**
+       if(viewModel.listAccount == null){
+           observeAccount()
+       }else{
+           adapter.setDataAccount(viewModel.listAccount as MutableList<Account>)
+           adapter.notifyDataSetChanged()
+           shimmer_view_container.stopShimmer()
+           shimmer_view_container.visibility = View.GONE
+       }
+
+
+         /**
          * Button Floating to create new account, this button is executed when user make click over there
          */
         view.findViewById<FloatingActionButton>(R.id.btnCreateNewAccountTablet).setOnClickListener {
@@ -58,18 +67,23 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
     private fun observeAccount(){
 
         shimmer_view_container.startShimmer()
-        viewModel.fetchAccount().observe(this, Observer {listAccount->
+        viewModel.fetchAccount()?.observe(viewLifecycleOwner, Observer { listAccount->
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility = View.GONE
-            if(listAccount.size == 0){
+            if(listAccount.isEmpty()){
                 this.listEmpty()
             }else{
+                viewModel.listAccount = listAccount
                 adapter.setDataAccount(listAccount)
                 adapter.notifyDataSetChanged()
             }
 
         })
     }
+
+    /**
+     * this function show message if user doesn't account
+     */
     private fun listEmpty(){
 
          Account().messageSuccessfulSnack("No hay cuentas registradas",view)

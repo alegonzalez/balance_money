@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.Account
 import com.ale.balance_money.logic.AccountAdapter
 import com.ale.balance_money.model.AccountViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
@@ -46,7 +47,15 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
         )
         adapter = AccountAdapter(context, this)
         recyclerView.adapter = adapter
-        observeAccount()
+        if(viewModel.listAccount == null){
+            observeAccount()
+        }else{
+            adapter.setDataAccount(viewModel.listAccount!!)
+            adapter.notifyDataSetChanged()
+            shimmer_view_container.stopShimmer()
+            shimmer_view_container.visibility = View.GONE
+        }
+
         /**
          * Button Floating to create new account, this button is executed when user make click over there
          */
@@ -62,14 +71,26 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
      */
     private fun observeAccount() {
         shimmer_view_container.startShimmer()
-        viewModel.fetchAccount().observe(this, Observer { listAccount ->
+        viewModel.fetchAccount().observe(viewLifecycleOwner, Observer { listAccount ->
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility = View.GONE
-            adapter.setDataAccount(listAccount)
-            adapter.notifyDataSetChanged()
+             if(listAccount.isEmpty()){
+                this.listEmpty()
+            }else{
+
+                viewModel.listAccount = listAccount
+                adapter.setDataAccount(listAccount)
+                adapter.notifyDataSetChanged()
+            }
         })
     }
+    /**
+     * this function show message if user doesn't account
+     */
+    private fun listEmpty(){
 
+        Account().messageSuccessfulSnack("No hay cuentas registradas",view)
+    }
 
     /**
      * This function is executed when user make click

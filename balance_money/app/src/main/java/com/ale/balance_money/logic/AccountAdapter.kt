@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_account.view.*
 
 class AccountAdapter(private val context: Context?, private val onItemClickListener:OnAccountListener) : RecyclerView.Adapter<AccountAdapter.AccountHolder>(){
 
-    private var dataList = mutableListOf<Account>()
+    private var dataList = listOf<Account>()
 
     //Interface to implement in this class and also AccountActivity
     interface  OnAccountListener{
@@ -22,7 +22,7 @@ class AccountAdapter(private val context: Context?, private val onItemClickListe
     /**
      * This function set all account of user and set to dataList
      */
-    fun setDataAccount(data:MutableList<Account>){
+    fun setDataAccount(data:List<Account>){
         dataList = data
     }
     // Create new views (invoked by the layout manager)
@@ -51,7 +51,7 @@ class AccountAdapter(private val context: Context?, private val onItemClickListe
      * Check if datalist with all account of user greater than zero
      */
     override fun getItemCount(): Int {
-        return if(dataList.size > 0){
+        return if(dataList.isNotEmpty()){
             dataList.size
         }else{
             0
