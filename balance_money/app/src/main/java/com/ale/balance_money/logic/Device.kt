@@ -1,18 +1,19 @@
 package com.ale.balance_money.logic
 
 import android.content.res.Configuration
-import android.hardware.display.DisplayManager
 import android.util.DisplayMetrics
-import android.view.Display.DEFAULT_DISPLAY
 import android.view.WindowManager
-import android.view.WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
 import kotlin.math.sqrt
 
-
+/**
+ * this class is for any general configuration or information that you want of device
+ * @author Alejandro Alvarado
+ */
 class Device {
 
     /**
      * This function get orientation of device
+     * @param orientation
      * @return boolean
      */
     fun detectOrientationDevice(orientation: Int?):Boolean{
@@ -21,6 +22,8 @@ class Device {
 
     /**
      * This function detect if device is tablet or smartphone
+     * true is smartphone and false is tablet
+     * @param windowManager
      * @return Boolean
      */
      fun detectTypeDevice(windowManager:WindowManager): Boolean {

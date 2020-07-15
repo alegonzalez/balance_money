@@ -44,4 +44,14 @@
     <string name="messageDialogTitle">Confirmación</string>
     <string name="messageDialogUpdate">¿Deseas actualizar la cuenta?</string>
     <string name="messageDialogDelete">¿Seguro que deseas eliminar la cuenta?</string>
+    <string name="name_toolbar_detail_account">Información de la cuenta</string>
+    <!-- category-->
+    <string name="name_toolbar_category_main">Categoría</string>
+    <string name="name_toolbar_create_new_category">Crear nueva categoría</string>
+    <string name="hint_field_name">Nombre</string>
+    <string name="hint_field_description">Descripción</string>
+    <string name="text_button_create_new_category">Crear</string>
+    <string name="messageDialogDeleteCategory">¿Seguro que deseas eliminar la categoría?</string>
+    <string name="messageDialogUpdateCategory">¿Deseas actualizar la categoría?</string>
+    <string name="name_toolbar_detail_category">Información de la categoría</string>
 </resources>

@@ -11,17 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_balance_money_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CategoryActivity" />
+        <activity
+            android:name=".UI.category.UpdateDeleteCategoryActivity"
+            android:label="@string/name_toolbar_detail_category"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
+        <activity
+            android:name=".UI.category.CreateNewCategoryActivity"
+            android:label="@string/name_toolbar_create_new_category" />
+        <activity
+            android:name=".UI.category.CategoryActivity"
+            android:label="@string/name_toolbar_category_main" />
         <activity
             android:name=".UI.account.AccountUpdateDeleteActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:label="@string/name_toolbar_detail_account"/>
         <activity
             android:name=".UI.account.NewAccountActivity"
             android:label="@string/name_toolbar_create_new_account" />
         <activity
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UI.login.CreateAccountActivity" />
         <activity
             android:name=".UI.menu.MenuActivity"
