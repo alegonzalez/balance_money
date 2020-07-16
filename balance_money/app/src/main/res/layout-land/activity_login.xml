@@ -12,8 +12,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
@@ -27,9 +27,9 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginStart="48dp"
         android:background="@color/colorPrimary"
         android:onClick="login"
         android:padding="5dp"
@@ -62,8 +62,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="80dp"
         android:ems="10"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
@@ -72,9 +72,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/loginBtnFacebook"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="92dp"
+        android:background="@color/colorButtonFacebook"
+        android:padding="5dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:textSize="19sp"
+        app:com_facebook_login_text="Continuar con Facebook"
+        app:layout_constraintEnd_toStartOf="@+id/guideline91"
+        app:layout_constraintStart_toStartOf="@+id/guideline90"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btnSignInGoogle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:background="@color/colorLetter"
@@ -85,28 +101,9 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.658"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline91"
+        app:layout_constraintStart_toStartOf="@+id/guideline90"
         app:layout_constraintTop_toBottomOf="@+id/loginBtnFacebook" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/loginBtnFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="124dp"
-        android:background="@color/colorButtonFacebook"
-        android:padding="5dp"
-        android:paddingTop="13dp"
-        android:paddingBottom="13dp"
-        android:textSize="19sp"
-        app:com_facebook_login_text="Continuar con Facebook"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -114,4 +111,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="365dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="318dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="662dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,21 +32,27 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
+/**
+ * This class show all provider for authentication
+ * @author Alejandro Alvarado
+ */
 class LoginActivity : AppCompatActivity() {
-    var callbackManager: CallbackManager = CallbackManager.Factory.create()
+    private var callbackManager: CallbackManager = CallbackManager.Factory.create()
     private val RC_SIGN_IN = 100
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        var buttonGoogle = findViewById<Button>(R.id.btnSignInGoogle)
-        var buttonFacebook = findViewById<LoginButton>(R.id.loginBtnFacebook)
-        var txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
+        val buttonGoogle = findViewById<Button>(R.id.btnSignInGoogle)
+        val buttonFacebook = findViewById<LoginButton>(R.id.loginBtnFacebook)
+        val txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
         txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(
-            R.drawable.facebook
-        ), null, null, null);
+        buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.facebook), null, null, null);
+        buttonFacebook.compoundDrawablePadding = 25;
         buttonFacebook.setPermissions("public_profile","email")
+
+        //onclick login with google
         buttonGoogle.setOnClickListener {
+
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -55,6 +61,8 @@ class LoginActivity : AppCompatActivity() {
             googleClient.signOut()
             startActivityForResult(googleClient.signInIntent, RC_SIGN_IN)
         }
+
+        //onclick login with facebook
         buttonFacebook.setOnClickListener{
             buttonFacebook.registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult?> {
@@ -96,6 +104,9 @@ class LoginActivity : AppCompatActivity() {
 
     /**
      * This function make authentication of different providers and save data in firebase
+     * @param typeAuthentication
+     * @param credential
+     * @return void
      */
     private fun authenticationProvider(
         typeAuthentication: Authentication,
@@ -121,6 +132,8 @@ class LoginActivity : AppCompatActivity() {
 
     /**
      * This function show Alert
+     * @param message
+     * @return void
      */
     private fun showAlert(message: String) {
         val builder = AlertDialog.Builder(this);
@@ -133,6 +146,7 @@ class LoginActivity : AppCompatActivity() {
 
     /**
      * This function show menu of the application
+     * @return void
      */
     private fun openMenu() {
         val intentMenu = Intent(this, MenuActivity::class.java)
@@ -141,7 +155,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     /**
-     * This function execute when user wants to create a new account
+     * Onclick when user wants to create a new account
+     * @param view
+     * @return void
      */
     fun createNewAccount(view: View) {
         val intentMenu = Intent(this, CreateAccountActivity::class.java)

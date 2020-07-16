@@ -15,7 +15,10 @@ import com.ale.balance_money.logic.Person
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.firebase.auth.FirebaseAuth
 
-
+/**
+ * this class is for create new personal account
+ * @author Alejandro Alvarado
+ */
 class CreateAccountActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
@@ -32,11 +35,10 @@ class CreateAccountActivity : AppCompatActivity() {
         var password = findViewById<EditText>(R.id.txtPassword)
         val confirmPassword = findViewById<EditText>(R.id.txtConfirmPassword)
 
+        //onclick for create new personal account
         btnCreateNewAccount.setOnClickListener{
-
-
             val person= Person()
-            var statusValidation:Boolean = false
+            var statusValidation = false
             if( name.text.toString() == ""){
                 name.error = "El campo nombre es requerido"
                 statusValidation = true
@@ -75,6 +77,11 @@ class CreateAccountActivity : AppCompatActivity() {
 
     /**
      * This function make authentication with firebase with email and password
+     * @param progressBar
+     * @param email
+     * @param password
+     * @param person
+     * @return void
      */
     private fun authenticationEmailPassword(progressBar:ProgressBar,email:String,password:String,person: Person){
         mAuth!!.createUserWithEmailAndPassword(email, password)

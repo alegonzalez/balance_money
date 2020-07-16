@@ -20,14 +20,14 @@ class Person {
      var password:String
      var provider:String
 
-    //Contructor with all attributes of class
+    //Constructor with all attributes of class
     constructor(name: String, email: String,password: String = "",provider:String) {
         this.name = name
         this.email = email
         this.password = password;
          this.provider = provider
     }
-    //constructor empty
+    //Constructor empty
     constructor() {
         this.name = ""
         this.email = ""
@@ -38,6 +38,7 @@ class Person {
 
     /**
      * This function check if user is log in
+     * @return Boolean
      */
     fun isLoggedIn(): Boolean {
         val accessToken = AccessToken.getCurrentAccessToken()
@@ -46,11 +47,13 @@ class Person {
 
     /**
      * This function save data of user
+     * @param typeAuthentication
+     * @return Boolean
      */
     fun writeNewUser(typeAuthentication: Authentication): Boolean {
         return if(this.name != "" && this.email != "" && validateEmail(this.email)){
             val id = FirebaseAuth.getInstance().currentUser?.uid
-            val person = checkTypeAutentication(typeAuthentication)
+            val person = checkTypeAuthentication(typeAuthentication)
             val ref = FirebaseDatabase.getInstance().reference
             ref.child("users").child(id.toString()).setValue(person)
             true
@@ -60,9 +63,11 @@ class Person {
        }
 
     /**
-     * This function check what type authenticacion  do you use
+     * This function check what type authentication  is used by user
+     * @param typeAuthentication
+     * @return Person
      */
-    private fun checkTypeAutentication(typeAuthentication: Authentication): Person {
+    private fun checkTypeAuthentication(typeAuthentication: Authentication): Person {
         val person = Person()
         person.name = this.name
         person.email = this.email
@@ -77,6 +82,8 @@ class Person {
 
     /**
      * This function validate if email is correct
+     * @param email
+     * @return Boolean
      */
     fun validateEmail(email:CharSequence): Boolean {
         val EMAIL_ADDRESS_PATTERN: Pattern = Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+")
@@ -86,16 +93,17 @@ class Person {
     /**
      * This function check if password is equal to confirm password
      * if  two password is equals, the password is encrypted
+     * @param password
+     * @param confirmPassword
+     * @return String
      */
     fun checkPassword(password: String, confirmPassword: String):String {
-        if(password == "" && confirmPassword == "") {
-           // return "El campo contraseña es requerido"
-            return "0"
+        return if(password == "" && confirmPassword == "") {
+            "0"
         }else if(password == confirmPassword){
-            return getHash(password).toString()
+            getHash(password).toString()
         }else{
-           // return "Los campos contraseña y confirmar contraseña no coinciden"
-            return "1"
+            "1"
         }
     }
 
@@ -105,6 +113,12 @@ class Person {
     fun checkEmail(email:String):Boolean{
         return email == ""
     }
+
+    /**
+     * password is encrypted
+     * @param password
+     * @return String
+     */
     @Throws(NoSuchAlgorithmException::class, UnsupportedEncodingException::class)
      fun getHash(password: String): String? {
         val md: MessageDigest = MessageDigest.getInstance("MD5")
