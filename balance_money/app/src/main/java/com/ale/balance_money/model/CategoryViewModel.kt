@@ -6,7 +6,7 @@ import com.ale.balance_money.logic.Category.Category
 import com.ale.balance_money.repository.FirebaseDataCategory
 
 /**
- * This class is for implement Architecture ViewModel
+ * This class is for implement Architecture ViewModel for category
  * @author Alejandro Alvarado
  */
 class CategoryViewModel:ViewModel() {

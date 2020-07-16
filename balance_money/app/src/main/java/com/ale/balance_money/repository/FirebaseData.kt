@@ -1,6 +1,5 @@
 package com.ale.balance_money.repository
 
-import android.accounts.Account
 import androidx.lifecycle.MutableLiveData
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.setting.DatabaseSetting
@@ -9,7 +8,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import java.lang.Exception
 
-
+/**
+ * This class is for any communication with firebase for example an insert, update or delete for account
+ * @author Alejandro Alvarado
+ */
 class FirebaseData {
 
     private val databaseSetting = DatabaseSetting()
@@ -17,6 +19,7 @@ class FirebaseData {
     /**
      * This function get all account by user
      * get title,money,amount and description
+     * @return MutableLiveData<List<AccountMoney>>
      */
     fun getAccount():MutableLiveData<List<AccountMoney>>{
         val mutableData = MutableLiveData<List<AccountMoney>>()
@@ -49,36 +52,42 @@ class FirebaseData {
 
     /**
      * this function update detail of account
+     * @param accountData
+     * @return Boolean
      */
     fun updateAccount(accountData: AccountMoney): Boolean {
-        //return try {
+         try {
             val uid = databaseSetting.getUidUser()
             ref.child("account").child(uid.toString()).child(accountData.id).setValue(accountData);
-            return true
-       // } catch (e: Exception) {
-                //false
-        //}
+
+        } catch (e: Exception) {
+                return false
+        }
+        return true
     }
     /**
      * This function create new account and save in firebase
+     * @param account
+     * return void
      */
     fun createNewAccount(account: AccountMoney) {
-        var uid = databaseSetting.getUidUser()
+        val uid = databaseSetting.getUidUser()
         val ref = databaseSetting.getDatabaseReference()
         ref.child("account").child(uid.toString()).push().setValue(account)
     }
     /**
      *this function remove a specific account from firebase
-     * @return void
+     * @param id
+     * @return Boolean
      */
     fun removeAccount(id:String): Boolean {
-        return try {
+         try {
             val uid = databaseSetting.getUidUser()
             val ref = databaseSetting.getDatabaseReference()
-            ref.child("account").child(uid.toString()).child(id).removeValue();
-            true
+            ref.child("account").child(uid.toString()).child(id).removeValue()
         } catch (e: Exception) {
-            false
+           return false
         }
+        return true
     }
 }

@@ -3,14 +3,13 @@ package com.ale.balance_money.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ale.balance_money.logic.Category.Category
-import com.ale.balance_money.logic.account.AccountMoney
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.ale.balance_money.logic.setting.DatabaseSetting
 import java.lang.Exception
 /**
- * This class is for any communication with firebase for example an insert, update or delete
+ * This class is for any communication with firebase for example an insert, update or delete for category
  * @author Alejandro Alvarado
  */
 class FirebaseDataCategory {
