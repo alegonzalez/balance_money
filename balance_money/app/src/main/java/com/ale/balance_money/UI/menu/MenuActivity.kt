@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.ale.balance_money.R
 import com.ale.balance_money.UI.account.AccountActivity
+import com.ale.balance_money.UI.category.CategoryActivity
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
 class MenuActivity : AppCompatActivity() {
@@ -13,6 +14,9 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         val btnAccount = findViewById<Button>(R.id.btnAccount)
+        val btnCategory = findViewById<Button>(R.id.btnCategory)
+        val btnTransaction = findViewById<Button>(R.id.btnTransaction)
+        val btnStadistic = findViewById<Button>(R.id.btnStadistic)
       //method onclick to enter in account
         btnAccount.setOnClickListener{
             val intentAccount  =  Intent(this,
@@ -20,5 +24,12 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intentAccount)
             Animatoo.animateSlideLeft(this);
         }
+        //method onclick to enter in category
+        btnCategory.setOnClickListener{
+            val intentCategory  =  Intent(this, CategoryActivity::class.java)
+            startActivity(intentCategory)
+            Animatoo.animateSlideLeft(this);
+        }
+
     }
 }

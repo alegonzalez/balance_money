@@ -7,12 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
-import com.ale.balance_money.logic.Category.CategoryAdapter.CategoryHolder
-import com.ale.balance_money.logic.Device
-import com.ale.balance_money.logic.account.Account
-import com.ale.balance_money.logic.account.AccountAdapter
-import com.ale.balance_money.logic.account.Money
-import kotlinx.android.synthetic.main.item_account.view.*
+import com.ale.balance_money.logic.setting.Device
 import kotlinx.android.synthetic.main.item_category.view.*
 
 /**

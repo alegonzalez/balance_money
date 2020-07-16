@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Category.Category
+import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseDataCategory
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -53,7 +54,7 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
         //performing positive action
         builder.setPositiveButton("Si") { dialogInterface, which ->
             val firebaseCategory = FirebaseDataCategory()
-            val account = com.ale.balance_money.logic.account.Account()
+            val account = com.ale.balance_money.logic.account.AccountMoney()
             val view: View = this.window.decorView.findViewById(android.R.id.content)
             if (typeAction == "remove") {
                   if(firebaseCategory.removeCategory(category.id)){
@@ -61,16 +62,17 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
                       startActivity(intentMainCategory)
                       Animatoo.animateSlideRight(this);
                   }else{
-                        account.messageMistakeSnack("La categoría no se puedo eliminar correctamente",
+                        Device().messageMistakeSnack("La categoría no se puedo eliminar correctamente",
                           view
                       )
                   }
             } else {
                 if(category.validateField()){
+                    val device = Device()
                     if(firebaseCategory.updateCategory(category)){
-                        account.messageSuccessfulSnack("La categoría se actualizo correctamente",view)
+                        device.messageSuccessfulSnack("La categoría se actualizo correctamente",view)
                     }else{
-                        account.messageMistakeSnack("La categoría no se pudo actualizar correctamente, intentelo nuevamente",view)
+                        device.messageMistakeSnack("La categoría no se pudo actualizar correctamente, intentelo nuevamente",view)
                     }
                 }else{
                     nameCategory.error = "El campo nombre es requerido"
@@ -93,6 +95,7 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
      */
     override fun onBackPressed() {
         super.onBackPressed()
-        Animatoo.animateSlideRight(this);
+        Animatoo.animateSlideRight(this)
+        finish()
     }
 }

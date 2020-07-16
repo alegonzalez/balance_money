@@ -12,14 +12,17 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
-import com.ale.balance_money.logic.Account
-import com.ale.balance_money.logic.AccountAdapter
+import com.ale.balance_money.logic.setting.Device
+import com.ale.balance_money.logic.account.AccountAdapter
 import com.ale.balance_money.model.AccountViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.list_account_fragment.*
 
-
+/**
+ * This  class is for show fragment for smartphone to show accounts list
+ * @author Alejandro Alvarado
+ */
 class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
     private val viewModel by lazy { ViewModelProvider(this).get(AccountViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
@@ -32,6 +35,11 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
         return inflater.inflate(R.layout.list_account_fragment, container, false)
     }
 
+    /**
+     * This function load after of onCreateView and show list of accounts
+     * @param view
+     * @param savedInstanceState
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.rcyAccount)
@@ -45,7 +53,8 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
                 DividerItemDecoration.VERTICAL
             )
         )
-        adapter = AccountAdapter(context, this)
+        adapter =
+            AccountAdapter(context, this)
         recyclerView.adapter = adapter
         if(viewModel.listAccount == null){
             observeAccount()
@@ -88,14 +97,18 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
      * this function show message if user doesn't account
      */
     private fun listEmpty(){
-
-        Account().messageSuccessfulSnack("No hay cuentas registradas",view)
+        Device().messageSuccessfulSnack("No hay cuentas registradas", view)
     }
 
     /**
      * This function is executed when user make click
+     * @param title
+     * @param money
+     * @param amount
+     * @param description
+     * @param id
      */
-    override fun OnItemClick(
+    override fun OnItemClickAccount(
         title: String,
         money: String,
         amount: Double,

@@ -1,6 +1,5 @@
-package com.ale.balance_money
+package com.ale.balance_money.UI.account
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,16 +10,19 @@ import androidx.lifecycle.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ale.balance_money.UI.account.AccountUpdateDeleteActivity
-import com.ale.balance_money.UI.account.NewAccountActivity
-import com.ale.balance_money.logic.Account
-import com.ale.balance_money.logic.AccountAdapter
+import com.ale.balance_money.R
+import com.ale.balance_money.logic.setting.Device
+import com.ale.balance_money.logic.account.AccountMoney
+import com.ale.balance_money.logic.account.AccountAdapter
 import com.ale.balance_money.model.AccountViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.list_account_fragment.*
 
-
+/**
+ * This  class is for show fragment for tablet to show accounts list
+ * @author Alejandro Alvarado
+ */
 class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
     private val viewModel by lazy { ViewModelProvider(this).get(AccountViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
@@ -32,6 +34,11 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_account_tablet, container, false)
     }
+    /**
+     * This function load after of onCreateView and show list of accounts
+     * @param view
+     * @param savedInstanceState
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView =  view.findViewById(R.id.rcyAccount)
@@ -40,12 +47,13 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
         recyclerView.layoutManager = llm
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        adapter = AccountAdapter(context,this)
+        adapter =
+            AccountAdapter(context, this)
         recyclerView.adapter = adapter
        if(viewModel.listAccount == null){
            observeAccount()
        }else{
-           adapter.setDataAccount(viewModel.listAccount as MutableList<Account>)
+           adapter.setDataAccount(viewModel.listAccount as MutableList<AccountMoney>)
            adapter.notifyDataSetChanged()
            shimmer_view_container.stopShimmer()
            shimmer_view_container.visibility = View.GONE
@@ -85,10 +93,17 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
      * this function show message if user doesn't account
      */
     private fun listEmpty(){
-
-         Account().messageSuccessfulSnack("No hay cuentas registradas",view)
+    Device().messageSuccessfulSnack("No hay cuentas registradas",view)
     }
-    override fun OnItemClick(title: String, money: String, amount: Double, description: String,id:String) {
+    /**
+     * This function is executed when user make click
+     * @param title
+     * @param money
+     * @param amount
+     * @param description
+     * @param id
+     */
+    override fun OnItemClickAccount(title: String, money: String, amount: Double, description: String,id:String) {
         val intentUpdateDelete:Intent = Intent(context, AccountUpdateDeleteActivity::class.java)
         intentUpdateDelete.putExtra("id",id)
         intentUpdateDelete.putExtra("title",title)

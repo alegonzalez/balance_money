@@ -3,8 +3,6 @@ package com.ale.balance_money.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.ale.balance_money.logic.Category.Category
-import com.ale.balance_money.logic.account.Account
-import com.ale.balance_money.repository.FirebaseData
 import com.ale.balance_money.repository.FirebaseDataCategory
 
 /**

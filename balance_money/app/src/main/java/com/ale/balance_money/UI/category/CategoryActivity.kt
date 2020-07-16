@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Category.Category
 import com.ale.balance_money.logic.Category.CategoryAdapter
-import com.ale.balance_money.logic.account.Account
+import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.model.CategoryViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -82,7 +82,8 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnListenerCategory
      * @return void
      */
     private fun listEmpty() {
-        Account().messageSuccessfulSnack("No hay categorías registradas", recyclerViewCategory)
+        Device()
+            .messageSuccessfulSnack("No hay categorías registradas", recyclerViewCategory)
     }
 
     /**

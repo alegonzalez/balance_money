@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Category.Category
-import com.ale.balance_money.logic.account.Account
+import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseDataCategory
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
@@ -25,7 +25,7 @@ class CreateNewCategoryActivity : AppCompatActivity() {
             category.description = txtDescription.text.toString()
             if (category.validateField()) {
                 FirebaseDataCategory().insertNewCategory(category)
-                Account().messageSuccessfulSnack(
+                Device().messageSuccessfulSnack(
                     "La categoria " + txtName.text.toString() + " se creo con exito",
                     txtName
                 )

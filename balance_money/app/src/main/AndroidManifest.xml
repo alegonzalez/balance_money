@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_balance_money_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--Category-->
         <activity
             android:name=".UI.category.UpdateDeleteCategoryActivity"
             android:label="@string/name_toolbar_detail_category"
@@ -21,22 +22,26 @@
         <activity
             android:name=".UI.category.CategoryActivity"
             android:label="@string/name_toolbar_category_main" />
+        <!--Account-->
         <activity
             android:name=".UI.account.AccountUpdateDeleteActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"
             android:label="@string/name_toolbar_detail_account"/>
         <activity
             android:name=".UI.account.NewAccountActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             android:label="@string/name_toolbar_create_new_account" />
         <activity
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UI.login.CreateAccountActivity" />
+        <!--Menu-->
         <activity
             android:name=".UI.menu.MenuActivity"
             android:label="@string/name_menu" />
         <activity android:name=".UI.login.LoginActivity" />
+        <!--Main screen-->
         <activity
             android:name=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -60,10 +65,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
