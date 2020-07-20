@@ -1,4 +1,4 @@
-package com.ale.balance_money.logic.Category
+package com.ale.balance_money.logic.category
 
 /**
  * this class is for logic to category

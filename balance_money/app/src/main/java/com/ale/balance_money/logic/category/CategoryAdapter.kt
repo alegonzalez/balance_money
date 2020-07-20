@@ -1,4 +1,4 @@
-package com.ale.balance_money.logic.Category
+package com.ale.balance_money.logic.category
 
 import android.content.Context
 import android.view.LayoutInflater

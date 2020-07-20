@@ -2,7 +2,7 @@ package com.ale.balance_money.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ale.balance_money.logic.Category.Category
+import com.ale.balance_money.logic.category.Category
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

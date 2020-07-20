@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.ExchangeRate
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.account.Money
@@ -26,12 +27,13 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
     lateinit var txtName: EditText
     lateinit var txtAmount: EditText
     lateinit var txtDescription: EditText
+    var typeMoney = ""
     var device = Device()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_update_delete)
         val intentSpecificAccount = intent
-         //set data carry from ListAccountTablet.OnItemClick
+        //set data carry from ListAccountTablet.OnItemClick
         account.id = intentSpecificAccount.getStringExtra("id")
         account.title = intentSpecificAccount.getStringExtra("title")
         account.money = intentSpecificAccount.getStringExtra("money")
@@ -50,7 +52,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         val btnRemove = findViewById<FloatingActionButton>(R.id.btnRemove)
         val btnUpdate = findViewById<FloatingActionButton>(R.id.btnUpdate)
         //call function setMoney to set in UI money by user
-        setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
+        typeMoney = setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
         //Set data in UI
         txtName.setText(account.title)
         txtAmount.setText(account.amount.toString())
@@ -58,23 +60,17 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         //Onclick of button colon
         btnColon.setOnClickListener {
             account.money = Money.COLON.name
-            indicatorColon.visibility = View.VISIBLE;
-            indicatorDollar.visibility = View.INVISIBLE
-            indicatorEuro.visibility = View.INVISIBLE
+            setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
             account.money = Money.DOLLAR.name
-            indicatorDollar.visibility = View.VISIBLE
-            indicatorColon.visibility = View.INVISIBLE;
-            indicatorEuro.visibility = View.INVISIBLE
+            setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
             account.money = Money.EURO.name
-            indicatorEuro.visibility = View.VISIBLE
-            indicatorDollar.visibility = View.INVISIBLE
-            indicatorColon.visibility = View.INVISIBLE;
+            setMoney(account.money, indicatorColon, indicatorDollar, indicatorEuro)
         }
         //Onclick remove button
         btnRemove.setOnClickListener {
@@ -84,26 +80,31 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         //Onclick update button
         btnUpdate.setOnClickListener {
 
-            var listError: ArrayList<String> =  account.validateFieldsAccount(txtName.text.toString(), account.money, txtAmount.text.toString())
-          if(listError[0] =="" && listError[1] =="" && listError[2] ==""){
-              account.title = txtName.text.toString()
-              account.amount = txtAmount.text.toString().toDouble()
-              account.description = txtDescription.text.toString()
-              dialogConfirmationAction(R.string.messageDialogUpdate, "update")
-          }else{
-              var selectMoney = findViewById<TextView>(R.id.textSelectMoney)
-              if(listError[0] != "" ){
-                  txtName.error = listError[0]
-              }
-              if(listError[1] != ""){
-                  device.messageMistakeSnack(listError[1],selectMoney)
-              }
-              if(listError[2] != ""){
-                  txtAmount.error = listError[2]
-              }
-          }
+            var listError: ArrayList<String> = account.validateFieldsAccount(
+                txtName.text.toString(),
+                account.money,
+                txtAmount.text.toString()
+            )
+            if (listError[0] == "" && listError[1] == "" && listError[2] == "") {
+                account.title = txtName.text.toString()
+                account.amount = txtAmount.text.toString().toDouble()
+                account.description = txtDescription.text.toString()
+                dialogConfirmationAction(R.string.messageDialogUpdate, "update")
+            } else {
+                var selectMoney = findViewById<TextView>(R.id.textSelectMoney)
+                if (listError[0] != "") {
+                    txtName.error = listError[0]
+                }
+                if (listError[1] != "") {
+                    device.messageMistakeSnack(listError[1], selectMoney)
+                }
+                if (listError[2] != "") {
+                    txtAmount.error = listError[2]
+                }
+            }
         }
     }
+
     /**
      * This function show dialog to user, if user would like make a action
      * @param messageToShow
@@ -119,7 +120,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         builder.setIcon(android.R.drawable.ic_dialog_alert)
         //performing positive action
         builder.setPositiveButton("Si") { dialogInterface, which ->
-           val firebaseData =  FirebaseData()
+            val firebaseData = FirebaseData()
             if (typeAction == "remove") {
                 if (firebaseData.removeAccount(account.id)) {
                     val intentListAccount = Intent(this, AccountActivity::class.java)
@@ -133,20 +134,24 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
                     )
                 }
             } else {
-
-                    if (firebaseData.updateAccount(account)) {
-                        // the account have been updated successful
-                        device.messageSuccessfulSnack(
-                            "La cuenta se actualizó correctamente",
-                            txtDescription
-                        )
-                    } else {
-                        // problem when try remove an account
-                        device.messageSuccessfulSnack(
-                            "No se pudo actualizar la cuenta correctamente, intentelo nuevamente",
-                            txtDescription
-                        )
-                    }
+                if(account.money != typeMoney){
+                    val exchangeRate = ExchangeRate()
+                    exchangeRate.execute(typeMoney,account.money,account.amount.toString())
+                    account.amount = exchangeRate.get()
+                }
+                 if (firebaseData.updateAccount(account)) {
+                    // the account have been updated successful
+                    device.messageSuccessfulSnack(
+                        "La cuenta se actualizó correctamente",
+                        txtDescription
+                    )
+                } else {
+                    // problem when try remove an account
+                    device.messageSuccessfulSnack(
+                        "No se pudo actualizar la cuenta correctamente, intentelo nuevamente",
+                        txtDescription
+                    )
+                }
 
             }
         }
@@ -169,6 +174,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         Animatoo.animateSlideRight(this)
         finish()
     }
+
     /**
      * This function set visibility money that was selected by user
      * @param money
@@ -181,13 +187,40 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         indicatorColon: ImageView?,
         indicatorDollar: ImageView?,
         indicatorEuro: ImageView?
-    ) {
+    ): String {
         if (money == Money.COLON.name && indicatorColon != null) {
             indicatorColon.visibility = View.VISIBLE
+            indicatorDollar?.visibility = View.INVISIBLE
+            indicatorEuro?.visibility = View.INVISIBLE
+            return Money.COLON.name
         } else if (money == Money.DOLLAR.name && indicatorDollar != null) {
             indicatorDollar.visibility = View.VISIBLE
+            indicatorColon?.visibility = View.INVISIBLE;
+            indicatorEuro?.visibility = View.INVISIBLE
+            return Money.DOLLAR.name
         } else if (money == Money.EURO.name && indicatorEuro != null) {
             indicatorEuro.visibility = View.VISIBLE
+            indicatorDollar?.visibility = View.INVISIBLE
+            indicatorColon?.visibility = View.INVISIBLE;
+            return Money.EURO.name
+        }
+        return ""
+    }
+
+    /**
+     * this function get money for default
+     */
+    private fun getIndicatorMoney(indicatorColon: ImageView?, indicatorDollar: ImageView?): String {
+        return when {
+            indicatorColon != null -> {
+                Money.COLON.name
+            }
+            indicatorDollar != null -> {
+                Money.DOLLAR.name
+            }
+            else -> {
+                Money.EURO.name
+            }
         }
     }
 }

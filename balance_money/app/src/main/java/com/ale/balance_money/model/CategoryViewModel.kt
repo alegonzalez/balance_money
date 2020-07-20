@@ -2,7 +2,7 @@ package com.ale.balance_money.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.ale.balance_money.logic.Category.Category
+import com.ale.balance_money.logic.category.Category
 import com.ale.balance_money.repository.FirebaseDataCategory
 
 /**

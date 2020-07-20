@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
-import com.ale.balance_money.logic.Category.Category
-import com.ale.balance_money.logic.Category.CategoryAdapter
+import com.ale.balance_money.logic.category.Category
+import com.ale.balance_money.logic.category.CategoryAdapter
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.model.CategoryViewModel
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
