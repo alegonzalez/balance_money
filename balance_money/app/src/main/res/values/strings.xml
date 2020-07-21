@@ -54,4 +54,17 @@
     <string name="messageDialogDeleteCategory">¿Seguro que deseas eliminar la categoría?</string>
     <string name="messageDialogUpdateCategory">¿Deseas actualizar la categoría?</string>
     <string name="name_toolbar_detail_category">Información de la categoría</string>
+    <!--Transactions-->
+    <string name="name_toolbar_list_transaction">Transacciones</string>
+    <!--Create transactions-->
+    <string name="selec_account">Seleccione la cuenta</string>
+    <string name="selec_category">Seleccione la categoría</string>
+    <string name="txtTypeTransaction">La transacción es un:</string>
+    <string name="amount_transaction">Monto</string>
+    <string name="income_transaction">Ingreso</string>
+    <string name="expense_transaction">Gasto</string>
+    <string name="description_transaction">Descripción</string>
+    <string name="button_create_transaction">Crear</string>
+    <string name="message_dialo_create_new_transaction">¿Seguro que deseas crear esta transacción?</string>
+    <string name="name_toolbar_create_transacion">Crear transacción</string>
 </resources>

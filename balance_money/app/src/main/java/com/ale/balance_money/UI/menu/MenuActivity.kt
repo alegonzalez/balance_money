@@ -7,6 +7,7 @@ import android.widget.Button
 import com.ale.balance_money.R
 import com.ale.balance_money.UI.account.AccountActivity
 import com.ale.balance_money.UI.category.CategoryActivity
+import com.ale.balance_money.UI.transaction.TransactionActivity
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
 class MenuActivity : AppCompatActivity() {
@@ -28,6 +29,12 @@ class MenuActivity : AppCompatActivity() {
         btnCategory.setOnClickListener{
             val intentCategory  =  Intent(this, CategoryActivity::class.java)
             startActivity(intentCategory)
+            Animatoo.animateSlideLeft(this);
+        }
+        //method onclick to enter in transaction
+        btnTransaction.setOnClickListener{
+            val intentTransaction =  Intent(this, TransactionActivity::class.java)
+            startActivity(intentTransaction)
             Animatoo.animateSlideLeft(this);
         }
 

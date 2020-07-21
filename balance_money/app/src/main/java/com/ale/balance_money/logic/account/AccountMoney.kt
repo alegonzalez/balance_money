@@ -1,5 +1,6 @@
 package com.ale.balance_money.logic.account
 
+import java.io.Serializable
 import java.util.*
 
 
@@ -11,7 +12,7 @@ enum class Money {
  * This class is all logic of account
  * @author Alejandro Alvarado
  */
-class AccountMoney {
+class AccountMoney:Serializable {
     var id: String = ""
     var title: String = ""
     var money: String = ""
@@ -49,4 +50,6 @@ class AccountMoney {
 
         return listError
     }
+
+
 }
