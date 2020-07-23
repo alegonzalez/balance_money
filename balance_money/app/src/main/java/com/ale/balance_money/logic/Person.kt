@@ -90,6 +90,9 @@ class Person {
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 
+    fun validatePassword(password:String):Boolean{
+        return password == ""
+    }
     /**
      * This function check if password is equal to confirm password
      * if  two password is equals, the password is encrypted

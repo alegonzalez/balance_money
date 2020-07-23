@@ -24,7 +24,6 @@ class FirebaseData {
     fun getAccount():MutableLiveData<List<AccountMoney>>{
         val mutableData = MutableLiveData<List<AccountMoney>>()
         var listAccount = mutableListOf<AccountMoney>()
-        val account= AccountMoney()
         var userId: String? =  databaseSetting.getUidUser()
             ref.child("account").child(userId.toString()).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {

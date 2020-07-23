@@ -35,29 +35,48 @@ class NewAccountActivity : AppCompatActivity() {
         val btnDollar = findViewById<Button>(R.id.btnDollar)
         val btnEuro = findViewById<Button>(R.id.btnEuro)
         val btnCreateNewAccount = findViewById<Button>(R.id.btnNewAccount)
-        val indicatorColon = findViewById<ImageView>(R.id.imgIndicatorColon)
-        val indicatorDollar = findViewById<ImageView>(R.id.imgIndicatorDollar)
-        val indicatorEuro = findViewById<ImageView>(R.id.imgIndicatorEuro)
+        val orientation = Device().detectOrientationDevice(this.resources.configuration.orientation)
         //Onclick of button colon
         btnColon.setOnClickListener {
             typeMoney = Money.COLON.name
-            indicatorColon.visibility = View.VISIBLE;
-            indicatorDollar.visibility = View.INVISIBLE
-            indicatorEuro.visibility = View.INVISIBLE
+           if(orientation){
+               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, resources.getDrawable(R.drawable.check), null);
+               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
+               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
+           }else{
+               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, resources.getDrawable(R.drawable.check_tablet), null);
+               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
+               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
+           }
+            btnColon.compoundDrawablePadding = 10;
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
             typeMoney = Money.DOLLAR.name
-            indicatorDollar.visibility = View.VISIBLE
-            indicatorColon.visibility = View.INVISIBLE;
-            indicatorEuro.visibility = View.INVISIBLE
+           if(orientation){
+               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar),null,resources.getDrawable(R.drawable.check),null);
+               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
+               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
+           }else{
+               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet),null,resources.getDrawable(R.drawable.check_tablet),null);
+               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
+               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
+           }
+            btnDollar.compoundDrawablePadding = 10;
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
             typeMoney = Money.EURO.name
-            indicatorEuro.visibility = View.VISIBLE
-            indicatorDollar.visibility = View.INVISIBLE
-            indicatorColon.visibility = View.INVISIBLE;
+            if(orientation){
+                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, resources.getDrawable(R.drawable.check), null)
+                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
+                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
+        } else{
+                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, resources.getDrawable(R.drawable.check_tablet), null)
+                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
+                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
+            }
+            btnEuro.compoundDrawablePadding = 10;
         }
         //onclick of button to create new account
         btnCreateNewAccount.setOnClickListener {

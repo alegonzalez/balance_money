@@ -1,8 +1,10 @@
 <resources>
     <!-- Login activity-->
-    <string name="app_name">Balance-Money</string>
-    <string name="hint_email">Correo electrónico</string>
-    <string name="hint_password">Contraseña</string>
+    <string name="app_name">Balance Money</string>
+    <string name="hint_email">Ingresa tu correo</string>
+    <string name="hint_password">Ingresa tu contraseña</string>
+    <string name="label_email">Correo</string>
+    <string name="label_password">Contraseña</string>
     <string name="button_login">Ingresar</string>
     <string name="create_account">Crear cuenta</string>
     <string name="facebook_app_id">2642299346088713</string>
@@ -11,10 +13,12 @@
     <string name="button_sign_in_google">Continuar con Google</string>
     <string name="enterWith">Ingresar con</string>
     <!-- Create new account -->
-    <string name="field_name_create_account">Nombre</string>
-    <string name="field_email_create_account">Correo electrónico</string>
-    <string name="field_password_create_account">Contraseña</string>
+    <string name="field_name_create_account">Ingresa el nombre</string>
+    <string name="label_name">Nombre</string>
+    <string name="field_email_create_account">Ingresa tu correo</string>
+    <string name="field_password_create_account">Ingresa tu contraseña</string>
     <string name="field__confirm_password_create_account">Confirmar contraseña</string>
+    <string name="label_confirm_password">Confirmar contraseña</string>
     <string name="button__create_account">Crear</string>
     <!-- Menu -->
     <string name="btn_account">Cuentas</string>
@@ -37,9 +41,16 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- Create Account-->
     <string name="field_title_create_account">Nombre</string>
-    <string name="field_select_money_create_account">Seleccione la moneda</string>
-    <string name="field_amount_create_account">Monto</string>
-    <string name="field_description_create_account">Descripción</string>
+    <string name="field_select_money_create_account">Selecciona la moneda</string>
+    <string name="field_amount_create_account">Ingresa el monto</string>
+    <string name="field_description_create_account">Ingresa una descripción(No es requerido)</string>
+    <string name="label_description_account">Descripción</string>
+    <string name="label_amount_account">Monto</string>
+    <string name="label_cuenta">Cuenta</string>
+    <string name="btn_money_colon">Colones</string>
+    <string name="btn_money_dollar">Dólares</string>
+    <string name="btn_money_euro">Euros</string>
+
     <!-- update or delete account-->
     <string name="messageDialogTitle">Confirmación</string>
     <string name="messageDialogUpdate">¿Deseas actualizar la cuenta?</string>

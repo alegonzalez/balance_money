@@ -16,11 +16,12 @@
         tools:targetApi="n">
         <activity
             android:name=".UI.transaction.DetailTransactionActivity"
-            android:label="@string/name_toolbar_list_transaction" />
+            />
         <activity
             android:name=".UI.transaction.CreateNewTransactionActivity"
             android:label="@string/name_toolbar_create_transacion" />
-        <activity android:name=".UI.transaction.TransactionActivity" /> <!-- Category -->
+        <activity android:name=".UI.transaction.TransactionActivity"
+            android:label="@string/name_toolbar_list_transaction" /> <!-- Category -->
         <activity
             android:name=".UI.category.UpdateDeleteCategoryActivity"
             android:label="@string/name_toolbar_detail_category"
@@ -37,17 +38,19 @@
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".UI.account.NewAccountActivity"
-            android:label="@string/name_toolbar_create_new_account"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:label="@string/name_toolbar_create_new_account" />
         <activity
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UI.login.CreateAccountActivity" /> <!-- Menu -->
+        <activity android:name=".UI.login.CreateAccountActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"  /> <!-- Menu -->
         <activity
             android:name=".UI.menu.MenuActivity"
             android:label="@string/name_menu" />
-        <activity android:name=".UI.login.LoginActivity" /> <!-- Main screen -->
+        <activity android:name=".UI.login.LoginActivity"
+
+            android:theme="@style/Theme.AppCompat.NoActionBar"/> <!-- Main screen -->
         <activity
             android:name=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">

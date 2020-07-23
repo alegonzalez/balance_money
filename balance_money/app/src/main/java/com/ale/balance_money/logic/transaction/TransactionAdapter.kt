@@ -1,9 +1,13 @@
 package com.ale.balance_money.logic.transaction
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ale.balance_money.R
+import com.ale.balance_money.logic.setting.Device
 import kotlinx.android.synthetic.main.item_transaction.view.*
 import java.util.*
 
@@ -37,15 +41,23 @@ class TransactionAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionHolder {
-        TODO("Not yet implemented")
+        val view: View
+      //  val windowManager = context!!.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        view = LayoutInflater.from(context).inflate(R.layout.item_transaction, parent, false)
+
+        return TransactionHolder(view)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        if(listTransaction.size > 0){
+            return listTransaction.size
+        }else{
+            return 0
+        }
     }
 
     override fun onBindViewHolder(holder: TransactionHolder, position: Int) {
-        TODO("Not yet implemented")
+        return holder.bindView(listTransaction[position])
     }
 
     inner class TransactionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

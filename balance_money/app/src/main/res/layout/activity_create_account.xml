@@ -4,74 +4,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".UI.login.CreateAccountActivity">
+
+    <TextView
+        android:id="@+id/txtLabelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/label_name"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:background="@drawable/custom_edit_text"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/hint_editText"
         android:ems="10"
+        android:hint="@string/field_name_create_account"
         android:inputType="textPersonName"
-       android:hint="@string/field_name_create_account"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelName" />
+
+    <TextView
+        android:id="@+id/txtLabelEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/label_email"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
         android:id="@+id/txtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:hint="@string/field_email_create_account"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/hint_editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelEmail" />
+
+    <TextView
+        android:id="@+id/txtLabelPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_password"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="@string/field_password_create_account"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/hint_editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelPassword" />
+
+    <TextView
+        android:id="@+id/txtLabelConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_confirm_password"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
     <EditText
         android:id="@+id/txtConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
+        android:hint="@string/field__confirm_password_create_account"
         android:inputType="textPassword"
-       android:hint="@string/field__confirm_password_create_account"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/hint_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelConfirmPassword" />
 
     <Button
         android:id="@+id/btnCrearNewAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/custom_btn"
         android:drawableStart="@drawable/add"
         android:padding="7dp"
         android:text="@string/button__create_account"

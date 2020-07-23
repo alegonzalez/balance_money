@@ -103,5 +103,12 @@ class CreateAccountActivity : AppCompatActivity() {
                 }
             }
     }
-
+    /**
+     * method when user back the previous activity, I do animation between activities
+     */
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Animatoo.animateSlideRight(this)
+        finish()
+    }
 }

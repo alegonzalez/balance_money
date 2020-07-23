@@ -23,6 +23,34 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/txtCreateNewAccount" />
 
+    <TextView
+        android:id="@+id/txtLabelPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/label_password"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <TextView
+        android:id="@+id/txtLabelEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:text="@string/label_email"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/txtEmail"
         android:layout_width="0dp"
@@ -30,7 +58,10 @@
         android:layout_marginTop="248dp"
         android:ems="10"
         android:textSize="25sp"
+        android:background="@drawable/custom_edit_text"
         android:hint="@string/hint_email"
+        android:textColorHint="@color/hint_editText"
+        android:textColor="@color/colorPrimary"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -43,7 +74,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/custom_btn"
         android:onClick="login"
         android:padding="5dp"
         android:text="@string/button_login"
@@ -58,15 +89,17 @@
         android:id="@+id/txtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
-        android:textSize="25sp"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/hint_editText"
+        android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelPassword" />
 
     <TextView
         android:id="@+id/txtCreateNewAccount"
@@ -76,6 +109,7 @@
         android:onClick="createNewAccount"
         android:text="@string/text_createaccount"
         android:textSize="21sp"
+        android:textColor="@color/colorLetter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -95,6 +129,7 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="25sp"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.501"

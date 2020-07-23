@@ -27,7 +27,7 @@ class FirebaseDataCategory {
 
     /**
      * This function get all categories by user
-     * @return LiveData<List<Account>>
+     * @return LiveData<List<Category>>
      */
     fun getAllCategories(): LiveData<List<Category>> {
         val mutableData = MutableLiveData<List<Category>>()

@@ -30,24 +30,15 @@ class MainActivity : AppCompatActivity() {
      */
     private fun checkLogin(){
         if(person.isLoggedIn()){
-
-            val intentMenu = Intent(this, MenuActivity::class.java)
+          val intentMenu = Intent(this, MenuActivity::class.java)
             startActivity(intentMenu)
             Animatoo.animateSlideLeft(this);
-
-
- /*
-
-            val intentLogin = Intent(this, LoginActivity::class.java)
-            startActivity(intentLogin)
-            Animatoo.animateSlideLeft(this);
-
-  */
-
+            finish();
         }else{
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
-            Animatoo.animateZoom(this);
+            Animatoo.animateFade(this);
+            finish();
         }
     }
 

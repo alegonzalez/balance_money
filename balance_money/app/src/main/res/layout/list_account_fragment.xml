@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLetter"
+    android:background="@color/colorAccent"
     tools:context=".UI.account.ListAccountFragment">
 
 
@@ -49,7 +49,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorButton"
         android:src="@drawable/add"
         app:fabCustomSize="60dp"
         app:maxImageSize="30dp"

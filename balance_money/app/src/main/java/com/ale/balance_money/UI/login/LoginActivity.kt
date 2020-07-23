@@ -46,9 +46,14 @@ class LoginActivity : AppCompatActivity() {
         val buttonFacebook = findViewById<LoginButton>(R.id.loginBtnFacebook)
         val txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
         txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.facebook), null, null, null);
+        buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(
+            resources.getDrawable(R.drawable.facebook),
+            null,
+            null,
+            null
+        );
         buttonFacebook.compoundDrawablePadding = 25;
-        buttonFacebook.setPermissions("public_profile","email")
+        buttonFacebook.setPermissions("public_profile", "email")
 
         //onclick login with google
         buttonGoogle.setOnClickListener {
@@ -63,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //onclick login with facebook
-        buttonFacebook.setOnClickListener{
+        buttonFacebook.setOnClickListener {
             buttonFacebook.registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult?> {
                     override fun onSuccess(loginResult: LoginResult?) {
@@ -73,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
                             authenticationProvider(Authentication.FACEBOOK, credential)
                         }
                     }
+
                     override fun onCancel() {}
 
                     override fun onError(exception: FacebookException) {
@@ -170,24 +176,41 @@ class LoginActivity : AppCompatActivity() {
      * This function login with password and email
      */
     fun login(view: View) {
+        val person = Person()
         var email = findViewById<EditText>(R.id.txtEmail)
         var password = findViewById<EditText>(R.id.txtPassword)
-        var mAuth: FirebaseAuth = FirebaseAuth.getInstance();
-        val person = Person()
-        var passwordEncrypted = person.getHash(password.text.toString())
-        mAuth.signInWithEmailAndPassword(email.text.toString(), passwordEncrypted.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val intentMenu = Intent(this, MenuActivity::class.java)
-                    startActivity(intentMenu)
-                    Animatoo.animateSlideLeft(this);
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        if(person.checkEmail(email.text.toString()) && person.validatePassword(password.text.toString())){
+            email.error = "El campo correo es requerido"
+            password.error = "El campo contraseña es requerido"
+        }else if (person.checkEmail(email.text.toString() )) {
+            email.error = "El campo correo es requerido"
+        } else if (person.validatePassword(password.text.toString())) {
+            password.error = "El campo contraseña es requerido"
+        } else if (!person.validateEmail(email.text.toString())) {
+            email.error = "El correo es invalido"
+
+        } else {
+            var mAuth: FirebaseAuth = FirebaseAuth.getInstance();
+
+            var passwordEncrypted = person.getHash(password.text.toString())
+            mAuth.signInWithEmailAndPassword(email.text.toString(), passwordEncrypted.toString())
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        openMenu()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(
+                            baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            }
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        finish()
     }
 }
