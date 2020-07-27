@@ -1,6 +1,8 @@
 package com.ale.balance_money.logic.setting
 
-import com.google.firebase.auth.FirebaseAuth
+import android.content.Context
+import com.ale.balance_money.R
+import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -15,7 +17,9 @@ class DatabaseSetting {
      * @return String
      */
     fun getUidUser(): String? {
-        return FirebaseAuth.getInstance().currentUser?.uid
+        val context = getApplicationContext();
+        val prefs = context.getSharedPreferences(context.getResources().getString(R.string.pref_file), Context.MODE_PRIVATE)
+        return prefs.getString("uidUser", null)
     }
     /**
      *this function get database reference of firebase

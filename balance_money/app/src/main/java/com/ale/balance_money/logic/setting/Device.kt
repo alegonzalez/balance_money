@@ -8,6 +8,7 @@ import android.view.WindowManager
 import com.google.android.material.snackbar.Snackbar
 import kotlin.math.sqrt
 
+
 /**
  * this class is for any general configuration or information that you want of device
  * @author Alejandro Alvarado
@@ -44,9 +45,13 @@ class Device {
     fun messageSuccessfulSnack(message: String, view: View?) {
         if(view!= null){
             val snack = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+            val sandbarView: View = snack.view
+            val params = sandbarView.layoutParams
+            params.height = 220
+            sandbarView.setBackgroundColor(Color.parseColor("#1DB954"))
             snack.show()
-        }
 
+    }
     }
 
     /**

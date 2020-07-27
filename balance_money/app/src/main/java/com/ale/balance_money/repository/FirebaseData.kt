@@ -1,5 +1,6 @@
 package com.ale.balance_money.repository
 
+import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.setting.DatabaseSetting
@@ -23,8 +24,8 @@ class FirebaseData {
      */
     fun getAccount():MutableLiveData<List<AccountMoney>>{
         val mutableData = MutableLiveData<List<AccountMoney>>()
-        var listAccount = mutableListOf<AccountMoney>()
-        var userId: String? =  databaseSetting.getUidUser()
+        val listAccount = mutableListOf<AccountMoney>()
+        val userId: String? =  databaseSetting.getUidUser()
             ref.child("account").child(userId.toString()).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     listAccount.clear()

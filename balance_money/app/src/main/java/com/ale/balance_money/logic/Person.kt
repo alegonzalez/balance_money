@@ -1,6 +1,7 @@
 package com.ale.balance_money.logic
 
 
+import android.content.SharedPreferences
 import android.util.Base64
 import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
@@ -44,7 +45,23 @@ class Person {
         val accessToken = AccessToken.getCurrentAccessToken()
         return accessToken != null
     }
-
+    /**
+     * This function save data like email and provider
+     * @param email
+     * @param provider
+     * @return void
+     */
+    fun saveSharepreferen(
+        prefs:SharedPreferences.Editor,
+        email:String,
+        provider:String,
+        uidUser: String?
+    ){
+        prefs.putString("email", email)
+        prefs.putString("provider", provider)
+        prefs.putString("uidUser", uidUser)
+        prefs.apply()
+    }
     /**
      * This function save data of user
      * @param typeAuthentication

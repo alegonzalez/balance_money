@@ -1,6 +1,7 @@
 package com.ale.balance_money.UI.login
 
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -57,11 +58,12 @@ class LoginActivity : AppCompatActivity() {
 
         //onclick login with google
         buttonGoogle.setOnClickListener {
-
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
+
+
             val googleClient: GoogleSignInClient = GoogleSignIn.getClient(this, gso)
             googleClient.signOut()
             startActivityForResult(googleClient.signInIntent, RC_SIGN_IN)
@@ -122,9 +124,21 @@ class LoginActivity : AppCompatActivity() {
             if (it.isSuccessful) {
                 val person = Person(
                     it.result?.user?.displayName.toString(),
-                    it.result?.user?.email.toString(), "", typeAuthentication.name
+                    it.result?.user?.email.toString(),
+                    "",
+                    typeAuthentication.name
                 )
                 if (person.writeNewUser(typeAuthentication)) {
+                  val uidUser  = FirebaseAuth.getInstance().currentUser?.uid
+                    val prefs = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE).edit()
+                    person.saveSharepreferen(prefs,person.email,person.provider,uidUser)
+
+                    /*
+delete data
+  val prefs = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE).edit()
+  prefs.clear()
+  prefs.apply()
+ */
                     openMenu()
                 } else {
                     showAlert("Hubo problemas al guardar su información, intentalo nuevamente")
@@ -165,7 +179,7 @@ class LoginActivity : AppCompatActivity() {
      * @param view
      * @return void
      */
-    fun createNewAccount(view: View) {
+    fun openActivityCreateNewAccountUser(view: View) {
         val intentMenu = Intent(this, CreateAccountActivity::class.java)
         startActivity(intentMenu)
         Animatoo.animateSlideLeft(this);
@@ -177,12 +191,12 @@ class LoginActivity : AppCompatActivity() {
      */
     fun login(view: View) {
         val person = Person()
-        var email = findViewById<EditText>(R.id.txtEmail)
-        var password = findViewById<EditText>(R.id.txtPassword)
-        if(person.checkEmail(email.text.toString()) && person.validatePassword(password.text.toString())){
+        val email = findViewById<EditText>(R.id.txtEmail)
+        val password = findViewById<EditText>(R.id.txtPassword)
+        if (person.checkEmail(email.text.toString()) && person.validatePassword(password.text.toString())) {
             email.error = "El campo correo es requerido"
             password.error = "El campo contraseña es requerido"
-        }else if (person.checkEmail(email.text.toString() )) {
+        } else if (person.checkEmail(email.text.toString())) {
             email.error = "El campo correo es requerido"
         } else if (person.validatePassword(password.text.toString())) {
             password.error = "El campo contraseña es requerido"
@@ -190,24 +204,24 @@ class LoginActivity : AppCompatActivity() {
             email.error = "El correo es invalido"
 
         } else {
-            var mAuth: FirebaseAuth = FirebaseAuth.getInstance();
+            val mAuth: FirebaseAuth = FirebaseAuth.getInstance();
 
-            var passwordEncrypted = person.getHash(password.text.toString())
+            val passwordEncrypted = person.getHash(password.text.toString())
             mAuth.signInWithEmailAndPassword(email.text.toString(), passwordEncrypted.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        val prefs = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE).edit()
+                        val uidUser  = FirebaseAuth.getInstance().currentUser?.uid
+                        person.saveSharepreferen(prefs,person.email,Authentication.BASIC.name,uidUser)
                         openMenu()
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(
-                            baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(baseContext, "Poblemas en la autenticación, por favor intentelo nuevamente.", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
-
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
