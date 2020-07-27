@@ -24,18 +24,17 @@
             android:label="@string/name_toolbar_list_transaction" /> <!-- Category -->
         <activity
             android:name=".UI.category.UpdateDeleteCategoryActivity"
-            android:label="@string/name_toolbar_detail_category"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:label="@string/name_toolbar_detail_category" />
         <activity
             android:name=".UI.category.CreateNewCategoryActivity"
-            android:label="@string/name_toolbar_create_new_category" />
+            android:label="@string/name_toolbar_create_new_category"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".UI.category.CategoryActivity"
             android:label="@string/name_toolbar_category_main" /> <!-- Account -->
         <activity
             android:name=".UI.account.AccountUpdateDeleteActivity"
-            android:label="@string/name_toolbar_detail_account"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:label="@string/name_toolbar_detail_account" />
         <activity
             android:name=".UI.account.NewAccountActivity"
             android:label="@string/name_toolbar_create_new_account" />

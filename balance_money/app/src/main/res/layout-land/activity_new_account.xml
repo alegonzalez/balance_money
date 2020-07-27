@@ -22,7 +22,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="@string/field_name_create_account" />
 
     <TextView
         android:id="@+id/textSelectMoney"
@@ -41,13 +42,14 @@
         android:id="@+id/btnDollar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:paddingStart="100dp"
         android:paddingEnd="1dp"
         android:background="@drawable/custom_shape_account"
-        android:drawableLeft="@drawable/dollar"
+        android:drawableStart="@drawable/dollar"
+        android:drawablePadding="5dp"
         android:text="@string/btn_money_dollar"
         android:textColor="@color/colorLetter"
         android:textAlignment="textStart"
@@ -61,13 +63,14 @@
         android:id="@+id/btnEuro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:paddingStart="100dp"
         android:paddingEnd="1dp"
+        android:drawablePadding="5dp"
         android:background="@drawable/custom_shape_account"
-        android:drawableLeft="@drawable/euro"
+        android:drawableStart="@drawable/euro"
         android:text="@string/btn_money_dollar"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
@@ -80,19 +83,19 @@
         android:id="@+id/btnColon"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
-        android:paddingStart="100dp"
-        android:paddingEnd="1dp"
         android:background="@drawable/custom_shape_account"
         android:drawableStart="@drawable/colon"
         android:drawablePadding="5dp"
+        android:paddingStart="100dp"
+        android:paddingEnd="1dp"
         android:text="@string/btn_money_colon"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/textSelectMoney" />
 
@@ -109,7 +112,8 @@
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="@string/field_amount_create_account" />
 
     <EditText
         android:id="@+id/txtDescription"
@@ -127,7 +131,8 @@
         android:scrollbars="vertical"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintStart_toStartOf="@+id/guideline27"
-        app:layout_constraintTop_toBottomOf="@+id/txtAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAmount"
+        android:autofillHints="@string/field_description_create_account" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
@@ -157,9 +162,10 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="15dp"
-        android:background="@color/colorButton"
+        android:background="@drawable/custom_btn"
         android:drawableStart="@drawable/icon_add_tablet"
         android:paddingStart="80dp"
+        android:paddingEnd="1dp"
         android:text="@string/button__create_account"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"

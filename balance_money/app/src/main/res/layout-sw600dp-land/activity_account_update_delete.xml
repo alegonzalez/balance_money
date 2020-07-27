@@ -1,271 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLetter">
-
-    <EditText
-        android:id="@+id/txtTitleAccount"
-        android:layout_width="0dp"
+    android:background="@color/colorAccent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="@string/field_name_create_account"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="0.432"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="30dp">
 
-    <TextView
-        android:id="@+id/textSelectMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:hint="@string/field_select_money_create_account"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitleAccount" />
-
-    <Button
-        android:id="@+id/btnColon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/button_menu"
-        android:drawableStart="@drawable/colon"
-        android:paddingStart="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline61"
-        app:layout_constraintStart_toStartOf="@+id/guideline60"
-        app:layout_constraintTop_toTopOf="@+id/guideline14"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/btnDollar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/button_menu"
-        android:drawableStart="@drawable/dollar"
-        android:paddingStart="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline63"
-        app:layout_constraintStart_toStartOf="@+id/guideline62"
-        app:layout_constraintTop_toTopOf="@+id/guideline14"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/txtLabelAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/label_cuenta"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/btnEuro"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/button_menu"
-        android:drawableStart="@drawable/euro"
-        android:paddingStart="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline65"
-        app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toTopOf="@+id/guideline14"
-        app:layout_constraintVertical_bias="1.0" />
+        <EditText
+            android:id="@+id/txtTitleAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:autofillHints="field_name_create_account"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/field_name_create_account"
+            android:inputType="textPersonName"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelAccount" />
 
-    <EditText
-        android:id="@+id/txtAmount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/field_amount_create_account"
-        android:inputType="number"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toTopOf="@+id/guideline18" />
+        <TextView
+            android:id="@+id/textSelectMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="@string/field_select_money_create_account"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitleAccount" />
 
-    <EditText
-        android:id="@+id/txtDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/field_description_create_account"
-        android:inputType="textMultiLine"
-        android:maxLines="4"
-        android:scrollbars="vertical"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline16"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toBottomOf="@+id/txtAmount"
-        app:layout_constraintVertical_bias="0.005" />
+        <Button
+            android:id="@+id/btnColon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/colon_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="200dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="10dp"
+            android:text="@string/btn_money_colon"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/textSelectMoney" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        <Button
+            android:id="@+id/btnDollar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/dollar_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="200dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="10dp"
+            android:text="@string/btn_money_dollar"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/btnColon" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        <Button
+            android:id="@+id/btnEuro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/euro_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="200dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="10dp"
+            android:text="@string/btn_money_euro"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline40"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/btnDollar" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="224dp" />
+        <EditText
+            android:id="@+id/txtAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="1dp"
+            android:autofillHints="@string/field_amount_create_account"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/field_amount_create_account"
+            android:inputType="number"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelAmount" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="331dp" />
+        <EditText
+            android:id="@+id/txtDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/field_description_create_account"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:scrollbars="vertical"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelDescription"
+            android:autofillHints="@string/field_description_create_account" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="718dp" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/custom_btn"
+            android:drawableStart="@drawable/icon_update"
+            android:paddingStart="140dp"
+            android:paddingEnd="1dp"
+            android:text="@string/name_btn_update_account"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescription"
+            app:layout_constraintVertical_bias="0.024" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="81dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/txtLabelAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/label_amount_account"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLabelDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/label_description_account"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/txtAmount" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="81dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/btnUpdate"
-        android:scaleType="center"
-        android:src="@drawable/icon_update"
-        app:fabCustomSize="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/fab"
-        app:layout_constraintTop_toTopOf="@+id/guideline16"
-        app:layout_constraintVertical_bias="1.0"
-        app:maxImageSize="60dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginStart="8dp"
-        android:backgroundTint="@color/btnremove"
-        android:scaleType="center"
-        android:src="@drawable/icon_delete"
-        app:fabCustomSize="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toTopOf="@+id/guideline16"
-        app:layout_constraintVertical_bias="1.0"
-        app:maxImageSize="60dp" />
-
-    <ImageView
-        android:id="@+id/imgIndicatorColon"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/colorPrimary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/guideline61"
-        app:layout_constraintHorizontal_bias="0.519"
-        app:layout_constraintStart_toStartOf="@+id/guideline60"
-        app:layout_constraintTop_toTopOf="@+id/guideline15"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/arrow_up_float" />
-
-    <ImageView
-        android:id="@+id/imgIndicatorDollar"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/colorPrimary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/guideline63"
-        app:layout_constraintStart_toStartOf="@+id/guideline62"
-        app:layout_constraintTop_toTopOf="@+id/guideline15"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/arrow_up_float" />
-
-    <ImageView
-        android:id="@+id/imgIndicatorEuro"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/colorPrimary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/guideline65"
-        app:layout_constraintStart_toStartOf="@+id/guideline64"
-        app:layout_constraintTop_toTopOf="@+id/guideline15"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/arrow_up_float" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="384dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="367dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline61"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="502dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline62"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="563dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline63"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="718dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline64"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="763dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline65"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="925dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

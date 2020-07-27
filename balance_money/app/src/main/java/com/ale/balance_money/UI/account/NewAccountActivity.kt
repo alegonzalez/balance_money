@@ -35,7 +35,7 @@ class NewAccountActivity : AppCompatActivity() {
         val btnDollar = findViewById<Button>(R.id.btnDollar)
         val btnEuro = findViewById<Button>(R.id.btnEuro)
         val btnCreateNewAccount = findViewById<Button>(R.id.btnNewAccount)
-        val orientation = Device().detectOrientationDevice(this.resources.configuration.orientation)
+        val orientation = Device().detectTypeDevice(windowManager)
         //Onclick of button colon
         btnColon.setOnClickListener {
             typeMoney = Money.COLON.name
@@ -43,12 +43,14 @@ class NewAccountActivity : AppCompatActivity() {
                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, resources.getDrawable(R.drawable.check), null);
                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
+
            }else{
                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, resources.getDrawable(R.drawable.check_tablet), null);
                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
+
            }
-            btnColon.compoundDrawablePadding = 10;
+            btnColon.compoundDrawablePadding = 12;
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
@@ -61,8 +63,9 @@ class NewAccountActivity : AppCompatActivity() {
                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet),null,resources.getDrawable(R.drawable.check_tablet),null);
                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
+
            }
-            btnDollar.compoundDrawablePadding = 10;
+            btnDollar.compoundDrawablePadding = 12;
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
@@ -71,12 +74,12 @@ class NewAccountActivity : AppCompatActivity() {
                 btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, resources.getDrawable(R.drawable.check), null)
                 btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
                 btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
-        } else{
+            } else{
                 btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, resources.getDrawable(R.drawable.check_tablet), null)
                 btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
                 btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
             }
-            btnEuro.compoundDrawablePadding = 10;
+            btnEuro.compoundDrawablePadding = 12;
         }
         //onclick of button to create new account
         btnCreateNewAccount.setOnClickListener {

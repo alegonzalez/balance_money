@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context=".UI.account.NewAccountActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -18,6 +16,7 @@
             android:id="@+id/txtTitleAccount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autofillHints="@string/field_name_create_account"
             android:background="@drawable/custom_edit_text"
             android:ems="10"
             android:hint="@string/field_name_create_account"
@@ -25,8 +24,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
             app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
-            app:layout_constraintTop_toBottomOf="@+id/txtLabelAccount"
-            android:autofillHints="@string/field_name_create_account" />
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelAccount" />
 
 
         <Button
@@ -54,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/custom_shape_account"
             android:drawableStart="@drawable/dollar"
@@ -74,7 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/custom_shape_account"
             android:drawableStart="@drawable/euro"
@@ -106,6 +104,8 @@
             android:id="@+id/txtDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:autofillHints="@string/field_description_create_account"
             android:background="@drawable/custom_edit_text"
             android:ems="10"
             android:gravity="start|top"
@@ -113,29 +113,29 @@
             android:inputType="textMultiLine"
             android:maxLines="4"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/guideline16"
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <Button
             android:id="@+id/btnNewAccount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorButton"
-            android:drawableLeft="@drawable/add"
-            android:paddingLeft="125dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/custom_btn"
+            android:drawableStart="@drawable/add"
+            android:paddingStart="125dp"
+            android:paddingEnd="1dp"
             android:text="@string/button__create_account"
             android:textAlignment="textStart"
             android:textColor="@color/colorLetter"
             android:textSize="19sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline17"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
-            app:layout_constraintTop_toTopOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescription"
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -152,24 +152,11 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="20dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="591dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="70dp" />
         <TextView
             android:id="@+id/txtLabelAccount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="44dp"
             android:text="@string/label_cuenta"
             android:textAlignment="textStart"
             android:textColor="@color/colorLetter"
@@ -183,7 +170,7 @@
             android:id="@+id/txtLabelAmountAccount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:text="@string/label_amount_account"
             android:textAlignment="textStart"
             android:textColor="@color/colorLetter"
@@ -197,13 +184,13 @@
             android:id="@+id/textView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:text="@string/label_description_account"
             android:textAlignment="textStart"
             android:textColor="@color/colorLetter"
             android:textSize="19sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toBottomOf="@+id/txtAmount" />
 
@@ -211,10 +198,10 @@
             android:id="@+id/textSelectMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:textSize="19sp"
+            android:layout_marginTop="20dp"
             android:text="@string/field_select_money_create_account"
             android:textColor="@color/colorLetter"
+            android:textSize="19sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toBottomOf="@+id/txtTitleAccount" />
@@ -223,4 +210,3 @@
 </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
