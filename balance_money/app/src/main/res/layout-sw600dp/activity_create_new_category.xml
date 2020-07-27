@@ -4,92 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".UI.category.CreateNewCategoryActivity">
 
     <EditText
         android:id="@+id/txtNameNewCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:autofillHints="@string/hint_field_name_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
-        android:hint="@string/hint_field_name"
+        android:hint="@string/hint_field_name_category"
         android:inputType="textPersonName"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline76"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline75"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelNameCategory" />
 
     <EditText
         android:id="@+id/txtDescriptionNewCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="4dp"
+        android:autofillHints="@string/hint_field_description_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/hint_field_description"
+        android:hint="@string/hint_field_description_category"
         android:inputType="textMultiLine"
         android:maxLines="4"
         android:scrollbars="vertical"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
         app:layout_constraintEnd_toStartOf="@+id/guideline76"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline75"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameNewCategory"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/btnNewCategory"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="44dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/custom_btn"
         android:drawableStart="@drawable/icon_add_tablet"
-        android:paddingStart="270dp"
+        android:paddingStart="170dp"
+        android:paddingEnd="1dp"
         android:text="@string/text_button_create_new_category"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline78"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline77"
-        app:layout_constraintTop_toTopOf="@+id/guideline80"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionNewCategory"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline75"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="25dp" />
+        app:layout_constraintGuide_begin="156dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline76"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="25dp" />
+        app:layout_constraintGuide_end="156dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline77"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="120dp" />
+        app:layout_constraintGuide_begin="220dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline78"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="120dp" />
+        app:layout_constraintGuide_end="220dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline80"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/txtLabelNameCategory"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="659dp" />
+        android:layout_marginTop="296dp"
+        android:text="@string/label_name_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline76"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline75"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="@string/label_description_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline76"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline75"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameNewCategory" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

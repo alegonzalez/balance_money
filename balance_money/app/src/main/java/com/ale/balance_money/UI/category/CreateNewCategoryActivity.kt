@@ -2,6 +2,7 @@ package com.ale.balance_money.UI.category
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import com.ale.balance_money.R
@@ -14,13 +15,15 @@ class CreateNewCategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_new_category)
-        var txtName = findViewById<EditText>(R.id.txtNameNewCategory)
-        var txtDescription = findViewById<EditText>(R.id.txtDescriptionNewCategory)
-        var btnCreateNewCategory = findViewById<Button>(R.id.btnNewCategory)
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        val txtName = findViewById<EditText>(R.id.txtNameNewCategory)
+        val txtDescription = findViewById<EditText>(R.id.txtDescriptionNewCategory)
+        val btnCreateNewCategory = findViewById<Button>(R.id.btnNewCategory)
 
             //event click to create new category
             btnCreateNewCategory.setOnClickListener {
-            var category = Category()
+            val category = Category()
             category.name = txtName.text.toString()
             category.description = txtDescription.text.toString()
             if (category.validateField()) {

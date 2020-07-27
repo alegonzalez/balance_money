@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="156dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="28dp"
         android:background="@drawable/custom_shape_account"
         android:drawableTop="@drawable/account_table"
         android:paddingTop="6dp"
@@ -22,7 +22,7 @@
         android:text="@string/btn_account"
         android:textAllCaps="false"
         android:textColor="@color/colorLetter"
-        android:textSize="25sp"
+        android:textSize="45sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,9 @@
         android:id="@+id/btnCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
         android:layout_marginStart="30dp"
+        android:layout_marginEnd="28dp"
         android:background="@drawable/custom_shape_category"
         android:drawableTop="@drawable/category_table"
         android:paddingTop="6dp"
@@ -40,21 +42,18 @@
         android:text="@string/btn_categories"
         android:textAllCaps="false"
         android:textColor="@color/colorLetter"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAccount"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnTransaction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="28dp"
         android:background="@drawable/custom_shape_transaction"
         android:drawableTop="@drawable/transaction_table"
         android:paddingTop="6dp"
@@ -62,11 +61,12 @@
         android:text="@string/btn_transactions"
         android:textAllCaps="false"
         android:textColor="@color/colorLetter"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/guideline69" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAccount" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -80,7 +80,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="28dp"
         android:background="@drawable/custom_shape_stadistic"
         android:drawableTop="@drawable/stadistics_table"
         android:paddingTop="6dp"
@@ -88,13 +88,12 @@
         android:text="@string/btn_stadistics"
         android:textAllCaps="false"
         android:textColor="@color/colorLetter"
-        android:textSize="25sp"
+        android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toBottomOf="@+id/btnTransaction"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCategory" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline69"

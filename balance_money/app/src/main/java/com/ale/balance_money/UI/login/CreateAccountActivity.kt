@@ -1,6 +1,7 @@
 package com.ale.balance_money.UI.login
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -29,10 +30,10 @@ class CreateAccountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_account)
         val btnCreateNewAccount = findViewById<Button>(R.id.btnCrearNewAccount)
         mAuth = FirebaseAuth.getInstance();
-        var  progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        var name = findViewById<EditText>(R.id.txtName)
-        var email = findViewById<EditText>(R.id.txtEmail)
-        var password = findViewById<EditText>(R.id.txtPassword)
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val name = findViewById<EditText>(R.id.txtName)
+        val email = findViewById<EditText>(R.id.txtEmail)
+        val password = findViewById<EditText>(R.id.txtPassword)
         val confirmPassword = findViewById<EditText>(R.id.txtConfirmPassword)
 
         //onclick for create new personal account
@@ -69,8 +70,6 @@ class CreateAccountActivity : AppCompatActivity() {
                 person.email = email.text.toString()
                 person.name = name.text.toString()
                 authenticationEmailPassword(progressBar,person.email,person.password,person)
-
-
             }
         }
     }
@@ -88,7 +87,7 @@ class CreateAccountActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     person.writeNewUser(Authentication.BASIC)
-                    progressBar?.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                     val intent =
                         Intent(this, LoginActivity::class.java)
                     startActivity(intent)
@@ -99,7 +98,7 @@ class CreateAccountActivity : AppCompatActivity() {
                         "El usuario que intenta registrar ya existe!!",
                         Toast.LENGTH_LONG
                     ).show()
-                    progressBar?.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                 }
             }
     }

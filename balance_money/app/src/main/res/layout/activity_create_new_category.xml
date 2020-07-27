@@ -3,49 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
     tools:context=".UI.category.CreateNewCategoryActivity">
 
-    <EditText
+  <EditText
         android:id="@+id/txtNameNewCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
+        android:hint="@string/hint_field_name_category"
         android:inputType="textPersonName"
-        android:hint="@string/hint_field_name"
         android:textSize="19sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline76"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline75"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelNombreCategory"
+        android:autofillHints="hint_field_name_category" />
 
     <EditText
         android:id="@+id/txtDescriptionNewCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:autofillHints="@string/hint_field_description_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/hint_field_description"
+        android:hint="@string/hint_field_description_category"
         android:inputType="textMultiLine"
         android:maxLines="4"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline80"
         app:layout_constraintEnd_toStartOf="@+id/guideline76"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline75"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameNewCategory"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/btnNewCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginBottom="340dp"
+        android:background="@drawable/custom_btn"
         android:drawableStart="@drawable/add"
         android:paddingStart="90dp"
+        android:paddingEnd="1dp"
+        android:layout_marginTop="50dp"
         android:text="@string/text_button_create_new_category"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
@@ -54,8 +57,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline78"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline77"
-        app:layout_constraintTop_toTopOf="@+id/guideline80"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionNewCategory"
+        app:layout_constraintVertical_bias="0.113" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline75"
@@ -85,10 +88,33 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="62dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline80"
-        android:layout_width="wrap_content"
+  <TextView
+      android:id="@+id/txtLabelNombreCategory"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="120dp"
+      android:text="@string/label_name_category"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorLetter"
+      android:textSize="19sp"
+      app:layout_constraintEnd_toStartOf="@+id/guideline76"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/guideline75"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="440dp" />
+        android:layout_marginTop="104dp"
+        android:text="@string/label_description_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline76"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline75"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameNewCategory" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <resources>
     <!-- Login activity-->
     <string name="app_name">Balance Money</string>
+    <string name="pref_file">com.balance-money.PREF_FILE</string>
     <string name="hint_email">Ingresa tu correo</string>
     <string name="hint_password">Ingresa tu contraseña</string>
     <string name="label_email">Correo</string>
@@ -37,8 +38,6 @@
     <string name="previous">Previous</string>
     <string name="name_toolbar_create_new_account">Crear Cuenta</string>
     <string name="name_toolbar_account">Cuenta</string>
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- Create Account-->
     <string name="field_title_create_account">Nombre</string>
     <string name="field_select_money_create_account">Selecciona la moneda</string>
@@ -46,12 +45,14 @@
     <string name="field_description_create_account">Ingresa una descripción(No es requerido)</string>
     <string name="label_description_account">Descripción</string>
     <string name="label_amount_account">Monto</string>
+
     <string name="label_cuenta">Cuenta</string>
     <string name="btn_money_colon">Colones</string>
     <string name="btn_money_dollar">Dólares</string>
     <string name="btn_money_euro">Euros</string>
 
     <!-- update or delete account-->
+    <string name="name_btn_update_account">Actualizar</string>
     <string name="messageDialogTitle">Confirmación</string>
     <string name="messageDialogUpdate">¿Deseas actualizar la cuenta?</string>
     <string name="messageDialogDelete">¿Seguro que deseas eliminar la cuenta?</string>
@@ -59,8 +60,10 @@
     <!-- category-->
     <string name="name_toolbar_category_main">Categoría</string>
     <string name="name_toolbar_create_new_category">Crear nueva categoría</string>
-    <string name="hint_field_name">Nombre</string>
-    <string name="hint_field_description">Descripción</string>
+    <string name="label_name_category">Nombre</string>
+    <string name="hint_field_name_category">Ingresa el nombre de la categoría</string>
+    <string name="hint_field_description_category">Ingresa una descripción(No es requerido)</string>
+    <string name="label_description_category">Descripción</string>
     <string name="text_button_create_new_category">Crear</string>
     <string name="messageDialogDeleteCategory">¿Seguro que deseas eliminar la categoría?</string>
     <string name="messageDialogUpdateCategory">¿Deseas actualizar la categoría?</string>

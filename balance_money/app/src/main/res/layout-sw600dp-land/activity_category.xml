@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".UI.category.CategoryActivity">
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_category"
@@ -36,7 +37,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <include layout="@layout/item_category_tablet"></include>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNewCategory"
         android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorButton"
         android:src="@drawable/add"
         android:scaleType="center"
         app:fabCustomSize="100dp"
