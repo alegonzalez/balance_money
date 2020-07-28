@@ -3,54 +3,52 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="9dp"
-    android:layout_marginTop="4dp"
     android:layout_marginEnd="9dp"
-    android:paddingBottom="8dp"
-    android:background="@drawable/custom_shape_recyclerview"
+    android:layout_marginTop="4dp"
+    android:paddingBottom="24dp"
+    android:background="@drawable/custom_shape_recyclerview_load"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-    <TextView
+    <View
         android:id="@+id/txtNameAccountTransaction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Nombre de la Cuenta"
+        android:layout_width="420dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="1dp"
+        android:background="@color/placeholder_item"
         android:textAlignment="textStart"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:paddingStart="6dp"
-        android:paddingEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <View
         android:id="@+id/txtNameCategoryTransaction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="30000"
-        android:textSize="20dp"
-        android:textAlignment="textStart"
+        android:layout_width="420dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
         android:paddingStart="6dp"
         android:paddingEnd="1dp"
+        android:background="@color/placeholder_item"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNameAccountTransaction" />
 
-    <TextView
+    <View
         android:id="@+id/txtDateTransaction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="30000"
-        android:textSize="20dp"
-        android:textAlignment="textStart"
+        android:layout_width="420dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
         android:paddingStart="6dp"
         android:paddingEnd="1dp"
+        android:background="@color/placeholder_item"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNameCategoryTransaction" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

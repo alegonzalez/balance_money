@@ -9,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.setting.Device
 import kotlinx.android.synthetic.main.item_transaction.view.*
-import java.util.*
 
+/**
+ * This class is an adapter for transactions
+ * @author Alejandro Alvarado
+ * @param context
+ * @param onItemClickListener
+ */
 class TransactionAdapter(
     private val context: Context?,
-    private val onItemClickListener: TransactionAdapter.OnListenerTransaction
+    private val onItemClickListener:OnListenerTransaction
 ) : RecyclerView.Adapter<TransactionAdapter.TransactionHolder>() {
     private var listTransaction = listOf<Transaction>()
 
@@ -39,30 +44,43 @@ class TransactionAdapter(
             description: String
         )
     }
-
+    /**
+     * this function check what item load for after show item if a smartphone or tablet
+     * @param parent
+     * @param viewType
+     * @return TransactionHolder
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionHolder {
         val view: View
-      //  val windowManager = context!!.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        view = LayoutInflater.from(context).inflate(R.layout.item_transaction, parent, false)
-
+        val windowManager = context!!.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        view = if(Device().detectTypeDevice(windowManager)){
+            LayoutInflater.from(context).inflate(R.layout.item_transaction, parent, false)
+        }else{
+            LayoutInflater.from(context).inflate(R.layout.item_transaction_tablet, parent, false)
+        }
         return TransactionHolder(view)
     }
 
     override fun getItemCount(): Int {
-        if(listTransaction.size > 0){
+        if(listTransaction.isNotEmpty()){
             return listTransaction.size
         }else{
             return 0
         }
     }
-
+    /**
+     * this function  call function bindView inside class TransactionHolder to set name of transaction by list position
+     * @param holder
+     * @param position
+     * return call function bindView with data of specific position of list
+     */
     override fun onBindViewHolder(holder: TransactionHolder, position: Int) {
         return holder.bindView(listTransaction[position])
     }
 
     inner class TransactionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         /**
-         * This function set data of category and set in view of each element
+         * This function set data of transaction and set in view of each element
          * @param category
          * @return void
          */

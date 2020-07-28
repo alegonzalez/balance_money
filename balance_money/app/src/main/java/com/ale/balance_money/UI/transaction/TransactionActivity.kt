@@ -24,6 +24,7 @@ import com.ale.balance_money.repository.FirebaseData
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_category.*
+import kotlinx.android.synthetic.main.activity_transaction.*
 import java.io.Serializable
 
 class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTransaction  {
@@ -37,9 +38,9 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
         val btnNewTransaction = findViewById<FloatingActionButton>(R.id.addNewTransaction)
        recyclerViewTransaction = findViewById(R.id.rcyListTranscation)
       //config recyclerview
-       val linerLayoutmanager = LinearLayoutManager(this)
-       linerLayoutmanager.orientation = LinearLayoutManager.VERTICAL
-       recyclerViewTransaction.layoutManager = linerLayoutmanager
+       val linearLayoutmanager = LinearLayoutManager(this)
+       linearLayoutmanager.orientation = LinearLayoutManager.VERTICAL
+       recyclerViewTransaction.layoutManager = linearLayoutmanager
        recyclerViewTransaction.setHasFixedSize(true)
        recyclerViewTransaction.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
        adapterTransaction = TransactionAdapter(this, this)
@@ -50,8 +51,8 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
        } else {
            adapterTransaction.setDataCategory(viewModelTransaction.listTransaction as MutableList<Transaction>)
            adapterTransaction.notifyDataSetChanged()
-          // shimmer_view_category.stopShimmer()
-         //  shimmer_view_category.visibility = View.GONE
+           shimmer_view_transaction.stopShimmer()
+           shimmer_view_transaction.visibility = View.GONE
        }
        //onclick for go to create a new transaction
         btnNewTransaction.setOnClickListener{
@@ -65,10 +66,10 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
      * @return void
      */
     private fun observeAccount() {
-       // shimmer_view_category.startShimmer()
+        shimmer_view_transaction.startShimmer()
         viewModelTransaction.getListTransaction()?.observe(this, Observer { listTransaction ->
-            //shimmer_view_category.stopShimmer()
-            //shimmer_view_category.visibility = View.GONE
+            shimmer_view_transaction.stopShimmer()
+            shimmer_view_transaction.visibility = View.GONE
             if (listTransaction.isEmpty()) {
                 //this.listEmpty()
             } else {
