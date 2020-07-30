@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ale.balance_money.R
-import com.ale.balance_money.UI.account.AccountActivity
 import com.ale.balance_money.logic.ExchangeRate
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.account.Money
@@ -27,7 +26,8 @@ import kotlinx.android.synthetic.main.activity_create_new_transaction.*
 
 
 /**
- * this class is
+ * new transaction
+ * @author Alejandro Alvarado
  */
 class CreateNewTransactionActivity : AppCompatActivity() {
     private val viewModelAccount by lazy { ViewModelProvider(this).get(AccountViewModel::class.java) }
@@ -52,26 +52,24 @@ class CreateNewTransactionActivity : AppCompatActivity() {
         val dropDownCategory = findViewById<Spinner>(R.id.dropdownCategory)
         val amountTransaction = findViewById<EditText>(R.id.editAmount)
         val totalAmount = findViewById<TextView>(R.id.txtTotalAmount)
-
-        val expense = findViewById<RadioButton>(R.id.rdButtonExpense)
         val groupRadio = findViewById<RadioGroup>(R.id.rdGroup)
         val btnColon = findViewById<Button>(R.id.btnColon)
         val btnDollar = findViewById<Button>(R.id.btnDollar)
         val btnEuro = findViewById<Button>(R.id.btnEuro)
-        val indicatorColon = findViewById<ImageView>(R.id.imgIndicatorColon)
-        val indicatorDollar = findViewById<ImageView>(R.id.imgIndicatorDollar)
-        val indicatorEuro = findViewById<ImageView>(R.id.imgIndicatorEuro)
+        val txtDescription = findViewById<EditText>(R.id.txtDescriptionTransaction)
         val btnCreateNewTransaction = findViewById<Button>(R.id.btnNewTransaction)
-
+        val orientation = Device().detectTypeDevice(windowManager)
 
         if (viewModelAccount.listAccount == null && viewModelCategories.listCategories == null) {
             observeAccount(dropdownAccount, dropDownCategory)
         } else {
+            this.listAccount = Transaction().fillListAccount(viewModelAccount.listAccount)
             fillDropdownAccount(dropdownAccount)
+            this.listCategories = Transaction().fillListCategories(viewModelCategories.listCategories)
             fillDropdownCategory(dropDownCategory)
         }
 
-        //event when user has  seleted  an account
+        //event when user has  selected  an account
         dropdownAccount.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
@@ -79,12 +77,13 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                var nameAccount = dropdownAccount.getItemAtPosition(position).toString();
-                var listData = transaction.getAmountByAccountSelected(
+                val nameAccount = dropdownAccount.getItemAtPosition(position).toString();
+                val listData = transaction.getAmountByAccountSelected(
                     viewModelAccount.listAccount,
                     nameAccount
                 )
-                totalAmount.text = "El monto de la cuenta es: ${listData.get(0).amount}"
+                val iconMoney = transaction.getIconMonet(listData.get(0).money)
+                totalAmount.text = "El monto de la cuenta es: ${iconMoney}${listData.get(0).amount}"
                 transaction.money = listData.get(0).money
                 //set new amount of account
                 money = transaction.money
@@ -95,7 +94,7 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                 account.title = listData.get(0).title
                 account.description = listData.get(0).description
                 account.id = listData.get(0).id
-                setMoney(transaction.money, indicatorColon, indicatorDollar, indicatorEuro)
+                account.setMoney(transaction.money, orientation, btnColon, btnDollar, btnEuro)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {}
@@ -114,25 +113,27 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             override fun onNothingSelected(parentView: AdapterView<*>?) {}
         }
         //onclick if user select money colon for transaction
+        //call function setMoney money of account
         btnColon.setOnClickListener {
             transaction.money = Money.COLON.name
-            setMoney(transaction.money, indicatorColon, indicatorDollar, indicatorEuro)
+            account.setMoney(transaction.money, orientation, btnColon, btnDollar, btnEuro)
         }
         //onclick if user select money dollar for transaction
         btnDollar.setOnClickListener {
             transaction.money = Money.DOLLAR.name
-            setMoney(transaction.money, indicatorColon, indicatorDollar, indicatorEuro)
+            account.setMoney(transaction.money, orientation, btnColon, btnDollar, btnEuro)
         }
         //onclick if user select money euro for transaction
         btnEuro.setOnClickListener {
             transaction.money = Money.EURO.name
-            setMoney(transaction.money, indicatorColon, indicatorDollar, indicatorEuro)
+            account.setMoney(transaction.money, orientation, btnColon, btnDollar, btnEuro)
         }
         groupRadio.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
             val rb = findViewById<View>(checkedId) as RadioButton
             transaction.typeTransaction = rb.text.toString()
         })
         btnCreateNewTransaction.setOnClickListener {
+          this.transaction.description = txtDescription.text.toString()
             dialogConfirmationAction(
                 R.string.message_dialo_create_new_transaction,
                 amountTransaction
@@ -155,7 +156,6 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             viewModelCategories.listCategories = listCategories
             this.listCategories = Transaction().fillListCategories(listCategories)
             fillDropdownCategory(dropdownCategory)
-            // progressDialog.dismiss()
         })
     }
 
@@ -165,19 +165,40 @@ class CreateNewTransactionActivity : AppCompatActivity() {
      * return void
      */
     private fun fillDropdownAccount(dropdownAccount: Spinner) {
-        val adapter: ArrayAdapter<String>
         val messageAccount = arrayOf("No hay cuentas")
-        if (listAccount.isEmpty()) {
-            adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, messageAccount)
-            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+        setElementInSpinner(listAccount,messageAccount,dropdownAccount)
+    }
+
+    /**
+     * This function set data in spinner when device is smartphone or tablet
+     */
+    private fun setElementInSpinner(list: List<String>, emptyList: Array<String>,dropdown:Spinner) {
+        val orientation = Device().detectTypeDevice(windowManager)
+        val adapter: ArrayAdapter<String>
+        if (orientation) {
+            if (list.isEmpty()) {
+                adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, emptyList)
+                adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+            }else{
+                adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, list)
+                adapter.setDropDownViewResource(R.layout.custom_spinner);
+
+            }
+            dropdown.adapter = adapter
         } else {
-            adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, listAccount)
-            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
+            if (list.isEmpty()) {
+                adapter = ArrayAdapter(this, R.layout.spinner_dropdown_tablet, emptyList)
+                adapter.setDropDownViewResource(R.layout.custom_spinner_tablet);
+            }else{
+                adapter = ArrayAdapter(this, R.layout.spinner_dropdown_tablet, list)
+                adapter.setDropDownViewResource(R.layout.custom_spinner_tablet);
+                }
+            dropdown.adapter = adapter
         }
+
         if (viewModelCategories.listCategories != null && viewModelAccount.listAccount != null) {
             progressDialog.dismiss()
         }
-        dropdownAccount.adapter = adapter
     }
 
     /**
@@ -186,51 +207,8 @@ class CreateNewTransactionActivity : AppCompatActivity() {
      * return void
      */
     private fun fillDropdownCategory(dropdownCategory: Spinner) {
-        val adapter: ArrayAdapter<String>
         val messageCategory = arrayOf("No hay categorias")
-        if (listCategories.isEmpty()) {
-            adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, messageCategory)
-            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-        } else {
-            adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, listCategories)
-            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-        }
-        if (viewModelCategories.listCategories != null && viewModelAccount.listAccount != null) {
-            progressDialog.dismiss()
-        }
-        dropdownCategory.adapter = adapter
-    }
-
-    /**
-     * This function set visibility money that was selected by user
-     * @param money
-     * @param indicatorColon
-     * @param indicatorDollar
-     * @param indicatorEuro
-     */
-    private fun setMoney(
-        money: String?,
-        indicatorColon: ImageView?,
-        indicatorDollar: ImageView?,
-        indicatorEuro: ImageView?
-    ): String {
-        if (money == Money.COLON.name && indicatorColon != null) {
-            indicatorColon.visibility = View.VISIBLE
-            indicatorDollar?.visibility = View.INVISIBLE
-            indicatorEuro?.visibility = View.INVISIBLE
-            return Money.COLON.name
-        } else if (money == Money.DOLLAR.name && indicatorDollar != null) {
-            indicatorDollar.visibility = View.VISIBLE
-            indicatorColon?.visibility = View.INVISIBLE;
-            indicatorEuro?.visibility = View.INVISIBLE
-            return Money.DOLLAR.name
-        } else if (money == Money.EURO.name && indicatorEuro != null) {
-            indicatorEuro.visibility = View.VISIBLE
-            indicatorDollar?.visibility = View.INVISIBLE
-            indicatorColon?.visibility = View.INVISIBLE;
-            return Money.EURO.name
-        }
-        return ""
+        setElementInSpinner(listCategories,messageCategory,dropdownCategory)
     }
 
     /**
@@ -290,7 +268,7 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                     txtNameAccountTransaction
                 )
 
-                val intentTransaction = Intent(this,TransactionActivity::class.java)
+                val intentTransaction = Intent(this, TransactionActivity::class.java)
                 startActivity(intentTransaction)
                 Animatoo.animateSlideRight(this)
                 finish()

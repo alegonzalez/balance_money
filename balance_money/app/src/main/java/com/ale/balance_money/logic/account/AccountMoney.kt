@@ -1,5 +1,8 @@
 package com.ale.balance_money.logic.account
 
+import android.widget.Button
+import com.ale.balance_money.R
+import com.facebook.FacebookSdk
 import java.io.Serializable
 import java.util.*
 
@@ -50,6 +53,73 @@ class AccountMoney:Serializable {
 
         return listError
     }
-
+    /**
+     * This function set visibility money that was selected by user
+     * @param money
+     * @param indicatorColon
+     * @param indicatorDollar
+     * @param indicatorEuro
+     */
+     fun setMoney(
+        money: String?,
+        orientation:Boolean,
+        btnColon: Button,
+        btnDollar: Button,
+        btnEuro: Button
+    ): String {
+        val context = FacebookSdk.getApplicationContext();
+        if(orientation){
+            //Smartphone
+            when (money) {
+                Money.COLON.name -> {
+                    btnColon.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.colon), null, context.resources.getDrawable(
+                        R.drawable.check), null);
+                    btnEuro.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.euro), null, null, null)
+                    btnDollar.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.dollar), null, null, null)
+                    return Money.COLON.name
+                }
+                Money.DOLLAR.name -> {
+                    btnDollar.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.dollar),null,context.resources.getDrawable(
+                        R.drawable.check),null);
+                    btnEuro.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.euro), null, null, null)
+                    btnColon.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.colon), null, null, null)
+                    return Money.DOLLAR.name
+                }
+                Money.EURO.name -> {
+                    btnEuro.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.euro), null, context.resources.getDrawable(
+                        R.drawable.check), null)
+                    btnDollar.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.dollar), null, null, null)
+                    btnColon.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.colon), null, null, null)
+                    return Money.EURO.name
+                }
+            }
+        }else{
+            //Tablet
+            when (money) {
+                Money.COLON.name -> {
+                    btnColon.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.colon_tablet), null, context.resources.getDrawable(
+                        R.drawable.check_tablet), null);
+                    btnEuro.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.euro_tablet), null, null, null)
+                    btnDollar.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
+                    return Money.COLON.name
+                }
+                Money.DOLLAR.name -> {
+                    btnDollar.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.dollar_tablet),null,context.resources.getDrawable(
+                        R.drawable.check_tablet),null);
+                    btnEuro.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.euro_tablet), null, null, null)
+                    btnColon.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.colon_tablet), null, null, null)
+                    return Money.DOLLAR.name
+                }
+                Money.EURO.name -> {
+                    btnEuro.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.euro_tablet), null, context.resources.getDrawable(
+                        R.drawable.check_tablet), null)
+                    btnDollar.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
+                    btnColon.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.colon_tablet), null, null, null)
+                    return Money.EURO.name
+                }
+            }
+        }
+        return ""
+    }
 
 }

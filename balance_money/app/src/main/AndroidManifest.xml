@@ -16,6 +16,7 @@
         tools:targetApi="n">
         <activity
             android:name=".UI.transaction.DetailTransactionActivity"
+            android:label="@string/name_toolbar_detail_transaction"
             />
         <activity
             android:name=".UI.transaction.CreateNewTransactionActivity"

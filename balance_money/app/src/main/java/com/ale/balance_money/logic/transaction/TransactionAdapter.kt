@@ -41,7 +41,9 @@ class TransactionAdapter(
             category: String,
             amount: Double,
             typeTransaction: String,
-            description: String
+            money:String,
+            description: String,
+            date:String
         )
     }
     /**
@@ -92,7 +94,10 @@ class TransactionAdapter(
                     transaction.category,
                     transaction.amount,
                     transaction.typeTransaction,
-                    transaction.description
+                    transaction.money,
+                    transaction.description,
+                    transaction.dateOfTrasaction
+
                 )
             }
             itemView.txtNameAccountTransaction.text = transaction.account

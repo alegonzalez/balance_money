@@ -3,6 +3,7 @@ package com.ale.balance_money.UI.transaction
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -67,7 +68,7 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
      */
     private fun observeAccount() {
         shimmer_view_transaction.startShimmer()
-        viewModelTransaction.getListTransaction()?.observe(this, Observer { listTransaction ->
+        viewModelTransaction.getListTransaction().observe(this, Observer { listTransaction ->
             shimmer_view_transaction.stopShimmer()
             shimmer_view_transaction.visibility = View.GONE
             if (listTransaction.isEmpty()) {
@@ -94,8 +95,20 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
         category: String,
         amount: Double,
         typeTransaction: String,
-        description: String
+        money:String,
+        description: String,
+        date:String
     ) {
-        TODO("Not yet implemented")
+        val intentDetailTransaction = Intent(this,DetailTransactionActivity::class.java)
+        intentDetailTransaction.putExtra("id",id)
+        intentDetailTransaction.putExtra("account",account)
+        intentDetailTransaction.putExtra("category",category)
+        intentDetailTransaction.putExtra("amount",amount)
+        intentDetailTransaction.putExtra("money",money)
+        intentDetailTransaction.putExtra("typeTransaction",typeTransaction)
+        intentDetailTransaction.putExtra("description",description)
+        intentDetailTransaction.putExtra("date",date)
+        startActivity(intentDetailTransaction)
+        Animatoo.animateSlideLeft(this);
     }
 }

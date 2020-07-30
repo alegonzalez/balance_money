@@ -1,11 +1,9 @@
 package com.ale.balance_money.repository
 
-import android.view.View
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ale.balance_money.logic.category.Category
 import com.ale.balance_money.logic.setting.DatabaseSetting
-import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.logic.transaction.Transaction
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -59,6 +57,20 @@ class FirebaseTransaction {
     fun insertNewTransaction(transaction: Transaction): Boolean {
         try {
             ref.child("transaction").child(uidUser.toString()).push().setValue(transaction)
+        } catch (e: Exception) {
+            return false
+        }
+        return true
+    }
+
+    /**
+     *this function remove a specific transaction from firebase
+     * @param id
+     * @return Boolean
+     */
+    fun removeTransaction(id:String): Boolean {
+        try {
+            ref.child("transaction").child(uidUser.toString()).child(id).removeValue()
         } catch (e: Exception) {
             return false
         }

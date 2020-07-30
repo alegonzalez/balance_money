@@ -15,6 +15,7 @@ import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.account.Money
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseData
+import com.ale.balance_money.repository.FirebaseTransaction
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -41,9 +42,6 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         account.amount = intentSpecificAccount.getDoubleExtra("amount", 0.0)
         account.description = intentSpecificAccount.getStringExtra("description")
         //set attribute of UI EditText,ImageView and Button
-        val indicatorColon = findViewById<ImageView>(R.id.imgIndicatorColon)
-        val indicatorDollar = findViewById<ImageView>(R.id.imgIndicatorDollar)
-        val indicatorEuro = findViewById<ImageView>(R.id.imgIndicatorEuro)
         val btnColon = findViewById<Button>(R.id.btnColon)
         val btnDollar = findViewById<Button>(R.id.btnDollar)
         val btnEuro = findViewById<Button>(R.id.btnEuro)
@@ -52,8 +50,8 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         txtDescription = findViewById<EditText>(R.id.txtDescription)
         val btnUpdate = findViewById<Button>(R.id.btnUpdate)
         //call function setMoney to set in UI money by user
-        val orientation = Device().detectTypeDevice(windowManager)
-        typeMoney = setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+        val orientation = device.detectTypeDevice(windowManager)
+        typeMoney = account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
         //Set data in UI
         txtName.setText(account.title)
         txtAmount.setText(account.amount.toString())
@@ -62,21 +60,20 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         //Onclick of button colon
         btnColon.setOnClickListener {
             account.money = Money.COLON.name
-            setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+            account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
             account.money = Money.DOLLAR.name
-            setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+            account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
             account.money = Money.EURO.name
-            setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+            account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
         }
         //Onclick update button
         btnUpdate.setOnClickListener {
-
             val listError: ArrayList<String> = account.validateFieldsAccount(
                 txtName.text.toString(),
                 account.money,
@@ -137,7 +134,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
                     account.amount = exchangeRate.get()
                 }
                  if (firebaseData.updateAccount(account)) {
-                    // the account have been updated successful
+                                      // the account have been updated successful
                     device.messageSuccessfulSnack(
                         "La cuenta se actualizó correctamente",
                         txtDescription
@@ -172,59 +169,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         finish()
     }
 
-    /**
-     * This function set visibility money that was selected by user
-     * @param money
-     * @param indicatorColon
-     * @param indicatorDollar
-     * @param indicatorEuro
-     */
-    private fun setMoney(
-        money: String?,
-        orientation:Boolean,
-        btnColon:Button,
-        btnDollar:Button,
-        btnEuro:Button
-    ): String {
-        if(orientation){
-            //Smartphone
-            if(money == Money.COLON.name ){
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, resources.getDrawable(R.drawable.check), null);
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
-                return Money.COLON.name
-            }else if(money == Money.DOLLAR.name  ){
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar),null,resources.getDrawable(R.drawable.check),null);
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
-                return Money.DOLLAR.name
-            }else if(money == Money.EURO.name){
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, resources.getDrawable(R.drawable.check), null)
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
-                return Money.EURO.name
-            }
-        }else{
-            //Tablet
-            if(money == Money.COLON.name ){
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, resources.getDrawable(R.drawable.check_tablet), null);
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
-                return Money.COLON.name
-            }else if(money == Money.DOLLAR.name  ){
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet),null,resources.getDrawable(R.drawable.check_tablet),null);
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
-                return Money.DOLLAR.name
-            }else if(money == Money.EURO.name){
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, resources.getDrawable(R.drawable.check_tablet), null)
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
-                return Money.EURO.name
-            }
-        }
-        return ""
-    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)

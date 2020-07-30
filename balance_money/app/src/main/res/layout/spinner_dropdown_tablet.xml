@@ -10,8 +10,8 @@
     android:backgroundTint="@color/colorSelectTransaction"
     android:ellipsize="marquee"
     android:singleLine="true"
-    android:textSize="@dimen/size_font_smartphone"
+    android:textSize="@dimen/size_font_tablet"
     android:textColor="@color/colorLetter"
-   >
+    >
 
 </TextView>

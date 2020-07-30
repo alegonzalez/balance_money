@@ -36,54 +36,27 @@ class NewAccountActivity : AppCompatActivity() {
         val btnEuro = findViewById<Button>(R.id.btnEuro)
         val btnCreateNewAccount = findViewById<Button>(R.id.btnNewAccount)
         val orientation = Device().detectTypeDevice(windowManager)
+        val account = AccountMoney()
         //Onclick of button colon
         btnColon.setOnClickListener {
             typeMoney = Money.COLON.name
-           if(orientation){
-               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, resources.getDrawable(R.drawable.check), null);
-               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
-               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
-
-           }else{
-               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, resources.getDrawable(R.drawable.check_tablet), null);
-               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
-               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
-
-           }
+            account.setMoney(typeMoney,orientation,btnColon,btnDollar,btnEuro)
             btnColon.compoundDrawablePadding = 12;
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
             typeMoney = Money.DOLLAR.name
-           if(orientation){
-               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar),null,resources.getDrawable(R.drawable.check),null);
-               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, null, null)
-               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
-           }else{
-               btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet),null,resources.getDrawable(R.drawable.check_tablet),null);
-               btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, null, null)
-               btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
-
-           }
+            account.setMoney(typeMoney,orientation,btnColon,btnDollar,btnEuro)
             btnDollar.compoundDrawablePadding = 12;
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
             typeMoney = Money.EURO.name
-            if(orientation){
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro), null, resources.getDrawable(R.drawable.check), null)
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar), null, null, null)
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon), null, null, null)
-            } else{
-                btnEuro.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.euro_tablet), null, resources.getDrawable(R.drawable.check_tablet), null)
-                btnDollar.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.dollar_tablet), null, null, null)
-                btnColon.setCompoundDrawablesWithIntrinsicBounds(resources.getDrawable(R.drawable.colon_tablet), null, null, null)
-            }
+            account.setMoney(typeMoney,orientation,btnColon,btnDollar,btnEuro)
             btnEuro.compoundDrawablePadding = 12;
         }
         //onclick of button to create new account
         btnCreateNewAccount.setOnClickListener {
-            val account = AccountMoney()
             val listError: ArrayList<String> = account.validateFieldsAccount(
                 txtTitle.text.toString(),
                 typeMoney,

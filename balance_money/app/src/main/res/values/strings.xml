@@ -70,15 +70,24 @@
     <string name="name_toolbar_detail_category">Información de la categoría</string>
     <!--Transactions-->
     <string name="name_toolbar_list_transaction">Transacciones</string>
+    <string name="name_toolbar_detail_transaction">Detalle de la transacción</string>
     <!--Create transactions-->
     <string name="selec_account">Seleccione la cuenta</string>
-    <string name="selec_category">Seleccione la categoría</string>
+    <string name="select_category">Seleccione la categoría</string>
     <string name="txtTypeTransaction">La transacción es un:</string>
-    <string name="amount_transaction">Monto</string>
+    <string name="amount_transaction">Ingresa el monto</string>
+    <string name="label_select_money_transaction">Selecciona la moneda</string>
+    <string name="label_amount_transaction">Monto</string>
     <string name="income_transaction">Ingreso</string>
     <string name="expense_transaction">Gasto</string>
-    <string name="description_transaction">Descripción</string>
+    <string name="description_transaction">Ingresa una descripción(No es requerido)</string>
+    <string name="label_description_transaction">Descripción</string>
     <string name="button_create_transaction">Crear</string>
     <string name="message_dialo_create_new_transaction">¿Seguro que deseas crear esta transacción?</string>
     <string name="name_toolbar_create_transacion">Crear transacción</string>
+    <string name="label_date_transaction">Fecha</string>
+    <!--Detail transactions-->
+    <string name="label_account_detail_transaction">Cuenta</string>
+    <string name="label_category_detail_transaction">Categoría</string>
+    <string name="label_money_detail_transaction">Moneda</string>
 </resources>

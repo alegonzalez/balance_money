@@ -1,9 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
     tools:context=".UI.transaction.CreateNewTransactionActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp">
+
+        <Spinner
+            android:id="@+id/dropdownAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+
+            android:background="@color/colorSelectTransaction"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtNameAccountTransaction" />
+
+
+        <TextView
+            android:id="@+id/txtNameAccountTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/selec_account"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtNameCategoryTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="@string/select_category"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/dropdownAccount" />
+
+        <Spinner
+            android:id="@+id/dropdownCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSelectTransaction"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtNameCategoryTransaction" />
+
+        <EditText
+            android:id="@+id/editAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/amount_transaction"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/amount_transaction"
+            android:inputType="number"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelAmountTransaction" />
+
+        <Button
+            android:id="@+id/btnColon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/colon_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="170dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="8dp"
+            android:text="@string/btn_money_colon"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelSelectMoney" />
+
+        <Button
+            android:id="@+id/btnDollar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/dollar_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="170dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="8dp"
+            android:text="@string/btn_money_dollar"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/btnColon" />
+
+
+        <Button
+            android:id="@+id/btnEuro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/euro_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="170dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="8dp"
+            android:text="@string/btn_money_euro"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/btnDollar" />
+
+        <RadioGroup
+            android:id="@+id/rdGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtTypeTransaction">
+
+            <RadioButton
+                android:id="@+id/rdButtonIncome"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="16dp"
+                android:buttonTint="@color/colorLetter"
+                android:text="@string/income_transaction"
+                android:textColor="@color/colorLetter"
+                android:textSize="@dimen/size_font_tablet"
+                app:layout_constraintEnd_toStartOf="@+id/guideline99"
+                app:layout_constraintHorizontal_bias="0.226"
+                app:layout_constraintStart_toStartOf="@+id/guideline93"
+                app:layout_constraintTop_toTopOf="@+id/guideline96" />
+
+            <RadioButton
+                android:id="@+id/rdButtonExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="16dp"
+                android:buttonTint="@color/colorLetter"
+                android:text="@string/expense_transaction"
+                android:textColor="@color/colorLetter"
+                android:textSize="@dimen/size_font_tablet"
+                app:layout_constraintEnd_toStartOf="@+id/guideline92"
+                app:layout_constraintHorizontal_bias="0.593"
+                app:layout_constraintStart_toStartOf="@+id/guideline99"
+                app:layout_constraintTop_toTopOf="@+id/guideline96" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtTotalAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/editAmount" />
+
+        <EditText
+            android:id="@+id/txtDescriptionTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/description_transaction"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:textSize="@dimen/size_font_tablet"
+            android:gravity="start|top"
+            android:hint="@string/description_transaction"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelDescriptionTransaction" />
+
+        <Button
+            android:id="@+id/btnNewTransaction"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/custom_btn"
+            android:drawableStart="@drawable/add"
+            android:paddingStart="225dp"
+            android:paddingEnd="1dp"
+            android:text="@string/button_create_transaction"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescriptionTransaction"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/txtTypeTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="@string/txtTypeTransaction"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/btnEuro" />
+
+        <TextView
+            android:id="@+id/txtLabelAmountTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="@string/label_amount_transaction"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/dropdownCategory" />
+
+        <TextView
+            android:id="@+id/txtLabelSelectMoney"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="@string/label_select_money_transaction"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalAmount" />
+
+        <TextView
+            android:id="@+id/txtLabelDescriptionTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="@string/label_description_transaction"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/rdGroup" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="156dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="156dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

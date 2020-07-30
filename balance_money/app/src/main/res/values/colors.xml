@@ -13,6 +13,7 @@
     <color name="colorButton">#1DB954</color>
     <color name="hint_editText">#8d8d8d</color>
     <color name="colorButtonFacebook">#4862A3 </color>
+    <color name="colorSelectTransaction">#00A6FF</color>
     <color name="placeholder_loading">#dddddd </color>
     <color name="placeholder_item">#b1b1b1b1 </color>
     <color name="btnUpdate">#77D353 </color>

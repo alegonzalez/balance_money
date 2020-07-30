@@ -11,6 +11,7 @@ import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseDataCategory
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
+
 class CreateNewCategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

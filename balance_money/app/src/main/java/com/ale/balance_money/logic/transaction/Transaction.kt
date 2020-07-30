@@ -1,13 +1,14 @@
 package com.ale.balance_money.logic.transaction
 
 import com.ale.balance_money.logic.account.AccountMoney
+import com.ale.balance_money.logic.account.Money
 import com.ale.balance_money.logic.category.Category
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 /**
- * This class is for transactions, validate ...
+ * This class is for transactions, validate, logic
  * @author Alejandro Alvarado
  */
 class Transaction {
@@ -26,10 +27,12 @@ class Transaction {
      * @param listAccount
      * @return List<String>
      */
-    fun fillListAccount(listAccount: List<AccountMoney>): List<String> {
+    fun fillListAccount(listAccount: List<AccountMoney>?): List<String> {
         val newListWithNameAccount: ArrayList<String> = ArrayList()
-        for (item in listAccount) {
-            newListWithNameAccount.add(item.title)
+        if(listAccount != null) {
+            for (item in listAccount) {
+                newListWithNameAccount.add(item.title)
+            }
         }
         return newListWithNameAccount
     }
@@ -39,12 +42,14 @@ class Transaction {
      * @param listCategories
      * @return List<String>
      */
-    fun fillListCategories(listCategories: List<Category>): List<String> {
+    fun fillListCategories(listCategories: List<Category>?): List<String> {
         val newListWithNameCategory: ArrayList<String> = ArrayList()
-        for (item in listCategories) {
-            newListWithNameCategory.add(item.name)
-        }
-        return newListWithNameCategory
+       if(listCategories != null){
+           for (item in listCategories) {
+               newListWithNameCategory.add(item.name)
+           }
+       }
+       return newListWithNameCategory
     }
 
     /**
@@ -57,7 +62,7 @@ class Transaction {
         listAccount: List<AccountMoney>?,
         nameAccount: String
     ): ArrayList<AccountMoney> {
-        var listWithSpeficifAccount = arrayListOf<AccountMoney>()
+        val listWithSpeficifAccount = arrayListOf<AccountMoney>()
         if (listAccount != null) {
             for (item in listAccount) {
                 if (item.title == nameAccount) {
@@ -74,15 +79,20 @@ class Transaction {
      * @return ArrayList<String>
      */
     fun validateFieldToMakeTransaction(transaction: Transaction): ArrayList<String> {
-        var listError = arrayListOf<String>()
-        if (transaction.amount == 0.0) {
-            listError.add("El campo monto es requerido")
-        } else if (transaction.amount < 0) {
-            listError.add("El monto debe ser mayor a 0")
-        } else if (transaction.amount > transaction.remainingAmount) {
-            listError.add("El monto de la transacción debe ser menor al saldo de la cuenta")
-        } else {
-            listError.add("")
+        val listError = arrayListOf<String>()
+        when {
+            transaction.amount == 0.0 -> {
+                listError.add("El campo monto es requerido")
+            }
+            transaction.amount < 0 -> {
+                listError.add("El monto debe ser mayor a 0")
+            }
+            transaction.amount > transaction.remainingAmount -> {
+                listError.add("El monto de la transacción debe ser menor al saldo de la cuenta")
+            }
+            else -> {
+                listError.add("")
+            }
         }
         if (transaction.typeTransaction == "") {
             listError.add("Debes de elegir el tipo de transacción, ingreso o gasto")
@@ -103,5 +113,24 @@ class Transaction {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val dateNow = year.toString() + "/" + (month + 1).toString() + "/" + day.toString()
         return dateNow
+    }
+
+    /**
+     * This function get icon money for show with amount
+     * @param money
+     * @return String
+     */
+    fun getIconMonet(money: String):String {
+        return when (money) {
+            Money.COLON.name -> {
+                "₡"
+            }
+            Money.DOLLAR.name -> {
+                "$"
+            }
+            else -> {
+                "€"
+            }
+        }
     }
 }

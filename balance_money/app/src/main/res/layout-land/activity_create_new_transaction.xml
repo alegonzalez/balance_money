@@ -4,47 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
     tools:context=".UI.transaction.CreateNewTransactionActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp">
 
 
         <Spinner
             android:id="@+id/dropdownAccount"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="48dp"
-            android:background="@color/colorPrimary"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toStartOf="@+id/guideline103"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorSelectTransaction"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtNameAccountTransaction" />
 
         <TextView
             android:id="@+id/txtNameAccountTransaction"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="center"
             android:text="@string/selec_account"
+            android:textColor="@color/colorLetter"
             android:textSize="19sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline103"
-            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtNameCategoryTransaction"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="76dp"
-            android:text="@string/selec_category"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/select_category"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
             android:textSize="19sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline103"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dropdownAccount" />
@@ -53,10 +62,12 @@
             android:id="@+id/dropdownCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:background="@color/colorPrimary"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toStartOf="@+id/guideline103"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorSelectTransaction"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtNameCategoryTransaction" />
@@ -65,133 +76,104 @@
             android:id="@+id/editAmount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
             android:autofillHints="@string/amount_transaction"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/custom_edit_text"
             android:ems="10"
             android:hint="@string/amount_transaction"
             android:inputType="number"
             android:textSize="19sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline104"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelAmountTransaction" />
 
         <Button
             android:id="@+id/btnColon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_menu"
-            android:drawableStart="@drawable/colon"
-            android:paddingStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="120dp"
             android:paddingEnd="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline95"
-            app:layout_constraintEnd_toStartOf="@+id/guideline105"
-            app:layout_constraintStart_toStartOf="@+id/guideline104"
-            app:layout_constraintTop_toTopOf="@+id/guideline94"
-            app:layout_constraintVertical_bias="1.0" />
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/colon"
+            android:drawablePadding="5dp"
+            android:text="@string/btn_money_colon"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelSelectMoney" />
 
         <Button
             android:id="@+id/btnDollar"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_menu"
-            android:drawableStart="@drawable/dollar"
-            android:paddingStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="120dp"
             android:paddingEnd="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline95"
-            app:layout_constraintEnd_toStartOf="@+id/guideline106"
-            app:layout_constraintStart_toStartOf="@+id/guideline105"
-            app:layout_constraintTop_toTopOf="@+id/guideline94"
-            app:layout_constraintVertical_bias="0.0" />
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/dollar"
+            android:drawablePadding="5dp"
+            android:text="@string/btn_money_dollar"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/btnColon" />
 
         <Button
             android:id="@+id/btnEuro"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_menu"
-            android:drawableStart="@drawable/euro"
-            android:paddingStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="120dp"
             android:paddingEnd="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline95"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/euro"
+            android:drawablePadding="5dp"
+            android:text="@string/btn_money_euro"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="19sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline106"
-            app:layout_constraintTop_toTopOf="@+id/guideline94"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline94"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="196dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline95"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="491dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline96"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="460dp" />
-
-        <ImageView
-            android:id="@+id/imgIndicatorColon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/guideline96"
-            app:layout_constraintTop_toBottomOf="@+id/btnColon"
-            app:layout_constraintVertical_bias="0.478"
-            app:srcCompat="@android:drawable/arrow_up_float"
-            tools:layout_editor_absoluteX="20dp" />
-
-        <ImageView
-            android:id="@+id/imgIndicatorDollar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/guideline96"
-            app:layout_constraintTop_toTopOf="@+id/guideline95"
-            app:srcCompat="@android:drawable/arrow_up_float"
-            tools:layout_editor_absoluteX="147dp" />
-
-        <ImageView
-            android:id="@+id/imgIndicatorEuro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/guideline96"
-            app:layout_constraintTop_toTopOf="@+id/guideline95"
-            app:srcCompat="@android:drawable/arrow_up_float"
-            tools:layout_editor_absoluteX="711dp" />
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/btnDollar" />
 
         <RadioGroup
             android:id="@+id/rdGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/guideline100"
-            app:layout_constraintTop_toBottomOf="@+id/txtTypeTransaction"
-            app:layout_constraintVertical_bias="0.48"
-            tools:layout_editor_absoluteX="16dp">
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTypeTransaction">
 
             <RadioButton
                 android:id="@+id/rdButtonIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/income_transaction"
+                android:textColor="@color/colorLetter"
+                android:buttonTint="@color/colorLetter"
                 android:textSize="19sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline99"
                 app:layout_constraintHorizontal_bias="0.226"
@@ -205,6 +187,8 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/expense_transaction"
+                android:textColor="@color/colorLetter"
+                android:buttonTint="@color/colorLetter"
                 android:textSize="19sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline92"
                 app:layout_constraintHorizontal_bias="0.593"
@@ -214,21 +198,26 @@
 
         <TextView
             android:id="@+id/txtTotalAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textSize="17sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline94"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline104"
-            app:layout_constraintTop_toBottomOf="@+id/editAmount"
-            app:layout_constraintVertical_bias="0.068" />
+            android:textAlignment="textStart"
+            android:textColor="@color/colorLetter"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editAmount" />
 
         <EditText
             android:id="@+id/txtDescriptionTransaction"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:autofillHints="@string/description_transaction"
+            android:background="@drawable/custom_edit_text"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/description_transaction"
@@ -236,69 +225,96 @@
             android:maxLines="4"
             android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline104"
-            app:layout_constraintTop_toTopOf="@+id/guideline96" />
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/txtLabelDescriptionTransaction" />
 
         <Button
             android:id="@+id/btnNewTransaction"
             android:layout_width="0dp"
+            android:layout_marginTop="16dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/custom_btn"
             android:drawableStart="@drawable/add"
-            android:paddingStart="125dp"
+            android:paddingStart="100dp"
             android:paddingEnd="1dp"
             android:text="@string/button_create_transaction"
             android:textAlignment="textStart"
             android:textColor="@color/colorLetter"
             android:textSize="19sp"
-            tools:layout_editor_absoluteX="240dp"
-            tools:layout_editor_absoluteY="581dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline100"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="314dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescriptionTransaction" />
 
         <TextView
             android:id="@+id/txtTypeTransaction"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="16dp"
             android:text="@string/txtTypeTransaction"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
             android:textSize="19sp"
-            app:layout_constraintTop_toTopOf="@+id/guideline96"
-            tools:layout_editor_absoluteX="100dp" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalAmount" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline103"
+            android:id="@+id/guideline15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="351dp" />
+            app:layout_constraintGuide_percent="0.50" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline104"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtLabelAmountTransaction"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="351dp" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/label_amount_transaction"
+            android:textColor="@color/colorLetter"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dropdownCategory" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline105"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtLabelDescriptionTransaction"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="501dp" />
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/label_description_transaction"
+            android:textColor="@color/colorLetter"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toBottomOf="@+id/btnEuro" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline106"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtLabelSelectMoney"
+            android:layout_width="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="615dp" />
+            android:text="@string/label_select_money_transaction"
+            android:textAlignment="center"
+            android:textColor="@color/colorLetter"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
