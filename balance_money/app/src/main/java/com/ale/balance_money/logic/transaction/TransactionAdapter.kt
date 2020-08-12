@@ -103,11 +103,7 @@ class TransactionAdapter(
             itemView.txtNameAccountTransaction.text = transaction.account
             itemView.txtNameCategoryTransaction.text = transaction.category
             itemView.txtDateTransaction.text = transaction.category
-            val dateNow = Transaction().getDateNow()
-            itemView.txtDateTransaction.text = dateNow
-            transaction.dateOfTrasaction = dateNow
+            itemView.txtDateTransaction.text = transaction.dateOfTrasaction
         }
     }
-
-
 }

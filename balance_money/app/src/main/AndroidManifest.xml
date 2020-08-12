@@ -14,14 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+        <activity android:name=".StadisticActivity"></activity>
         <activity
             android:name=".UI.transaction.DetailTransactionActivity"
-            android:label="@string/name_toolbar_detail_transaction"
-            />
+            android:label="@string/name_toolbar_detail_transaction" />
         <activity
             android:name=".UI.transaction.CreateNewTransactionActivity"
             android:label="@string/name_toolbar_create_transacion" />
-        <activity android:name=".UI.transaction.TransactionActivity"
+        <activity
+            android:name=".UI.transaction.TransactionActivity"
             android:label="@string/name_toolbar_list_transaction" /> <!-- Category -->
         <activity
             android:name=".UI.category.UpdateDeleteCategoryActivity"
@@ -29,7 +30,7 @@
         <activity
             android:name=".UI.category.CreateNewCategoryActivity"
             android:label="@string/name_toolbar_create_new_category"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".UI.category.CategoryActivity"
             android:label="@string/name_toolbar_category_main" /> <!-- Account -->
@@ -43,14 +44,15 @@
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UI.login.CreateAccountActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"  /> <!-- Menu -->
+        <activity
+            android:name=".UI.login.CreateAccountActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- Menu -->
         <activity
             android:name=".UI.menu.MenuActivity"
             android:label="@string/name_menu" />
-        <activity android:name=".UI.login.LoginActivity"
-
-            android:theme="@style/Theme.AppCompat.NoActionBar"/> <!-- Main screen -->
+        <activity
+            android:name=".UI.login.LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- Main screen -->
         <activity
             android:name=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.ale.balance_money.R
+import com.ale.balance_money.StadisticActivity
 import com.ale.balance_money.UI.account.AccountActivity
 import com.ale.balance_money.UI.category.CategoryActivity
 import com.ale.balance_money.UI.transaction.TransactionActivity
@@ -37,6 +38,11 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intentTransaction)
             Animatoo.animateSlideLeft(this);
         }
-
+        //method onclick to enter in transaction
+        btnStadistic.setOnClickListener{
+            val intentStadistic =  Intent(this, StadisticActivity::class.java)
+            startActivity(intentStadistic)
+            Animatoo.animateSlideLeft(this);
+        }
     }
 }

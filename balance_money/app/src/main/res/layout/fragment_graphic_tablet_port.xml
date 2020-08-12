@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/stadisticGraphic"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline37">
+
+
+        </com.github.mikephil.charting.charts.PieChart>
+
+        <Button
+            android:id="@+id/btnColonGrafic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="136dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/colon_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:padding="6dp"
+            android:text="@string/btn_money_colon"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintBottom_toTopOf="@+id/guideline37"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.451" />
+
+        <Button
+            android:id="@+id/btnDollarGrafic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/dollar_tablet"
+            android:drawablePadding="5dp"
+            android:padding="6dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@string/btn_money_dollar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintBottom_toTopOf="@+id/guideline37"
+            app:layout_constraintEnd_toStartOf="@+id/btnEuroGrafic"
+            app:layout_constraintHorizontal_bias="0.552"
+            app:layout_constraintStart_toEndOf="@+id/btnColonGrafic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.46" />
+
+        <Button
+            android:id="@+id/btnEuroGrafic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="136dp"
+            android:background="@drawable/custom_shape_account"
+            android:drawableStart="@drawable/euro_tablet"
+            android:drawablePadding="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:padding="6dp"
+            android:text="@string/btn_money_euro"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLetter"
+            android:textSize="@dimen/size_font_tablet"
+            app:layout_constraintBottom_toTopOf="@+id/guideline37"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.451" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="126dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

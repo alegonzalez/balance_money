@@ -111,7 +111,7 @@ class Transaction {
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val dateNow = year.toString() + "/" + (month + 1).toString() + "/" + day.toString()
+        val dateNow =   day.toString()+ "/" + (month + 1).toString() + "/" + year.toString()
         return dateNow
     }
 

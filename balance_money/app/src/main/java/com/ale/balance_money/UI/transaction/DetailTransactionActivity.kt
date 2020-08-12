@@ -152,5 +152,11 @@ class DetailTransactionActivity : AppCompatActivity() {
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Animatoo.animateSlideRight(this)
+        finish()
+    }
 }
 

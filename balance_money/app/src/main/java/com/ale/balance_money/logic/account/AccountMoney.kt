@@ -2,7 +2,7 @@ package com.ale.balance_money.logic.account
 
 import android.widget.Button
 import com.ale.balance_money.R
-import com.facebook.FacebookSdk
+import com.facebook.FacebookSdk.getApplicationContext
 import java.io.Serializable
 import java.util.*
 
@@ -62,13 +62,13 @@ class AccountMoney:Serializable {
      */
      fun setMoney(
         money: String?,
-        orientation:Boolean,
+        typeDevice:Boolean,
         btnColon: Button,
         btnDollar: Button,
         btnEuro: Button
     ): String {
-        val context = FacebookSdk.getApplicationContext();
-        if(orientation){
+        val context = getApplicationContext();
+        if(typeDevice){
             //Smartphone
             when (money) {
                 Money.COLON.name -> {
