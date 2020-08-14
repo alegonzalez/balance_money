@@ -7,8 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.ExchangeRate
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.account.Money
@@ -37,6 +39,9 @@ class NewAccountActivity : AppCompatActivity() {
         val btnCreateNewAccount = findViewById<Button>(R.id.btnNewAccount)
         val orientation = Device().detectTypeDevice(windowManager)
         val account = AccountMoney()
+        if(!device.isNetworkConnected(this)){
+            device.messageMistakeSnack("Para crear una cuenta, debes estar conectado a internet",txtTitle)
+        }
         //Onclick of button colon
         btnColon.setOnClickListener {
             typeMoney = Money.COLON.name
@@ -67,10 +72,8 @@ class NewAccountActivity : AppCompatActivity() {
                 account.money = typeMoney
                 account.amount = txtAmount.text.toString().toDouble()
                 account.description = txtDescription.text.toString()
-                FirebaseData().createNewAccount(account)
-                val intentAccount = Intent(this, AccountActivity::class.java)
-                startActivity(intentAccount)
-                Animatoo.animateSlideRight(this);
+                dialogConfirmationAction(R.string.message_confirmation_new_account,account)
+
             } else {
                 val selectMoney = findViewById<TextView>(R.id.textSelectMoney)
                 if (listError[0] != "") {
@@ -85,7 +88,38 @@ class NewAccountActivity : AppCompatActivity() {
             }
         }
     }
-
+    /**
+     * This function show dialog to user, if user would like make a action
+     * @param messageToShow
+     * @param typeAction
+     * @return Void
+     */
+    private fun dialogConfirmationAction(messageToShow: Int,account:AccountMoney) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.messageDialogTitle)
+        builder.setTitle(R.string.messageDialogTitle)
+        builder.setMessage(messageToShow)
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+        //performing positive action
+        builder.setPositiveButton("Si") { dialogInterface, which ->
+            if(device.isNetworkConnected(this)){
+                FirebaseData().createNewAccount(account)
+                val intentAccount = Intent(this, AccountActivity::class.java)
+                startActivity(intentAccount)
+                Animatoo.animateSlideRight(this);
+            }else{
+                device.messageMistakeSnack("El dispositivo no se encuentra conectado a internet",txtTitle)
+            }
+        }
+         //performing negative action
+        builder.setNegativeButton("No") { dialogInterface, which ->
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
     /**
      * method when user back the previous activity, I do animation between activities
      */

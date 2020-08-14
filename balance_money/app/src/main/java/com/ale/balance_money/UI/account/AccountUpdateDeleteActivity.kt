@@ -3,10 +3,12 @@ package com.ale.balance_money.UI.account
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
@@ -15,9 +17,7 @@ import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.account.Money
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseData
-import com.ale.balance_money.repository.FirebaseTransaction
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 /**
@@ -107,46 +107,53 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
      */
     private fun dialogConfirmationAction(messageToShow: Int, typeAction: String) {
         val builder = AlertDialog.Builder(this)
-        //set title for alert dialog
+        builder.setTitle(R.string.messageDialogTitle)
+   //set title for alert dialog
         builder.setTitle(R.string.messageDialogTitle)
         //set message for alert dialog
         builder.setMessage(messageToShow)
         builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+
         //performing positive action
         builder.setPositiveButton("Si") { dialogInterface, which ->
-            val firebaseData = FirebaseData()
-            if (typeAction == "remove") {
-                if (firebaseData.removeAccount(account.id)) {
-                    val intentListAccount = Intent(this, AccountActivity::class.java)
-                    startActivity(intentListAccount)
-                    Animatoo.animateSlideRight(this);
+            if(device.isNetworkConnected(this)){
+                val firebaseData = FirebaseData()
+                if (typeAction == "remove") {
+                    if (firebaseData.removeAccount(account.id)) {
+                        val intentListAccount = Intent(this, AccountActivity::class.java)
+                        startActivity(intentListAccount)
+                        Animatoo.animateSlideRight(this);
+                    } else {
+                        // problem when try update an account
+                        device.messageMistakeSnack(
+                            "No se pudo eliminar la cuenta correctamente, intentelo nuevamente",
+                            txtDescription
+                        )
+                    }
                 } else {
-                    // problem when try update an account
-                    device.messageMistakeSnack(
-                        "No se pudo eliminar la cuenta correctamente, intentelo nuevamente",
-                        txtDescription
-                    )
-                }
-            } else {
-                if(account.money != typeMoney){
-                    val exchangeRate = ExchangeRate()
-                    exchangeRate.execute(typeMoney,account.money,account.amount.toString())
-                    account.amount = exchangeRate.get()
-                }
-                 if (firebaseData.updateAccount(account)) {
-                                      // the account have been updated successful
-                    device.messageSuccessfulSnack(
-                        "La cuenta se actualizó correctamente",
-                        txtDescription
-                    )
-                } else {
-                    // problem when try remove an account
-                    device.messageSuccessfulSnack(
-                        "No se pudo actualizar la cuenta correctamente, intentelo nuevamente",
-                        txtDescription
-                    )
-                }
+                    if(account.money != typeMoney){
+                        val exchangeRate = ExchangeRate()
+                        exchangeRate.execute(typeMoney,account.money,account.amount.toString())
+                        account.amount = exchangeRate.get()
+                    }
+                    if (firebaseData.updateAccount(account)) {
+                        // the account have been updated successful
+                        device.messageSuccessfulSnack(
+                            "La cuenta se actualizó correctamente",
+                            txtDescription
+                        )
+                    } else {
+                        // problem when try remove an account
+                        device.messageSuccessfulSnack(
+                            "No se pudo actualizar la cuenta correctamente, intentelo nuevamente",
+                            txtDescription
+                        )
+                    }
 
+                }
+            }else{
+                device.messageSuccessfulSnack("El dispositivo no se encuentra conectado a internet",txtDescription)
             }
         }
 

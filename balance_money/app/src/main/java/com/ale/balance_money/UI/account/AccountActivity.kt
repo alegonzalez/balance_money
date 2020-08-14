@@ -18,6 +18,9 @@ class AccountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_account)
         setSupportActionBar(findViewById(R.id.toolbar))
         val fragment = supportFragmentManager.findFragmentById(R.id.container)
+        if(!Device().isNetworkConnected(this)){
+            Device().messageMistakeSnack("Para ver la lista de las cuentas, debes estar conectado a internet",window.decorView)
+        }
         //check if fragment is load
         if (fragment == null) {
             if (Device().detectTypeDevice(this.windowManager)) {

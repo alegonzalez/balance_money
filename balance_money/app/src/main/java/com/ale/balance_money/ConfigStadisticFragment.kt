@@ -113,24 +113,32 @@ class ConfigStadisticFragment : Fragment() {
 
         //generate graphics
         btnCreateGraphic.setOnClickListener {
-            //validate if two field are correct if them field don't correct show message of error
-            if (Stadistics().validateDates(startDate, endDate)) {
-                val graficFragment = GraphicFragment()
-                val bundle = Bundle()
-                bundle.putString("startDate", startDate.text.toString())
-                bundle.putString("endDate", endDate.text.toString())
-                graficFragment.arguments = bundle
-                if (!typeDevice) {
-                    activity?.supportFragmentManager
-                        ?.beginTransaction()
-                        ?.replace(R.id.containerGrapficFragment, graficFragment)
-                        ?.addToBackStack("")?.commit()
-                } else {
-                    activity?.supportFragmentManager
-                        ?.beginTransaction()?.replace(R.id.containerFragment, graficFragment)
-                        ?.addToBackStack("")?.commit()
+            if (Device().isNetworkConnected(activity?.applicationContext!!)) {
+                //validate if two field are correct if them field don't correct show message of error
+                if (Stadistics().validateDates(startDate, endDate)) {
+                    val graficFragment = GraphicFragment()
+                    val bundle = Bundle()
+                    bundle.putString("startDate", startDate.text.toString())
+                    bundle.putString("endDate", endDate.text.toString())
+                    graficFragment.arguments = bundle
+                    if (!typeDevice) {
+                        activity?.supportFragmentManager
+                            ?.beginTransaction()
+                            ?.replace(R.id.containerGrapficFragment, graficFragment)
+                            ?.addToBackStack("")?.commit()
+                    } else {
+                        activity?.supportFragmentManager
+                            ?.beginTransaction()?.replace(R.id.containerFragment, graficFragment)
+                            ?.addToBackStack("")?.commit()
+                    }
                 }
+            } else {
+                Device().messageMistakeSnack(
+                    "Para visualizar el gráfico con los resultados, debes estar conectado a internet",
+                    startDate
+                )
             }
+
         }
     }
 }

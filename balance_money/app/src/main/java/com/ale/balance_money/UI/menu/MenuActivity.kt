@@ -1,15 +1,22 @@
 package com.ale.balance_money.UI.menu
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.ale.balance_money.R
 import com.ale.balance_money.StadisticActivity
 import com.ale.balance_money.UI.account.AccountActivity
 import com.ale.balance_money.UI.category.CategoryActivity
 import com.ale.balance_money.UI.transaction.TransactionActivity
+import com.ale.balance_money.logic.setting.Device
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
+
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,5 +51,10 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intentStadistic)
             Animatoo.animateSlideLeft(this);
         }
+
+    }
+    private fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnected
     }
 }

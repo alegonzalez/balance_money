@@ -65,7 +65,8 @@ class CreateNewTransactionActivity : AppCompatActivity() {
         } else {
             this.listAccount = Transaction().fillListAccount(viewModelAccount.listAccount)
             fillDropdownAccount(dropdownAccount)
-            this.listCategories = Transaction().fillListCategories(viewModelCategories.listCategories)
+            this.listCategories =
+                Transaction().fillListCategories(viewModelCategories.listCategories)
             fillDropdownCategory(dropDownCategory)
         }
 
@@ -133,11 +134,19 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             transaction.typeTransaction = rb.text.toString()
         })
         btnCreateNewTransaction.setOnClickListener {
-          this.transaction.description = txtDescription.text.toString()
-            dialogConfirmationAction(
-                R.string.message_dialo_create_new_transaction,
-                amountTransaction
-            )
+            if (Device().isNetworkConnected(this)) {
+                this.transaction.description = txtDescription.text.toString()
+                dialogConfirmationAction(
+                    R.string.message_dialo_create_new_transaction,
+                    amountTransaction
+                )
+            } else {
+                Device().messageMistakeSnack(
+                    "Para crear una transacción, debes estar conectado a internet",
+                    amountTransaction
+                )
+            }
+
         }
     }
 
@@ -166,20 +175,24 @@ class CreateNewTransactionActivity : AppCompatActivity() {
      */
     private fun fillDropdownAccount(dropdownAccount: Spinner) {
         val messageAccount = arrayOf("No hay cuentas")
-        setElementInSpinner(listAccount,messageAccount,dropdownAccount)
+        setElementInSpinner(listAccount, messageAccount, dropdownAccount)
     }
 
     /**
      * This function set data in spinner when device is smartphone or tablet
      */
-    private fun setElementInSpinner(list: List<String>, emptyList: Array<String>,dropdown:Spinner) {
+    private fun setElementInSpinner(
+        list: List<String>,
+        emptyList: Array<String>,
+        dropdown: Spinner
+    ) {
         val orientation = Device().detectTypeDevice(windowManager)
         val adapter: ArrayAdapter<String>
         if (orientation) {
             if (list.isEmpty()) {
                 adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, emptyList)
                 adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-            }else{
+            } else {
                 adapter = ArrayAdapter(this, R.layout.spinner_dropdown_layout, list)
                 adapter.setDropDownViewResource(R.layout.custom_spinner);
 
@@ -189,10 +202,10 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             if (list.isEmpty()) {
                 adapter = ArrayAdapter(this, R.layout.spinner_dropdown_tablet, emptyList)
                 adapter.setDropDownViewResource(R.layout.custom_spinner_tablet);
-            }else{
+            } else {
                 adapter = ArrayAdapter(this, R.layout.spinner_dropdown_tablet, list)
                 adapter.setDropDownViewResource(R.layout.custom_spinner_tablet);
-                }
+            }
             dropdown.adapter = adapter
         }
 
@@ -208,7 +221,7 @@ class CreateNewTransactionActivity : AppCompatActivity() {
      */
     private fun fillDropdownCategory(dropdownCategory: Spinner) {
         val messageCategory = arrayOf("No hay categorias")
-        setElementInSpinner(listCategories,messageCategory,dropdownCategory)
+        setElementInSpinner(listCategories, messageCategory, dropdownCategory)
     }
 
     /**
@@ -267,12 +280,10 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                     "La transacción se creo correctamente",
                     txtNameAccountTransaction
                 )
-
                 val intentTransaction = Intent(this, TransactionActivity::class.java)
                 startActivity(intentTransaction)
                 Animatoo.animateSlideRight(this)
                 finish()
-
             } else {
                 Device().messageMistakeSnack(
                     "No se pudo crear la transacción, intentelo nuevamente",
@@ -297,5 +308,4 @@ class CreateNewTransactionActivity : AppCompatActivity() {
         Animatoo.animateSlideRight(this)
         finish()
     }
-
 }

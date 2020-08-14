@@ -16,6 +16,7 @@ import com.ale.balance_money.UI.category.CategoryActivity
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.category.Category
 import com.ale.balance_money.logic.category.CategoryAdapter
+import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.logic.transaction.Transaction
 import com.ale.balance_money.logic.transaction.TransactionAdapter
 import com.ale.balance_money.model.AccountViewModel
@@ -38,6 +39,9 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
         setContentView(R.layout.activity_transaction)
         val btnNewTransaction = findViewById<FloatingActionButton>(R.id.addNewTransaction)
        recyclerViewTransaction = findViewById(R.id.rcyListTranscation)
+       if(!Device().isNetworkConnected(this)){
+           Device().messageMistakeSnack("Para ver la lista de transacciones, debes estar conectado a internet",recyclerViewTransaction)
+       }
       //config recyclerview
        val linearLayoutmanager = LinearLayoutManager(this)
        linearLayoutmanager.orientation = LinearLayoutManager.VERTICAL

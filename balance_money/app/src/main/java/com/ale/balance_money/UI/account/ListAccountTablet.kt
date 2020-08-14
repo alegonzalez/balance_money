@@ -75,7 +75,7 @@ class ListAccountTablet : Fragment(), AccountAdapter.OnAccountListener {
     private fun observeAccount(){
 
         shimmer_view_container.startShimmer()
-        viewModel.fetchAccount()?.observe(viewLifecycleOwner, Observer { listAccount->
+        viewModel.fetchAccount().observe(viewLifecycleOwner, Observer { listAccount->
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility = View.GONE
             if(listAccount.isEmpty()){

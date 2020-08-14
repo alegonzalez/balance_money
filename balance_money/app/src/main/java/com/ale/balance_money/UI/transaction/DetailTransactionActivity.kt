@@ -50,17 +50,17 @@ class DetailTransactionActivity : AppCompatActivity() {
         //Set data to UI
         btnAccount.text = this.transaction.account
         btnCategory.text = this.transaction.category
-        val icon  = this.transaction.getIconMonet(this.transaction.money)
+        val icon = this.transaction.getIconMonet(this.transaction.money)
         btnAmount.text = icon + this.transaction.amount.toString()
         val drawableMoney = this.getResource()
         btnMoney.setCompoundDrawablesWithIntrinsicBounds(drawableMoney, null, null, null)
         btnMoney.text = this.transaction.money.toLowerCase().capitalize()
         btnTypeTransaction.text = this.transaction.typeTransaction
         btnDate.text = this.transaction.dateOfTrasaction
-        if(this.transaction.description == ""){
+        if (this.transaction.description == "") {
             labelDescription.visibility = View.INVISIBLE
             (txtDescription.parent as ViewManager).removeView(txtDescription)
-        }else{
+        } else {
             txtDescription.text = this.transaction.description
             txtDescription.isEnabled = false
         }
@@ -119,7 +119,14 @@ class DetailTransactionActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
         return if (id == R.id.action_item_one) {
-            dialogConfirmationAction(R.string.messageDialogDelete)
+            if (Device().isNetworkConnected(this)) {
+                dialogConfirmationAction(R.string.messageDialogDelete)
+            } else {
+                Device().messageMistakeSnack(
+                    "Para eliminar una transacción, debes estar conectado a internet",this.window.decorView.findViewById(android.R.id.content)
+                )
+            }
+
             true
         } else super.onOptionsItemSelected(item)
     }
@@ -136,15 +143,18 @@ class DetailTransactionActivity : AppCompatActivity() {
         builder.setMessage(messageToShow)
         builder.setIcon(android.R.drawable.ic_dialog_alert)
         builder.setPositiveButton("Si") { dialogInterface, which ->
-        if(FirebaseTransaction().removeTransaction(transaction.id)){
-            //success
-            val intentTransaction = Intent(this,TransactionActivity::class.java)
-            startActivity(intentTransaction)
-            Animatoo.animateSlideRight(this)
-        }else{
-            //problem with delete that transaction
-            Device().messageMistakeSnack("No se pudo eliminar la transacción, intentelo nuevamente", window.decorView.rootView)
-        }
+            if (FirebaseTransaction().removeTransaction(transaction.id)) {
+                //success
+                val intentTransaction = Intent(this, TransactionActivity::class.java)
+                startActivity(intentTransaction)
+                Animatoo.animateSlideRight(this)
+            } else {
+                //problem with delete that transaction
+                Device().messageMistakeSnack(
+                    "No se pudo eliminar la transacción, intentelo nuevamente",
+                    window.decorView.rootView
+                )
+            }
         }
         builder.setNegativeButton("No") { dialogInterface, which ->
         }

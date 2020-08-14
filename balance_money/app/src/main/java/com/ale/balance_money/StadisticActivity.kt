@@ -17,6 +17,9 @@ class StadisticActivity : AppCompatActivity() {
         setContentView(R.layout.activity_stadistic)
         val typeDevice = Device().detectTypeDevice(windowManager)
         configStadistic = ConfigStadisticFragment()
+        if(!Device().isNetworkConnected(this)){
+            Device().messageMistakeSnack("Para visualizar el gráfico con los resultados, debes estar conectado a internet",window.decorView)
+        }
         if (savedInstanceState == null) {
             //call fragment for select dates
             supportFragmentManager.beginTransaction().add(R.id.containerFragment, configStadistic)

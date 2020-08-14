@@ -23,21 +23,29 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
         category.name = intentDetailCategory.getStringExtra("name")
         category.description = intentDetailCategory.getStringExtra("description")
 
-        var nameCategory = findViewById<EditText>(R.id.txtNameCategoryDetail)
-        var descriptionCategory = findViewById<EditText>(R.id.txtDescriptionCategoryDetail)
-        var buttonRemove = findViewById<FloatingActionButton>(R.id.btnRemoveCategory)
-        var buttonUpdate = findViewById<FloatingActionButton>(R.id.btnUpdateCategory)
+        val nameCategory = findViewById<EditText>(R.id.txtNameCategoryDetail)
+        val descriptionCategory = findViewById<EditText>(R.id.txtDescriptionCategoryDetail)
+        val buttonRemove = findViewById<FloatingActionButton>(R.id.btnRemoveCategory)
+        val buttonUpdate = findViewById<FloatingActionButton>(R.id.btnUpdateCategory)
         nameCategory.setText(category.name)
         descriptionCategory.setText(category.description)
         //event onclick for remove a category
         buttonRemove.setOnClickListener {
-        dialogConfirmationActionCategory(R.string.messageDialogDeleteCategory,"remove",nameCategory)
+            if(Device().isNetworkConnected(this)){
+                dialogConfirmationActionCategory(R.string.messageDialogDeleteCategory,"remove",nameCategory)
+            }else{
+                Device().messageMistakeSnack("Para eliminar una categorías, debes estar conectado a internet",nameCategory)
+            }
         }
         //event onclick fot update detail category
         buttonUpdate.setOnClickListener {
-            category.name = nameCategory.text.toString()
-            category.description = descriptionCategory.text.toString()
-            dialogConfirmationActionCategory(R.string.messageDialogUpdateCategory,"update",nameCategory)
+            if(Device().isNetworkConnected(this)){
+                category.name = nameCategory.text.toString()
+                category.description = descriptionCategory.text.toString()
+                dialogConfirmationActionCategory(R.string.messageDialogUpdateCategory,"update",nameCategory)
+            }else{
+                Device().messageMistakeSnack("Para actualizar la información de una categorías, debes estar conectado a internet",nameCategory)
+            }
         }
     }
 
@@ -54,11 +62,10 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
         //performing positive action
         builder.setPositiveButton("Si") { dialogInterface, which ->
             val firebaseCategory = FirebaseDataCategory()
-            val account = com.ale.balance_money.logic.account.AccountMoney()
             val view: View = this.window.decorView.findViewById(android.R.id.content)
             if (typeAction == "remove") {
                   if(firebaseCategory.removeCategory(category.id)){
-                      var intentMainCategory = Intent(this,CategoryActivity::class.java)
+                      val intentMainCategory = Intent(this,CategoryActivity::class.java)
                       startActivity(intentMainCategory)
                       Animatoo.animateSlideRight(this);
                   }else{
@@ -77,7 +84,6 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
                 }else{
                     nameCategory.error = "El campo nombre es requerido"
                 }
-
             }
         }
 

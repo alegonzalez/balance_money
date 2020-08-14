@@ -27,7 +27,10 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnListenerCategory
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
         recyclerViewCategory = findViewById(R.id.rcyCategory)
-        var btnAddNewCategory = findViewById<FloatingActionButton>(R.id.addNewCategory)
+        val btnAddNewCategory = findViewById<FloatingActionButton>(R.id.addNewCategory)
+        if(!Device().isNetworkConnected(this)){
+            Device().messageMistakeSnack("Para ver la lista de categorías, debes estar conectado a internet",recyclerViewCategory)
+        }
         val linerLayoutmanager = LinearLayoutManager(this)
         linerLayoutmanager.orientation = LinearLayoutManager.VERTICAL
         recyclerViewCategory.layoutManager = linerLayoutmanager
@@ -51,7 +54,7 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnListenerCategory
         }
         //onclick to go activity and you can add  new category
         btnAddNewCategory.setOnClickListener {
-            var intentNewCategory = Intent(this, CreateNewCategoryActivity::class.java)
+            val intentNewCategory = Intent(this, CreateNewCategoryActivity::class.java)
             startActivity(intentNewCategory)
             Animatoo.animateSlideLeft(this);
         }
@@ -93,7 +96,7 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnListenerCategory
      * @param description
      */
     override fun OnItemClickCategory(id: String, name: String, description: String) {
-        var intentCategoryUpdateDelete = Intent(this, UpdateDeleteCategoryActivity::class.java)
+        val intentCategoryUpdateDelete = Intent(this, UpdateDeleteCategoryActivity::class.java)
         intentCategoryUpdateDelete.putExtra("id", id)
         intentCategoryUpdateDelete.putExtra("name", name)
         intentCategoryUpdateDelete.putExtra("description", description)

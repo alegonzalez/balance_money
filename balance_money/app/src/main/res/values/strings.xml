@@ -45,7 +45,7 @@
     <string name="field_description_create_account">Ingresa una descripción(No es requerido)</string>
     <string name="label_description_account">Descripción</string>
     <string name="label_amount_account">Monto</string>
-
+    <string name="message_confirmation_new_account">¿Seguro que deseas crear esta nueva cuenta?</string>
     <string name="label_cuenta">Cuenta</string>
     <string name="btn_money_colon">Colones</string>
     <string name="btn_money_dollar">Dólares</string>
@@ -66,7 +66,8 @@
     <string name="label_description_category">Descripción</string>
     <string name="text_button_create_new_category">Crear</string>
     <string name="messageDialogDeleteCategory">¿Seguro que deseas eliminar la categoría?</string>
-    <string name="messageDialogUpdateCategory">¿Deseas actualizar la categoría?</string>
+    <string name="messageDialogUpdateCategory">¿Seguro que deseas actualizar la categoría?</string>
+    <string name="message_dialog_create_new_category">¿Seguro que deseas crear esta categoría?</string>
     <string name="name_toolbar_detail_category">Información de la categoría</string>
     <!--Transactions-->
     <string name="name_toolbar_list_transaction">Transacciones</string>
