@@ -4,73 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".UI.category.UpdateDeleteCategoryActivity">
 
     <EditText
         android:id="@+id/txtNameCategoryDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="@string/hint_field_name_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
         android:hint="@string/hint_field_name_category"
         android:inputType="textPersonName"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline81"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline79"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/size_font_smartphone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelNameCategory" />
 
     <EditText
         android:id="@+id/txtDescriptionCategoryDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="@string/hint_field_description_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/hint_field_description_category"
         android:inputType="textMultiLine"
         android:maxLines="4"
         android:scrollbars="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/guideline81"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline79"
+        android:textSize="@dimen/size_font_smartphone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelDescriptionCategory" />
+
+
+    <Button
+        android:id="@+id/btnUpdateCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/custom_btn"
+        android:drawableStart="@drawable/icon_update"
+        android:paddingStart="80dp"
+        android:paddingEnd="1dp"
+        android:text="@string/text_button_update_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCategoryDetail" />
+
+    <TextView
+        android:id="@+id/labelNameCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/label_name_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="@dimen/size_font_smartphone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelDescriptionCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/label_description_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="@dimen/size_font_smartphone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNameCategoryDetail" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnUpdateCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/btnUpdate"
-        android:src="@drawable/icon_update"
-        app:fabCustomSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnRemoveCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/btnremove"
-        android:src="@drawable/icon_delete"
-        app:fabCustomSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline79"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline81"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package com.ale.balance_money.UI.transaction
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ale.balance_money.R
 import com.ale.balance_money.UI.category.CategoryActivity
+import com.ale.balance_money.logic.Authentication
+import com.ale.balance_money.logic.Person
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.category.Category
 import com.ale.balance_money.logic.category.CategoryAdapter
@@ -114,5 +118,51 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
         intentDetailTransaction.putExtra("date",date)
         startActivity(intentDetailTransaction)
         Animatoo.animateSlideLeft(this);
+    }
+    /**
+     * This function put menu for DetailTransactionActivity
+     * @param menu
+     * @return Boolean
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val provider = Person().getProviderUser()
+        val inflater = menuInflater
+        if (provider == Authentication.BASIC.name) {
+            inflater.inflate(R.menu.menu, menu)
+        } else {
+            inflater.inflate(R.menu.menu_without_personal_information, menu)
+        }
+        return true
+    }
+
+    /**
+     * Is execute if user select setting option
+     * @param item
+     * @return Boolean
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.getItemId()
+        return when (id) {
+            R.id.logout -> {
+                if (Device().isNetworkConnected(this)) {
+                    //logut user
+                    startActivity(Person().singOut())
+                    Animatoo.animateSlideRight(this);
+                    finish()
+                } else {
+                    Device().messageMistakeSnack(
+                        "Para salir de tu usuario , debes estar conectado a internet",
+                        this.window.decorView.findViewById(android.R.id.content)
+                    )
+                }
+
+                true
+            }
+            R.id.editPersonalInformation -> {
+                //edit user
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

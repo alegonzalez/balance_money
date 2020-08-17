@@ -4,13 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".UI.category.UpdateDeleteCategoryActivity">
+
+
+    <TextView
+        android:id="@+id/labelNameCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_name_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="@dimen/size_font_smartphone"
+        app:layout_constraintEnd_toStartOf="@+id/guideline83"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline82"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtNameCategoryDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:autofillHints="@string/hint_field_name_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
         android:hint="@string/hint_field_name_category"
         android:inputType="textPersonName"
@@ -18,58 +35,57 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline83"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline82"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/labelNameCategory" />
+
+    <TextView
+        android:id="@+id/labelDescriptionCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/label_description_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="@dimen/size_font_smartphone"
+        app:layout_constraintEnd_toStartOf="@+id/guideline83"
+        app:layout_constraintStart_toStartOf="@+id/guideline82"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameCategoryDetail" />
 
     <EditText
         android:id="@+id/txtDescriptionCategoryDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:autofillHints="@string/hint_field_description_category"
+        android:background="@drawable/custom_edit_text"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/hint_field_description_category"
         android:inputType="textMultiLine"
         android:maxLines="4"
-        android:textSize="19sp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline84"
+        android:textSize="19sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline83"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline82"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameCategoryDetail"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintTop_toBottomOf="@+id/labelDescriptionCategory" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/btnUpdateCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/btnUpdate"
-        android:src="@drawable/icon_update"
-        app:fabCustomSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline83"
-        app:layout_constraintTop_toTopOf="@+id/guideline84"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnRemoveCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/btnremove"
-        android:src="@drawable/icon_delete"
-        app:fabCustomSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline82"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline84"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_btn"
+        android:drawableStart="@drawable/icon_update"
+        android:paddingStart="110dp"
+        android:paddingEnd="1dp"
+        android:text="@string/text_button_update_category"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorLetter"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline83"
+        app:layout_constraintStart_toStartOf="@+id/guideline82"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCategoryDetail" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline82"
@@ -85,10 +101,4 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="142dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline84"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="109dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

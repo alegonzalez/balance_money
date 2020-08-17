@@ -24,7 +24,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="hint_editText" />
 
 
     <EditText
@@ -43,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
+        android:autofillHints="hint_password" />
 
     <Button
         android:id="@+id/button"
@@ -68,14 +70,14 @@
         android:id="@+id/txtOr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="40dp"
         android:text="@string/enterWith"
         android:textColor="@color/colorLetter"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/txtForgetPassword" />
 
     <View
         android:layout_width="140dp"
@@ -101,16 +103,17 @@
         android:id="@+id/loginBtnFacebook"
         android:layout_width="302dp"
         android:layout_height="61dp"
-        android:textAlignment="textStart"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:background="@color/colorButtonFacebook"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="1dp"
         android:paddingTop="13dp"
         android:paddingBottom="13dp"
+        android:textAlignment="textStart"
         android:textSize="19sp"
         app:com_facebook_login_text="Continuar con Facebook"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOr" />
 
@@ -118,17 +121,33 @@
         android:id="@+id/txtCreateNewAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:onClick="openActivityCreateNewAccountUser"
         android:text="@string/text_createaccount"
-        android:textSize="15sp"
         android:textColor="@color/colorLetter"
-        app:layout_constraintBottom_toTopOf="@+id/txtOr"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.156" />
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/txtForgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginTop="16dp"
+        android:onClick="openActivityResetPassword"
+        android:text="@string/text_forget_password"
+        android:textColor="@color/colorLetter"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCreateNewAccount"
+        android:focusable="true" />
 
     <Button
         android:id="@+id/btnSignInGoogle"

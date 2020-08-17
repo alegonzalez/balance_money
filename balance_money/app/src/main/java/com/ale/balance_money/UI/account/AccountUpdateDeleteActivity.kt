@@ -12,12 +12,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.ExchangeRate
+import com.ale.balance_money.logic.Person
 import com.ale.balance_money.logic.account.AccountMoney
 import com.ale.balance_money.logic.account.Money
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseData
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import com.google.firebase.auth.FirebaseAuth
 
 
 /**
@@ -179,15 +182,33 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        // return true so that the menu pop up is opened
+        val provider = Person().getProviderUser()
+        if(provider == Authentication.BASIC.name){
+            inflater.inflate(R.menu.list_setting, menu)
+        }else{
+            inflater.inflate(R.menu.list_setting_without_personal_information, menu)
+        }
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
-        return if (id == R.id.action_item_one) {
-            dialogConfirmationAction(R.string.messageDialogDelete, "remove")
-            true
-        } else super.onOptionsItemSelected(item)
+        return when (id) {
+            R.id.action_item_one -> {
+                dialogConfirmationAction(R.string.messageDialogDelete, "remove")
+                true
+            }
+            R.id.logout -> {
+                //logout
+                startActivity(Person().singOut())
+                Animatoo.animateSlideRight(this);
+                finish()
+                true
+            }
+            R.id.editPersonalInformation -> {
+                //edit personal information
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

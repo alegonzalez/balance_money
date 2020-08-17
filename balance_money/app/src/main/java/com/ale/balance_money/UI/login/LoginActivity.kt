@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
+import com.ale.balance_money.ResetPasswordActivity
 import com.ale.balance_money.UI.menu.MenuActivity
 import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.Person
@@ -46,7 +47,9 @@ class LoginActivity : AppCompatActivity() {
         val buttonGoogle = findViewById<Button>(R.id.btnSignInGoogle)
         val buttonFacebook = findViewById<LoginButton>(R.id.loginBtnFacebook)
         val txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
+        val resetPassword = findViewById<TextView>(R.id.txtForgetPassword)
         txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        resetPassword.paintFlags = resetPassword.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(
             resources.getDrawable(R.drawable.facebook),
             null,
@@ -129,16 +132,12 @@ class LoginActivity : AppCompatActivity() {
                     typeAuthentication.name
                 )
                 if (person.writeNewUser(typeAuthentication)) {
-                  val uidUser  = FirebaseAuth.getInstance().currentUser?.uid
-                    val prefs = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE).edit()
-                    person.saveSharepreferen(prefs,person.email,person.provider,uidUser)
-
-                    /*
-delete data
-  val prefs = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE).edit()
-  prefs.clear()
-  prefs.apply()
- */
+                    val uidUser = FirebaseAuth.getInstance().currentUser?.uid
+                    val prefs = getSharedPreferences(
+                        getString(R.string.pref_file),
+                        Context.MODE_PRIVATE
+                    ).edit()
+                    person.saveSharepreferen(prefs, person.email, person.provider, uidUser)
                     openMenu()
                 } else {
                     showAlert("Hubo problemas al guardar su información, intentalo nuevamente")
@@ -182,9 +181,18 @@ delete data
     fun openActivityCreateNewAccountUser(view: View) {
         val intentMenu = Intent(this, CreateAccountActivity::class.java)
         startActivity(intentMenu)
+        Animatoo.animateSlideLeft(this)
+    }
+    /**
+     * Onclick when user wants to reset password because is forgot
+     * @param view
+     * @return void
+     */
+    fun openActivityResetPassword(view: View) {
+        val intentResetPassword = Intent(this, ResetPasswordActivity::class.java)
+        startActivity(intentResetPassword)
         Animatoo.animateSlideLeft(this);
     }
-
 
     /**
      * This function login with password and email
@@ -210,18 +218,38 @@ delete data
             mAuth.signInWithEmailAndPassword(email.text.toString(), passwordEncrypted.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val prefs = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE).edit()
-                        val uidUser  = FirebaseAuth.getInstance().currentUser?.uid
-                        person.saveSharepreferen(prefs,person.email,Authentication.BASIC.name,uidUser)
+                        val prefs = getSharedPreferences(
+                            getString(R.string.pref_file),
+                            Context.MODE_PRIVATE
+                        ).edit()
+                        val uidUser = FirebaseAuth.getInstance().currentUser?.uid
+                        person.saveSharepreferen(
+                            prefs,
+                            person.email,
+                            Authentication.BASIC.name,
+                            uidUser
+                        )
                         openMenu()
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(baseContext, "Poblemas en la autenticación, por favor intentelo nuevamente.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            baseContext,
+                            "Poblemas en la autenticación, por favor intentelo nuevamente.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }
     }
-
+    /**
+     * method when user back the previous activity, I do animation between activities
+     */
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Animatoo.animateSlideRight(this);
+        finish();
+        System.exit(0);
+    }
 
     override fun onDestroy() {
         super.onDestroy()

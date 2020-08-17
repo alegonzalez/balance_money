@@ -39,7 +39,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        android:autofillHints="@string/hint_password" />
 
     <Button
         android:id="@+id/button"
@@ -64,17 +65,36 @@
         android:id="@+id/txtCreateNewAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:onClick="openActivityCreateNewAccountUser"
         android:text="@string/text_createaccount"
-        android:textSize="15sp"
         android:textColor="@color/colorLetter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.119" />
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/txtForgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="openActivityResetPassword"
+        android:text="@string/text_forget_password"
+        android:textColor="@color/colorLetter"
+
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCreateNewAccount"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtLabelEmail"
@@ -106,7 +126,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="@string/hint_email" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/loginBtnFacebook"

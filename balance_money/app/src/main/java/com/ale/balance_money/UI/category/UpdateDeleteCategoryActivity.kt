@@ -2,11 +2,16 @@ package com.ale.balance_money.UI.category
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.Authentication
+import com.ale.balance_money.logic.Person
 import com.ale.balance_money.logic.category.Category
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseDataCategory
@@ -15,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UpdateDeleteCategoryActivity : AppCompatActivity() {
     var category = Category()
+    lateinit var nameCategory:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_delete_category)
@@ -23,20 +29,11 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
         category.name = intentDetailCategory.getStringExtra("name")
         category.description = intentDetailCategory.getStringExtra("description")
 
-        val nameCategory = findViewById<EditText>(R.id.txtNameCategoryDetail)
+         nameCategory = findViewById<EditText>(R.id.txtNameCategoryDetail)
         val descriptionCategory = findViewById<EditText>(R.id.txtDescriptionCategoryDetail)
-        val buttonRemove = findViewById<FloatingActionButton>(R.id.btnRemoveCategory)
-        val buttonUpdate = findViewById<FloatingActionButton>(R.id.btnUpdateCategory)
+        val buttonUpdate = findViewById<Button>(R.id.btnUpdateCategory)
         nameCategory.setText(category.name)
         descriptionCategory.setText(category.description)
-        //event onclick for remove a category
-        buttonRemove.setOnClickListener {
-            if(Device().isNetworkConnected(this)){
-                dialogConfirmationActionCategory(R.string.messageDialogDeleteCategory,"remove",nameCategory)
-            }else{
-                Device().messageMistakeSnack("Para eliminar una categorías, debes estar conectado a internet",nameCategory)
-            }
-        }
         //event onclick fot update detail category
         buttonUpdate.setOnClickListener {
             if(Device().isNetworkConnected(this)){
@@ -103,5 +100,59 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
         super.onBackPressed()
         Animatoo.animateSlideRight(this)
         finish()
+    }
+    /**
+     * This function put menu for delete or update a category
+     * @param menu
+     * @return Boolean
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val provider = Person().getProviderUser()
+        val inflater = menuInflater
+        if(provider == Authentication.BASIC.name){
+            inflater.inflate(R.menu.list_setting, menu)
+        }else{
+            inflater.inflate(R.menu.list_setting_without_personal_information, menu)
+        }
+        return true
+    }
+
+    /**
+     * Is execute if user select setting option
+     * @param item
+     * @return Boolean
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.getItemId()
+        return when (id) {
+            R.id.logout -> {
+                if (Device().isNetworkConnected(this)) {
+                    //logut user
+                    startActivity(Person().singOut())
+                    Animatoo.animateSlideRight(this);
+                    finish()
+                } else {
+                    Device().messageMistakeSnack(
+                        "Para salir de tu usuario , debes estar conectado a internet",
+                        this.window.decorView.findViewById(android.R.id.content)
+                    )
+                }
+
+                true
+            }
+            R.id.editPersonalInformation -> {
+                //edit user
+                true
+            }
+            R.id.action_item_one ->{
+                if(Device().isNetworkConnected(this)){
+                    dialogConfirmationActionCategory(R.string.messageDialogDeleteCategory,"remove",nameCategory)
+                }else{
+                    Device().messageMistakeSnack("Para eliminar una categorías, debes estar conectado a internet",nameCategory)
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -11,8 +11,11 @@
     <string name="facebook_app_id">2642299346088713</string>
     <string name="fb_login_protocol_scheme">fb2642299346088713</string>
     <string name="text_createaccount">¿Deseas crear una cuenta?</string>
+    <string name="text_forget_password">¿Olvidastes tu contraseña?</string>
     <string name="button_sign_in_google">Continuar con Google</string>
     <string name="enterWith">Ingresar con</string>
+    <string name="edit_personal_information">Actualizar mi información</string>
+    <string name="logout">Salir</string>
     <!-- Create new account -->
     <string name="field_name_create_account">Ingresa el nombre</string>
     <string name="label_name">Nombre</string>
@@ -65,6 +68,7 @@
     <string name="hint_field_description_category">Ingresa una descripción(No es requerido)</string>
     <string name="label_description_category">Descripción</string>
     <string name="text_button_create_new_category">Crear</string>
+    <string name="text_button_update_category">Actualizar</string>
     <string name="messageDialogDeleteCategory">¿Seguro que deseas eliminar la categoría?</string>
     <string name="messageDialogUpdateCategory">¿Seguro que deseas actualizar la categoría?</string>
     <string name="message_dialog_create_new_category">¿Seguro que deseas crear esta categoría?</string>
@@ -91,10 +95,15 @@
     <string name="label_account_detail_transaction">Cuenta</string>
     <string name="label_category_detail_transaction">Categoría</string>
     <string name="label_money_detail_transaction">Moneda</string>
+    <string name="message_dialog_delete_transaction">¿Seguro que deseas eliminar esta transacción?</string>
     <!--Stadistics-->
     <string name="label_stadistics_date_start">Fecha de inicio</string>
     <string name="field_text_date_start">Ingresa la fecha de inicio</string>
     <string name="label_stadistics_date_end">Fecha final</string>
     <string name="field_text_date_end">Ingresa la fecha final</string>
     <string name="btn_generate_graphic">Generar gráfico </string>
+    <string name="title_activity_test">TestActivity</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
