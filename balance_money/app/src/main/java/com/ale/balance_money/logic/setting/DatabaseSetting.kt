@@ -1,10 +1,12 @@
 package com.ale.balance_money.logic.setting
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.category.Category
 import com.facebook.FacebookSdk.getApplicationContext
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 /**
  * this class show all method for get reference to database
@@ -28,4 +30,6 @@ class DatabaseSetting {
     fun getDatabaseReference(): DatabaseReference {
         return FirebaseDatabase.getInstance().reference
     }
+
+
 }

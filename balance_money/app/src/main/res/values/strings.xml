@@ -16,6 +16,7 @@
     <string name="enterWith">Ingresar con</string>
     <string name="edit_personal_information">Actualizar mi información</string>
     <string name="logout">Salir</string>
+    <string name="reset_password">Restablecer contraseña</string>
     <!-- Create new account -->
     <string name="field_name_create_account">Ingresa el nombre</string>
     <string name="label_name">Nombre</string>

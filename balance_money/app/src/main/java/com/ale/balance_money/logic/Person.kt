@@ -1,18 +1,28 @@
 package com.ale.balance_money.logic
 
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.provider.Settings.Global.getString
 import android.util.Base64
+import android.widget.EditText
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.ale.balance_money.R
 import com.ale.balance_money.UI.login.LoginActivity
+import com.ale.balance_money.logic.category.Category
+import com.ale.balance_money.logic.setting.DatabaseSetting
+import com.ale.balance_money.logic.setting.Device
 import com.facebook.AccessToken
 import com.facebook.FacebookSdk
 import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -104,6 +114,30 @@ class Person {
     }
 
     /**
+     * this function send email for reset password of user
+     * @param email
+     * @return Boolean
+     */
+    fun resetPassword(email: EditText, mDialog: ProgressDialog): Boolean {
+        val mAuth = FirebaseAuth.getInstance()
+        mAuth.setLanguageCode("es")
+        var state = false
+        mAuth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Device().messageSuccessfulSnack("El correo se ha enviando correctamente", email)
+                state = true
+            } else {
+                Device().messageMistakeSnack(
+                    "El correo no se ha enviando, intentelo nuevamente",
+                    email
+                )
+            }
+            mDialog.dismiss()
+        }
+        return state
+    }
+
+    /**
      * This function save data of user
      * @param typeAuthentication
      * @return Boolean
@@ -189,5 +223,65 @@ class Person {
         return Base64.encodeToString(hashPassword, Base64.NO_WRAP)
     }
 
+    /**
+     * This function get all personal account of user
+     * @return ArrayList<Person> listAccountUser
+     */
+    fun getAccountOfUser(): LiveData<List<Person>> {
+        val reference = DatabaseSetting().getDatabaseReference()
+        val mutableData = MutableLiveData<List<Person>>()
+        val listAccountUser = ArrayList<Person>()
+        reference.child("users").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (data in dataSnapshot.children) {
+                    val accountsUser = Person()
+                    accountsUser.email = data.child("email").value.toString()
+                    accountsUser.provider = data.child("provider").value.toString()
+                    listAccountUser.add(accountsUser)
+                }
+                mutableData.value = listAccountUser
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                //Log.w(TAG, "getUser:onCancelled", databaseError.toException())
+                // ...
+            }
+        })
+        return mutableData
+    }
+
+    /**
+     * this function check if user has an account and doesn't authenticated by  google and facebook, only basic authentication
+     * @param listAccount
+     * @param email
+     * @return Boolean
+     */
+    fun checkAccountUser(listAccount: ArrayList<Person>, email: EditText?,mDialog:ProgressDialog): Boolean {
+        for (item in listAccount) {
+            if (item.email == email?.text.toString()) {
+                return when (item.provider) {
+                    Authentication.BASIC.name -> {
+                        true
+                    }
+                    Authentication.GOOGLE.name -> {
+                        email?.error =
+                            "El correo ingresado esta asociado a una cuenta de google, no necesita restablecer la contraseña."
+                        mDialog.dismiss()
+                        false
+                    }
+                    else -> {
+                        email?.error =
+                            "El correo ingresado esta asociado a una cuenta de facebook, no necesita restablecer la contraseña."
+                        mDialog.dismiss()
+                        false
+                    }
+                }
+            }
+        }
+        mDialog.dismiss()
+        email?.error = "El correo ingresado no se encuentra registrado."
+        return false
+    }
 }
 
