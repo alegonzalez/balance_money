@@ -7,39 +7,41 @@
     tools:context=".UI.MainActivity"
     android:background="@color/colorPrimary">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="290dp"
-        android:layout_height="435dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/balance_money" />
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="290dp"
+      android:layout_height="435dp"
+      android:src="@drawable/balance_money"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.495"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/balance_money"
+      android:contentDescription="TODO" />
 
-    <ProgressBar
-        android:id="@+id/pbarLoadMain"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="139dp"
-        android:layout_height="59dp"
-        android:outlineSpotShadowColor="@color/colorLetter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitleMain" />
+  <ProgressBar
+      android:id="@+id/pbarLoadMain"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="139dp"
+      android:layout_height="59dp"
+      android:outlineSpotShadowColor="@color/colorLetter"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/txtTitleMain" />
 
-    <TextView
-        android:id="@+id/txtTitleMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textColor="@color/colorLetter"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+  <TextView
+      android:id="@+id/txtTitleMain"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:text="@string/app_name"
+      android:textAlignment="center"
+      android:textColor="@color/colorLetter"
+      android:textSize="40sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

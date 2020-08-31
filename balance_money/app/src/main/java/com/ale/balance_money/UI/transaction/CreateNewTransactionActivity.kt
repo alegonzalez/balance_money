@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.ExchangeRate
@@ -322,7 +323,7 @@ class CreateNewTransactionActivity : AppCompatActivity() {
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         val inflater = menuInflater
         if (provider == Authentication.BASIC.name) {
             inflater.inflate(R.menu.menu, menu)
@@ -357,6 +358,10 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit user
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.UI.category.CategoryActivity
 import com.ale.balance_money.logic.Authentication
@@ -125,7 +126,7 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         val inflater = menuInflater
         if (provider == Authentication.BASIC.name) {
             inflater.inflate(R.menu.menu, menu)
@@ -160,6 +161,10 @@ class TransactionActivity : AppCompatActivity(),TransactionAdapter.OnListenerTra
             }
             R.id.editPersonalInformation -> {
                 //edit user
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

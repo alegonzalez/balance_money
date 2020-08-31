@@ -31,6 +31,7 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:background="@drawable/custom_edit_text"
+        android:drawableEnd="@drawable/ic_password_visibility_off_24"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:textColor="@color/colorPrimary"

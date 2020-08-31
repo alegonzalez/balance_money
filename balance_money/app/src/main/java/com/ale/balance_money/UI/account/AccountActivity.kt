@@ -1,9 +1,11 @@
 package com.ale.balance_money.UI.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.Person
@@ -56,7 +58,7 @@ class AccountActivity : AppCompatActivity() {
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         val inflater = menuInflater
         if (provider == Authentication.BASIC.name) {
             inflater.inflate(R.menu.menu, menu)
@@ -91,6 +93,10 @@ class AccountActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit user
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

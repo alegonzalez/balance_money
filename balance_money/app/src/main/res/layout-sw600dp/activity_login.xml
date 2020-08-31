@@ -92,6 +92,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_edit_text"
+        android:drawableEnd="@drawable/ic_password_visibility_off_24"
         android:ems="10"
         android:hint="@string/hint_password"
         android:inputType="textPassword"

@@ -34,7 +34,8 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelName"
+        android:autofillHints="@string/field_name_create_account" />
 
     <TextView
         android:id="@+id/txtLabelEmail"
@@ -63,7 +64,8 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelEmail"
+        android:autofillHints="@string/field_email_create_account" />
 
     <TextView
         android:id="@+id/txtLabelPassword"
@@ -92,7 +94,8 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelPassword"
+        android:autofillHints="@string/field_password_create_account" />
 
     <TextView
         android:id="@+id/txtLabelConfirmPassword"
@@ -122,7 +125,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelConfirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLabelConfirmPassword"
+        android:autofillHints="@string/field__confirm_password_create_account" />
 
     <Button
         android:id="@+id/btnCrearNewAccount"
@@ -133,6 +137,7 @@
         android:drawableStart="@drawable/add"
         android:padding="7dp"
         android:paddingStart="225dp"
+        android:paddingEnd="1dp"
         android:text="@string/button__create_account"
         android:textAlignment="textStart"
         android:textAllCaps="false"

@@ -22,9 +22,18 @@
     <string name="label_name">Nombre</string>
     <string name="field_email_create_account">Ingresa tu correo</string>
     <string name="field_password_create_account">Ingresa tu contraseña</string>
-    <string name="field__confirm_password_create_account">Confirmar contraseña</string>
+    <string name="field__confirm_password_create_account">Repetir contraseña</string>
     <string name="label_confirm_password">Confirmar contraseña</string>
     <string name="button__create_account">Crear</string>
+    <string name="name_toolbar_update_personal_information">Actualizar información</string>
+    <string name="change_password_account_user">Cambiar mi contraseña</string>
+    <!-- change password-->
+    <string name="old_password">Contraseña actual</string>
+    <string name="new_password">Contraseña nueva</string>
+    <string name="hint_new_password">Ingresa tu contraseña nueva</string>
+    <string name="label_confirm_new_password">Confirmar contraseña</string>
+    <string name="hint_confirm_new_password">Repetir contraseña nueva</string>
+    <string name="name_toolbar_password">Contraseña</string>
     <!-- Menu -->
     <string name="btn_account">Cuentas</string>
     <string name="btn_transactions">Transacciones</string>
@@ -107,4 +116,5 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="loading">Cargando...</string>
 </resources>

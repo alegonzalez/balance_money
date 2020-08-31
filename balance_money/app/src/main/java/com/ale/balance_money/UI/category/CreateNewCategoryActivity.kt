@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.UI.account.AccountActivity
 import com.ale.balance_money.logic.Authentication
@@ -90,7 +91,7 @@ class CreateNewCategoryActivity : AppCompatActivity() {
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         val inflater = menuInflater
         if (provider == Authentication.BASIC.name) {
             inflater.inflate(R.menu.menu, menu)
@@ -125,6 +126,10 @@ class CreateNewCategoryActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit user
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

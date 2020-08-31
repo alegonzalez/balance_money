@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.ChangePasswordActivity
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.StadisticActivity
 import com.ale.balance_money.UI.account.AccountActivity
@@ -16,6 +18,7 @@ import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.Person
 import com.ale.balance_money.logic.setting.Device
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import com.facebook.FacebookSdk
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -63,7 +66,7 @@ class MenuActivity : AppCompatActivity() {
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         val inflater = menuInflater
         if (provider == Authentication.BASIC.name) {
             inflater.inflate(R.menu.menu, menu)
@@ -80,11 +83,12 @@ class MenuActivity : AppCompatActivity() {
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
+        val person = Person()
         return when (id) {
             R.id.logout -> {
                 if (Device().isNetworkConnected(this)) {
                     //logout user
-                    startActivity(Person().singOut())
+                    startActivity(person.singOut())
                     Animatoo.animateSlideRight(this);
                     finish()
                 } else {
@@ -98,6 +102,18 @@ class MenuActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit user
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
+                true
+            }
+            R.id.changePassword ->{
+            //change password for user
+                val intentUpdatePasswordUser = Intent(this, ChangePasswordActivity::class.java)
+                startActivity(intentUpdatePasswordUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

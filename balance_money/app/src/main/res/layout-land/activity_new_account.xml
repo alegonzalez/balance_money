@@ -154,7 +154,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="41dp" />
-
     <Button
         android:id="@+id/btnNewAccount"
         android:layout_width="0dp"
@@ -164,10 +163,8 @@
         android:layout_marginEnd="15dp"
         android:background="@drawable/custom_btn"
         android:drawableStart="@drawable/icon_add_tablet"
-        android:paddingStart="80dp"
-        android:paddingEnd="1dp"
         android:text="@string/button__create_account"
-        android:textAlignment="textStart"
+        android:gravity="center_vertical|center"
         android:textColor="@color/colorLetter"
         android:textSize="19sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"

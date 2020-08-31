@@ -7,176 +7,180 @@
     android:background="@color/colorAccent"
     tools:context=".UI.login.CreateAccountActivity">
 
-    <TextView
-        android:id="@+id/txtLabelConfirmPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/label_confirm_password"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorLetter"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline101"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+  <TextView
+      android:id="@+id/txtLabelConfirmPassword"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/label_confirm_password"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorLetter"
+      android:textSize="19sp"
+      app:layout_constraintEnd_toStartOf="@+id/guideline102"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/guideline101"
+      app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
-    <EditText
-        android:id="@+id/txtConfirmPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_edit_text"
-        android:ems="10"
-        android:hint="@string/field__confirm_password_create_account"
-        android:inputType="textPassword"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/hint_editText"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline101"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelConfirmPassword" />
+  <EditText
+      android:id="@+id/txtConfirmPassword"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="@drawable/custom_edit_text"
+      android:ems="10"
+      android:hint="@string/field__confirm_password_create_account"
+      android:inputType="textPassword"
+      android:textColor="@color/colorPrimary"
+      android:textColorHint="@color/hint_editText"
+      app:layout_constraintEnd_toStartOf="@+id/guideline102"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/guideline101"
+      app:layout_constraintTop_toBottomOf="@+id/txtLabelConfirmPassword"
+      android:autofillHints="@string/field__confirm_password_create_account" />
 
-    <TextView
-        android:id="@+id/txtLabelPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/label_password"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorLetter"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline101"
-        app:layout_constraintTop_toTopOf="parent" />
+  <TextView
+      android:id="@+id/txtLabelPassword"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="40dp"
+      android:text="@string/label_password"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorLetter"
+      android:textSize="19sp"
+      app:layout_constraintEnd_toStartOf="@+id/guideline102"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/guideline101"
+      app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/custom_edit_text"
-        android:ems="10"
-        android:hint="@string/field_password_create_account"
-        android:inputType="textPassword"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/hint_editText"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline101"
-        app:layout_constraintTop_toTopOf="@+id/txtLabelPassword" />
+  <EditText
+      android:id="@+id/txtPassword"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="28dp"
+      android:background="@drawable/custom_edit_text"
+      android:ems="10"
+      android:hint="@string/field_password_create_account"
+      android:inputType="textPassword"
+      android:textColor="@color/colorPrimary"
+      android:textColorHint="@color/hint_editText"
+      app:layout_constraintEnd_toStartOf="@+id/guideline102"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/guideline101"
+      app:layout_constraintTop_toTopOf="@+id/txtLabelPassword"
+      android:autofillHints="@string/field_password_create_account" />
 
-    <EditText
-        android:id="@+id/txtName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+  <EditText
+      android:id="@+id/txtName"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      android:background="@drawable/custom_edit_text"
+      android:ems="10"
+      android:hint="@string/field_name_create_account"
+      android:inputType="textPersonName"
+      android:textColor="@color/colorPrimary"
+      android:textColorHint="@color/hint_editText"
+      app:layout_constraintEnd_toStartOf="@+id/guideline5"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/guideline2"
+      app:layout_constraintTop_toBottomOf="@+id/txtLabelName"
+      android:autofillHints="@string/field_name_create_account" />
 
-        android:layout_marginTop="4dp"
-        android:background="@drawable/custom_edit_text"
-        android:ems="10"
-        android:hint="@string/field_name_create_account"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/hint_editText"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelName" />
+  <TextView
+      android:id="@+id/txtLabelName"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="40dp"
+      android:text="@string/label_name"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorLetter"
+      android:textSize="19sp"
+      app:layout_constraintEnd_toStartOf="@+id/guideline5"
+      app:layout_constraintStart_toStartOf="@+id/guideline2"
+      app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtLabelName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/label_name"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorLetter"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+  <TextView
+      android:id="@+id/txtLabelEmail"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/label_email"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorLetter"
+      android:textSize="19sp"
+      app:layout_constraintEnd_toStartOf="@+id/guideline5"
+      app:layout_constraintStart_toStartOf="@+id/guideline2"
+      app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
-    <TextView
-        android:id="@+id/txtLabelEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/label_email"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorLetter"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+  <EditText
+      android:id="@+id/txtEmail"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="@drawable/custom_edit_text"
+      android:ems="10"
+      android:hint="@string/field_email_create_account"
+      android:inputType="textEmailAddress"
+      android:textColor="@color/colorPrimary"
+      android:textColorHint="@color/hint_editText"
+      app:layout_constraintEnd_toStartOf="@+id/guideline5"
+      app:layout_constraintStart_toStartOf="@+id/guideline2"
+      app:layout_constraintTop_toBottomOf="@+id/txtLabelEmail"
+      android:autofillHints="@string/field_email_create_account" />
 
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_edit_text"
-        android:ems="10"
-        android:hint="@string/field_email_create_account"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/hint_editText"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/txtLabelEmail" />
+  <Button
+      android:id="@+id/btnCrearNewAccount"
+      android:layout_width="300dp"
+      android:layout_height="wrap_content"
+      android:background="@drawable/custom_btn"
+      android:drawableStart="@drawable/add"
+      android:padding="7dp"
+      android:paddingStart="100dp"
+      android:paddingEnd="1dp"
+      android:text="@string/button__create_account"
+      android:textAlignment="textStart"
+      android:textAllCaps="false"
+      android:textColor="@color/colorLetter"
+      android:textSize="19sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/guideline102"
+      app:layout_constraintStart_toStartOf="@+id/guideline2"
+      app:layout_constraintTop_toBottomOf="@+id/txtConfirmPassword" />
 
-    <Button
-        android:id="@+id/btnCrearNewAccount"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_btn"
-        android:drawableStart="@drawable/add"
-        android:padding="7dp"
-        android:paddingStart="100dp"
-        android:text="@string/button__create_account"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorLetter"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/txtConfirmPassword" />
+  <ProgressBar
+      android:id="@+id/progressBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btnCrearNewAccount" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCrearNewAccount" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_begin="48dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="48dp" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline5"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_begin="327dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="327dp" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline101"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_end="327dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline101"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="327dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline102"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="48dp" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline102"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_end="48dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

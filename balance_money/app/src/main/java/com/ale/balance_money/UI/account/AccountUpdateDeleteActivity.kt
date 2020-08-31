@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.ExchangeRate
@@ -182,7 +183,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         if(provider == Authentication.BASIC.name){
             inflater.inflate(R.menu.list_setting, menu)
         }else{
@@ -206,6 +207,10 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit personal information
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

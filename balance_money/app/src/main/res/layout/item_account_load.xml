@@ -27,14 +27,14 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@color/placeholder_loading"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline19"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@color/placeholder_loading" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/txtAmountAccount"

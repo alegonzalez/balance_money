@@ -56,9 +56,9 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
         adapter =
             AccountAdapter(context, this)
         recyclerView.adapter = adapter
-        if(viewModel.listAccount == null){
+        if (viewModel.listAccount == null) {
             observeAccount()
-        }else{
+        } else {
             adapter.setDataAccount(viewModel.listAccount!!)
             adapter.notifyDataSetChanged()
             shimmer_view_container.stopShimmer()
@@ -83,9 +83,9 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
         viewModel.fetchAccount().observe(viewLifecycleOwner, Observer { listAccount ->
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility = View.GONE
-             if(listAccount.isEmpty()){
+            if (listAccount.isEmpty()) {
                 this.listEmpty()
-            }else{
+            } else {
 
                 viewModel.listAccount = listAccount
                 adapter.setDataAccount(listAccount)
@@ -93,10 +93,11 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
             }
         })
     }
+
     /**
      * this function show message if user doesn't account
      */
-    private fun listEmpty(){
+    private fun listEmpty() {
         Device().messageSuccessfulSnack("No hay cuentas registradas", view)
     }
 

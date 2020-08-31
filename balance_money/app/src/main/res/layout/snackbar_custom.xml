@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar.Bridge"
         app:cardBackgroundColor="@color/com_facebook_blue"
         app:cardCornerRadius="5dp"
         app:cardElevation="1dp"

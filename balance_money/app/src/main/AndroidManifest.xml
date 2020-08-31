@@ -16,8 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".ResetPasswordActivity"
-            android:label="@string/reset_password"/>
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:label="@string/name_toolbar_password" />
+        <activity
+            android:name=".EditAccountPersonalActivity"
+            android:label="@string/name_toolbar_update_personal_information" />
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:label="@string/reset_password" />
         <activity android:name=".StadisticActivity" />
         <activity
             android:name=".UI.transaction.DetailTransactionActivity"

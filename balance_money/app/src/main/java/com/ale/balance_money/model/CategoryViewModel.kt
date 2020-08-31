@@ -11,13 +11,13 @@ import com.ale.balance_money.repository.FirebaseDataCategory
  */
 class CategoryViewModel:ViewModel() {
 
-    var listCategories: List<Category>? = null
+  var listCategories: List<Category>? = null
 
-    /**
-     * This function get categories list
-     * @return LiveData<List<Category>>
-     */
-    fun getListCategories(): LiveData<List<Category>> {
-        return FirebaseDataCategory().getAllCategories()
-    }
+  /**
+   * This function get categories list
+   * @return LiveData<List<Category>>
+   */
+  fun getListCategories(): LiveData<List<Category>> {
+    return FirebaseDataCategory().getAllCategories()
+  }
 }

@@ -1,10 +1,7 @@
 package com.ale.balance_money.logic.setting
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.ale.balance_money.R
-import com.ale.balance_money.logic.category.Category
 import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.database.*
 

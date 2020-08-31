@@ -31,7 +31,7 @@ class FirebaseDataCategory {
      */
     fun getAllCategories(): LiveData<List<Category>> {
         val mutableData = MutableLiveData<List<Category>>()
-        var listCategory = mutableListOf<Category>()
+        val listCategory = mutableListOf<Category>()
         ref.child("category").child(uidUser.toString()).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

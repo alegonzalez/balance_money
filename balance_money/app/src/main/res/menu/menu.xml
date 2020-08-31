@@ -6,6 +6,10 @@
         android:title="@string/edit_personal_information"
         app:showAsAction="never" />
     <item
+        android:id="@+id/changePassword"
+        android:title="@string/change_password_account_user"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/logout"
         android:title="@string/logout"
         app:showAsAction="never" />

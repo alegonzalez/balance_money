@@ -11,9 +11,9 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.getSystemService
 import com.ale.balance_money.R
+import com.ale.balance_money.logic.Person
+import com.facebook.FacebookSdk.getApplicationContext
 import com.google.android.material.snackbar.Snackbar
 import kotlin.math.sqrt
 
@@ -86,7 +86,7 @@ class Device {
     fun messageMistakeSnack(message: String, view: View) {
 
         val snack = Snackbar.make(view,message,Snackbar.LENGTH_LONG)
-          val custom = checkSnackBar(view)
+         val custom = checkSnackBar(view)
         val iconSnackBar = custom.findViewById<ImageView>(R.id.idImageSnackbar)
         iconSnackBar.setImageResource(R.drawable.ic_baseline_warning_24)
         val txtTextSnackBar = custom.findViewById<TextView>(R.id.txtTextSnackBar)
@@ -109,4 +109,35 @@ class Device {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnected
     }
+    /**
+     * This function get provider of user authenticated
+     * @return String
+     */
+    fun getProviderUser(): String? {
+        val context = getApplicationContext()
+        val prefs = context.getSharedPreferences(
+            context.resources.getString(R.string.pref_file),
+            Context.MODE_PRIVATE
+        )
+        return prefs.getString("provider", null)
+    }
+
+    /**
+     * This function get password of user authenticated
+     * @return String
+     */
+    fun getUser(): Person {
+        val context = getApplicationContext()
+        val prefs = context.getSharedPreferences(
+            context.getResources().getString(R.string.pref_file),
+            Context.MODE_PRIVATE
+        )
+        val user = Person()
+        user.email = prefs.getString("email", null).toString()
+        user.name = prefs.getString("name", null).toString()
+        user.password = prefs.getString("password", null).toString()
+        user.provider = prefs.getString("provider", null).toString()
+        return user
+    }
+
 }

@@ -7,8 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
@@ -31,6 +29,7 @@ import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -54,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
     private val viewModelPerson by lazy { ViewModelProvider(this).get(PersonViewModel::class.java) }
     lateinit var mDialog: ProgressDialog
     private val RC_SIGN_IN = 100
-
+    lateinit var googleClient: GoogleSignInClient
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -69,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.txtPassword)
         txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         resetPassword.paintFlags = resetPassword.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
         buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(
             resources.getDrawable(R.drawable.facebook),
             null,
@@ -86,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                 .build()
 
 
-            val googleClient: GoogleSignInClient = GoogleSignIn.getClient(this, gso)
+            googleClient = GoogleSignIn.getClient(this, gso)
             googleClient.signOut()
             startActivityForResult(googleClient.signInIntent, RC_SIGN_IN)
         }
@@ -106,7 +106,10 @@ class LoginActivity : AppCompatActivity() {
                     override fun onCancel() {}
 
                     override fun onError(exception: FacebookException) {
-                        Device().messageMistakeSnack("No se pudo autenticarse con facebook, por favor intentelo nuevamente", window.decorView.rootView)
+                        Device().messageMistakeSnack(
+                            "No se pudo autenticarse con facebook, por favor intentelo nuevamente",
+                            window.decorView.rootView
+                        )
                     }
                 })
         }
@@ -116,12 +119,20 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(this::googleClient.isInitialized){
+            googleClient.signOut()
+        }
+
+        LoginManager.getInstance().logOut()
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-        try {
+            try {
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
                 if (account != null) {
                     val credential: AuthCredential =
@@ -129,7 +140,10 @@ class LoginActivity : AppCompatActivity() {
                     this.authenticationProvider(Authentication.GOOGLE, credential)
                 }
             } catch (e: ApiException) {
-                Device().messageMistakeSnack("No se pudo obtener la cuenta, por favor intentalo nuevamente", window.decorView.rootView)
+                Device().messageMistakeSnack(
+                    "No se pudo obtener la cuenta, por favor intentalo nuevamente",
+                    window.decorView.rootView
+                )
             }
         }
     }
@@ -152,7 +166,7 @@ class LoginActivity : AppCompatActivity() {
                     "",
                     typeAuthentication.name
                 )
-                if (FirebaseUser().writeNewUser(typeAuthentication,person)) {
+                if (FirebaseUser().writeNewUser(typeAuthentication, person)) {
                     val uidUser = FirebaseAuth.getInstance().currentUser?.uid
                     val prefs = getSharedPreferences(
                         getString(R.string.pref_file),
@@ -168,10 +182,16 @@ class LoginActivity : AppCompatActivity() {
                     )
                     openMenu()
                 } else {
-                    Device().messageMistakeSnack("Hubo problemas al guardar su información, intentalo nuevamente", window.decorView.rootView)
+                    Device().messageMistakeSnack(
+                        "Hubo problemas al guardar su información, intentalo nuevamente",
+                        window.decorView.rootView
+                    )
                 }
             } else {
-                Device().messageMistakeSnack("Hubo problemas al guardar su información, intentalo nuevamente", window.decorView.rootView)
+                Device().messageMistakeSnack(
+                    "Hubo problemas al guardar su información, intentalo nuevamente",
+                    window.decorView.rootView
+                )
             }
         }
 
@@ -181,7 +201,7 @@ class LoginActivity : AppCompatActivity() {
      * this functon is a observable get account user with email,password,name and provider
      * @return void
      */
-    private fun observeAccountUser(user:Person) {
+    private fun observeAccountUser(user: Person) {
         viewModelPerson.getAccountUser().observe(this, Observer { accountUser ->
             viewModelPerson.listAccountuser = accountUser
             saveDataAccount(user)
@@ -256,7 +276,10 @@ class LoginActivity : AppCompatActivity() {
 
                     } else {
                         // If sign in fails, display a message to the user.
-                      Device().messageMistakeSnack("Autenticación incorrecta, por favor intentelo nuevamente",window.decorView.rootView)
+                        Device().messageMistakeSnack(
+                            "Autenticación incorrecta, por favor intentelo nuevamente",
+                            window.decorView.rootView
+                        )
                     }
                 }.addOnFailureListener(this) { exception: Exception ->
                     Device().messageMistakeSnack(
@@ -297,6 +320,7 @@ class LoginActivity : AppCompatActivity() {
         mDialog.setCanceledOnTouchOutside(false)
         mDialog.show()
     }
+
     /**
      * this function is for show and hide passoword of the fields  password and confirm password
      * @param event
@@ -311,10 +335,10 @@ class LoginActivity : AppCompatActivity() {
                     if (isPasswordVisible) {
                         // set drawable image
                         password.setCompoundDrawablesWithIntrinsicBounds(
-                                0,
-                                0,
-                                R.drawable.ic_password_visibility_off_24,
-                                0
+                            0,
+                            0,
+                            R.drawable.ic_password_visibility_off_24,
+                            0
                         )
                         // hide Password
                         password.transformationMethod = PasswordTransformationMethod.getInstance()
@@ -322,14 +346,14 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         // set drawable image
                         password.setCompoundDrawablesWithIntrinsicBounds(
-                                0,
-                                0,
-                                R.drawable.ic_show_password_24,
-                                0
+                            0,
+                            0,
+                            R.drawable.ic_show_password_24,
+                            0
                         )
                         // show Password
                         password.transformationMethod =
-                                HideReturnsTransformationMethod.getInstance()
+                            HideReturnsTransformationMethod.getInstance()
                         isPasswordVisible = true
                     }
                     password.setSelection(selection)
@@ -338,6 +362,7 @@ class LoginActivity : AppCompatActivity() {
         }
         return false
     }
+
     /**
      * method when user back the previous activity, I do animation between activities
      */

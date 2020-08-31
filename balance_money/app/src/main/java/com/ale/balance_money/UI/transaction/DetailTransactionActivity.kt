@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.ale.balance_money.EditAccountPersonalActivity
 import com.ale.balance_money.R
 import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.Person
@@ -108,7 +109,7 @@ class DetailTransactionActivity : AppCompatActivity() {
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val provider = Person().getProviderUser()
+        val provider = Device().getProviderUser()
         val inflater = menuInflater
         if(provider == Authentication.BASIC.name){
             inflater.inflate(R.menu.list_setting, menu)
@@ -125,22 +126,34 @@ class DetailTransactionActivity : AppCompatActivity() {
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
-        return if (id == R.id.action_item_one) {
-            if (Device().isNetworkConnected(this)) {
-                dialogConfirmationAction(R.string.message_dialog_delete_transaction)
-            } else {
-                Device().messageMistakeSnack(
-                    "Para eliminar una transacción, debes estar conectado a internet",this.window.decorView.findViewById(android.R.id.content)
-                )
-            }
+        return when (id) {
+            R.id.action_item_one -> {
+                if (Device().isNetworkConnected(this)) {
+                    dialogConfirmationAction(R.string.message_dialog_delete_transaction)
+                } else {
+                    Device().messageMistakeSnack(
+                        "Para eliminar una transacción, debes estar conectado a internet",this.window.decorView.findViewById(android.R.id.content)
+                    )
+                }
 
-            true
-        } else if(id == R.id.logout){
-            startActivity(Person().singOut())
-            Animatoo.animateSlideRight(this);
-            finish()
-            true
-        }else super.onOptionsItemSelected(item)
+                true
+            }
+            R.id.logout -> {
+                startActivity(Person().singOut())
+                Animatoo.animateSlideRight(this);
+                finish()
+                true
+            }
+            R.id.editPersonalInformation -> {
+                //edit user
+                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                startActivity(intentUpdateInformationUser)
+                Animatoo.animateSlideLeft(this);
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     /**

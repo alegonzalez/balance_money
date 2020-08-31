@@ -12,15 +12,14 @@ import com.ale.balance_money.repository.FirebaseData
 class AccountViewModel():ViewModel() {
 
 
-     var listAccount: List<AccountMoney>? = null
+  var listAccount: List<AccountMoney>? = null
 
-    /**
-     * This function get all account of user by id of user from firebase
-     * @return LiveData<List<AccountMoney>>
-     */
-    fun fetchAccount():LiveData<List<AccountMoney>>{
-        val firebaseData = FirebaseData()
-        return firebaseData.getAccount()
-    }
- }
-
+  /**
+   * This function get all account of user by id of user from firebase
+   * @return LiveData<List<AccountMoney>>
+   */
+  fun fetchAccount():LiveData<List<AccountMoney>>{
+    val firebaseData = FirebaseData()
+    return firebaseData.getAccount()
+  }
+}

@@ -21,8 +21,8 @@ class ExchangeRate : AsyncTask<String, String, Double>() {
      */
     override fun doInBackground(vararg params: String?): Double? {
         val chain = StringBuffer("")
-        var from: String = getAcronymMoney(params[0].toString())
-        var to: String = getAcronymMoney(params[1].toString())
+        val from: String = getAcronymMoney(params[0].toString())
+        val to: String = getAcronymMoney(params[1].toString())
         val amount = params[2]
         val url =
             URL("https://api.getgeoapi.com/api/v2/currency/convert?api_key=55ddd3f9e09c72f6701c52f6e5a22d3c2571b6d1&from=$from&to=$to&amount=$amount&format=json")
