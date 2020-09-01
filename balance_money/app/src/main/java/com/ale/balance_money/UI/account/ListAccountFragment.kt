@@ -46,7 +46,7 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true)
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 context,
@@ -71,7 +71,7 @@ class ListAccountFragment : Fragment(), AccountAdapter.OnAccountListener {
         view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             val intentNewAccount = Intent(context, NewAccountActivity::class.java)
             startActivity(intentNewAccount)
-            Animatoo.animateSlideLeft(context);
+            Animatoo.animateSlideLeft(context)
         }
     }
 

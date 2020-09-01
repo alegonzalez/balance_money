@@ -15,7 +15,7 @@
         android:text="@string/label_confirm_password"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
-        android:textSize="19sp"
+        android:textSize="@dimen/size_font_smartphone"
         app:layout_constraintEnd_toStartOf="@+id/guideline102"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline101"
@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_edit_text"
         android:ems="10"
+        android:textSize="@dimen/size_font_smartphone"
         android:cursorVisible="true"
         android:hint="@string/field__confirm_password_create_account"
         android:inputType="textPassword"
@@ -46,7 +47,7 @@
         android:text="@string/label_password"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
-        android:textSize="19sp"
+        android:textSize="@dimen/size_font_smartphone"
         app:layout_constraintEnd_toStartOf="@+id/guideline102"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline101"
@@ -59,6 +60,7 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/custom_edit_text"
         android:ems="10"
+        android:textSize="@dimen/size_font_smartphone"
         android:cursorVisible="true"
         android:hint="@string/field_password_create_account"
         android:inputType="textPassword"
@@ -77,6 +79,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/custom_edit_text"
         android:ems="10"
+        android:textSize="@dimen/size_font_smartphone"
         android:hint="@string/field_name_create_account"
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimary"
@@ -95,7 +98,7 @@
         android:text="@string/label_name"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
-        android:textSize="19sp"
+        android:textSize="@dimen/size_font_smartphone"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -108,7 +111,7 @@
         android:text="@string/label_email"
         android:textAlignment="textStart"
         android:textColor="@color/colorLetter"
-        android:textSize="19sp"
+        android:textSize="@dimen/size_font_smartphone"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
@@ -119,6 +122,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_edit_text"
         android:ems="10"
+        android:textSize="@dimen/size_font_smartphone"
         android:hint="@string/field_email_create_account"
         android:inputType="textEmailAddress"
         android:textColor="@color/colorPrimary"
@@ -133,15 +137,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_btn"
-        android:drawableStart="@drawable/icon_update"
-        android:padding="7dp"
-        android:paddingStart="100dp"
-        android:paddingEnd="1dp"
         android:text="@string/name_btn_update_account"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorLetter"
-        android:textSize="19sp"
+        android:textSize="@dimen/size_font_smartphone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline102"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -169,14 +169,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="327dp" />
+        app:layout_constraintGuide_begin="380dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline101"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="327dp" />
+        app:layout_constraintGuide_end="380dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline102"

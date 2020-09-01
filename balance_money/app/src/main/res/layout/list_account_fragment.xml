@@ -7,7 +7,6 @@
     android:background="@color/colorAccent"
     tools:context=".UI.account.ListAccountFragment">
 
-
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
@@ -49,12 +48,12 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorButton"
         android:src="@drawable/add"
+        app:backgroundTint="@color/colorButton"
         app:fabCustomSize="60dp"
-        app:maxImageSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="30dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
