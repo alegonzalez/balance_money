@@ -88,19 +88,22 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                     viewModelAccount.listAccount,
                     nameAccount
                 )
-                val iconMoney = transaction.getIconMonet(listData.get(0).money)
-                totalAmount.text = "El monto de la cuenta es: ${iconMoney}${listData.get(0).amount}"
-                transaction.money = listData.get(0).money
-                //set new amount of account
-                money = transaction.money
-                transaction.remainingAmount = listData.get(0).amount
-                //set data of account to object AccountMoney
-                account.money = listData.get(0).money
-                account.amount = listData.get(0).amount
-                account.title = listData.get(0).title
-                account.description = listData.get(0).description
-                account.id = listData.get(0).id
-                account.setMoney(transaction.money, orientation, btnColon, btnDollar, btnEuro)
+                if (!transaction.checkListAccountIsEmpty(listData.size)) {
+                    val iconMoney = transaction.getIconMonet(listData.get(0).money)
+                    totalAmount.text =
+                        "El monto de la cuenta es: ${iconMoney}${listData.get(0).amount}"
+                    transaction.money = listData.get(0).money
+                    //set new amount of account
+                    money = transaction.money
+                    transaction.remainingAmount = listData.get(0).amount
+                    //set data of account to object AccountMoney
+                    account.money = listData.get(0).money
+                    account.amount = listData.get(0).amount
+                    account.title = listData.get(0).title
+                    account.description = listData.get(0).description
+                    account.id = listData.get(0).id
+                    account.setMoney(transaction.money, orientation, btnColon, btnDollar, btnEuro)
+                }
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {}
@@ -138,20 +141,23 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             val rb = findViewById<View>(checkedId) as RadioButton
             transaction.typeTransaction = rb.text.toString()
         })
+        //onclick for create a new transaction
         btnCreateNewTransaction.setOnClickListener {
-            if (Device().isNetworkConnected(this)) {
-                this.transaction.description = txtDescription.text.toString()
-                dialogConfirmationAction(
-                    R.string.message_dialo_create_new_transaction,
-                    amountTransaction
-                )
+            val device = Device()
+            if (device.isNetworkConnected(this)) {
+                if (this.checkAccountAndCategory(device)) {
+                    this.transaction.description = txtDescription.text.toString()
+                    dialogConfirmationAction(
+                        R.string.message_dialo_create_new_transaction,
+                        amountTransaction
+                    )
+                }
             } else {
                 Device().messageMistakeSnack(
                     "Para crear una transacción, debes estar conectado a internet",
                     amountTransaction
                 )
             }
-
         }
     }
 
@@ -171,6 +177,33 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             this.listCategories = Transaction().fillListCategories(listCategories)
             fillDropdownCategory(dropdownCategory)
         })
+    }
+
+    /**
+     * this function check value of account and category
+     * @param device
+     * @param Boolean
+     */
+    private fun checkAccountAndCategory(device: Device): Boolean {
+        if (transaction.checkListAccountIsEmpty(listAccount.size)) {
+            device.messageMistakeSnack(
+                "Debes registrar una cuenta ",
+                dropdownAccount
+            )
+            return false
+        } else if (transaction.account == "") {
+            transaction.account = listAccount[0]
+        }
+        if (transaction.checkListCategoriesIsEmpty(listCategories.size)) {
+            device.messageMistakeSnack(
+                "Debes registrar una categoría",
+                dropdownAccount
+            )
+            return false
+        } else if (transaction.category == "") {
+            transaction.category = listCategories[0]
+        }
+        return true
     }
 
     /**
@@ -358,7 +391,8 @@ class CreateNewTransactionActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit user
-                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                val intentUpdateInformationUser =
+                    Intent(this, EditAccountPersonalActivity::class.java)
                 startActivity(intentUpdateInformationUser)
                 Animatoo.animateSlideLeft(this);
                 finish()

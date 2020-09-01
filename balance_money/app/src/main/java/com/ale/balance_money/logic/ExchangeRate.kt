@@ -42,7 +42,7 @@ class ExchangeRate : AsyncTask<String, String, Double>() {
         arrayData = arrayData[5].split(":")
         arrayData = arrayData[1].split("}}")
         arrayData = listOf(arrayData[0].replace("\"", ""))
-        return arrayData[0].toDouble()
+        return Math.round(arrayData[0].toDouble() * 100.0) / 100.0
     }
 
     /**

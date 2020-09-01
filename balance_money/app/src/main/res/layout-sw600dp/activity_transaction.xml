@@ -6,22 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     tools:context=".UI.transaction.TransactionActivity">
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewTransaction"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorButton"
-        android:src="@drawable/icon_add_tablet"
-        android:scaleType="center"
-        app:fabCustomSize="100dp"
-        app:maxImageSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_transaction"
         android:layout_width="match_parent"
@@ -57,4 +42,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNewTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="95dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/colorButton"
+        android:src="@drawable/icon_add_tablet"
+        android:scaleType="center"
+        app:fabCustomSize="100dp"
+        app:maxImageSize="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

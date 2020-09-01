@@ -133,4 +133,21 @@ class Transaction {
             }
         }
     }
+
+    /**
+     * this function check if size list of account is empty
+     * @param size
+     * @return Boolean
+     */
+    fun checkListAccountIsEmpty(size:Int):Boolean{
+        return size == 0
+    }
+    /**
+     * this function check if size list of account is empty
+     * @param size
+     * @return Boolean
+     */
+    fun checkListCategoriesIsEmpty(size:Int):Boolean{
+        return size == 0
+    }
 }
