@@ -50,7 +50,7 @@
             android:label="@string/name_toolbar_detail_account" />
         <activity
             android:name=".UI.account.NewAccountActivity"
-            android:label="@string/name_toolbar_create_new_account" />
+            android:label="@string/name_toolbar_create_new_account"/>
         <activity
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"
