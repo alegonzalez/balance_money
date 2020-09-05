@@ -50,7 +50,8 @@ class AccountActivity : AppCompatActivity() {
      */
     override fun onBackPressed() {
         super.onBackPressed()
-        Animatoo.animateSlideRight(this);
+        Animatoo.animateSlideRight(this)
+        finish()
     }
     /**
      * This function put menu for category
@@ -102,7 +103,6 @@ class AccountActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }
 
 

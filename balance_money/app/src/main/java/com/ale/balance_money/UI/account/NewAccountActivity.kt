@@ -48,19 +48,19 @@ class NewAccountActivity : AppCompatActivity() {
         btnColon.setOnClickListener {
             typeMoney = Money.COLON.name
             account.setMoney(typeMoney,orientation,btnColon,btnDollar,btnEuro)
-            btnColon.compoundDrawablePadding = 12;
+            btnColon.compoundDrawablePadding = 12
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
             typeMoney = Money.DOLLAR.name
             account.setMoney(typeMoney,orientation,btnColon,btnDollar,btnEuro)
-            btnDollar.compoundDrawablePadding = 12;
+            btnDollar.compoundDrawablePadding = 12
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
             typeMoney = Money.EURO.name
             account.setMoney(typeMoney,orientation,btnColon,btnDollar,btnEuro)
-            btnEuro.compoundDrawablePadding = 12;
+            btnEuro.compoundDrawablePadding = 12
         }
         //onclick of button to create new account
         btnCreateNewAccount.setOnClickListener {
@@ -93,7 +93,7 @@ class NewAccountActivity : AppCompatActivity() {
     /**
      * This function show dialog to user, if user would like make a action
      * @param messageToShow
-     * @param typeAction
+     * @param account
      * @return Void
      */
     private fun dialogConfirmationAction(messageToShow: Int,account:AccountMoney) {
@@ -106,9 +106,8 @@ class NewAccountActivity : AppCompatActivity() {
         builder.setPositiveButton("Si") { dialogInterface, which ->
             if(device.isNetworkConnected(this)){
                 FirebaseData().createNewAccount(account)
-                val intentAccount = Intent(this, AccountActivity::class.java)
-                startActivity(intentAccount)
-                Animatoo.animateSlideRight(this);
+                Animatoo.animateSlideRight(this)
+                finish()
             }else{
                 device.messageMistakeSnack("El dispositivo no se encuentra conectado a internet",txtTitle)
             }
@@ -158,7 +157,7 @@ class NewAccountActivity : AppCompatActivity() {
                 if (Device().isNetworkConnected(this)) {
                     //logut user
                     startActivity(Person().singOut())
-                    Animatoo.animateSlideRight(this);
+                    Animatoo.animateSlideRight(this)
                     finish()
                 } else {
                     Device().messageMistakeSnack(
@@ -173,7 +172,7 @@ class NewAccountActivity : AppCompatActivity() {
                 //edit user
                 val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
                 startActivity(intentUpdateInformationUser)
-                Animatoo.animateSlideLeft(this);
+                Animatoo.animateSlideLeft(this)
                 finish()
                 true
             }

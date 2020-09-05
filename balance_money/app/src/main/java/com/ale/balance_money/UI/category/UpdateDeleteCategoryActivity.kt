@@ -63,9 +63,8 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
             val view: View = this.window.decorView.findViewById(android.R.id.content)
             if (typeAction == "remove") {
                   if(firebaseCategory.removeCategory(category.id)){
-                      val intentMainCategory = Intent(this,CategoryActivity::class.java)
-                      startActivity(intentMainCategory)
-                      Animatoo.animateSlideRight(this);
+                      Animatoo.animateSlideRight(this)
+                      finish()
                   }else{
                         Device().messageMistakeSnack("La categoría no se puedo eliminar correctamente",
                           view

@@ -19,6 +19,7 @@ import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.logic.statistics.Stadistics
 import com.ale.balance_money.logic.transaction.Transaction
 import com.ale.balance_money.model.TransactionViewModel
+import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -260,8 +261,8 @@ class GraphicFragment : Fragment() {
         pieChart.setDrawSliceText(false)
         pieChart.setExtraOffsets(5F, 10F, 5F, 5F)
         pieChart.dragDecelerationFrictionCoef = 0.99F
-        pieChart.setDrawHoleEnabled(false);
-        pieChart.setHoleRadius(0F);
+        pieChart.isDrawHoleEnabled = false;
+        pieChart.holeRadius = 0F;
         pieChart.setEntryLabelColor(Color.WHITE)
         legend.textColor = Color.WHITE
       if(!orientation){

@@ -321,8 +321,6 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                     "La transacción se creo correctamente",
                     txtNameAccountTransaction
                 )
-                val intentTransaction = Intent(this, TransactionActivity::class.java)
-                startActivity(intentTransaction)
                 Animatoo.animateSlideRight(this)
                 finish()
             } else {

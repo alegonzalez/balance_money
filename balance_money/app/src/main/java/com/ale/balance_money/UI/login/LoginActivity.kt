@@ -368,13 +368,9 @@ class LoginActivity : AppCompatActivity() {
      */
     override fun onBackPressed() {
         super.onBackPressed()
-        Animatoo.animateSlideRight(this);
-        finish();
-        System.exit(0);
+       Animatoo.animateSlideRight(this)
+        finish()
+        System.exit(0)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        finish()
-    }
 }

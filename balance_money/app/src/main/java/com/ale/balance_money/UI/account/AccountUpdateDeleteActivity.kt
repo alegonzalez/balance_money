@@ -3,7 +3,6 @@ package com.ale.balance_money.UI.account
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -21,7 +20,6 @@ import com.ale.balance_money.logic.account.Money
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.repository.FirebaseData
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
-import com.google.firebase.auth.FirebaseAuth
 
 
 /**
@@ -55,7 +53,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         val btnUpdate = findViewById<Button>(R.id.btnUpdate)
         //call function setMoney to set in UI money by user
         val orientation = device.detectTypeDevice(windowManager)
-        typeMoney = account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+        typeMoney = account.setMoney(account.money, orientation, btnColon, btnDollar, btnEuro)
         //Set data in UI
         txtName.setText(account.title)
         txtAmount.setText(account.amount.toString())
@@ -64,17 +62,17 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
         //Onclick of button colon
         btnColon.setOnClickListener {
             account.money = Money.COLON.name
-            account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+            account.setMoney(account.money, orientation, btnColon, btnDollar, btnEuro)
         }
         //Onclick of button dollar
         btnDollar.setOnClickListener {
             account.money = Money.DOLLAR.name
-            account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+            account.setMoney(account.money, orientation, btnColon, btnDollar, btnEuro)
         }
         //Onclick of button euro
         btnEuro.setOnClickListener {
             account.money = Money.EURO.name
-            account.setMoney(account.money, orientation,btnColon, btnDollar, btnEuro)
+            account.setMoney(account.money, orientation, btnColon, btnDollar, btnEuro)
         }
         //Onclick update button
         btnUpdate.setOnClickListener {
@@ -112,7 +110,7 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
     private fun dialogConfirmationAction(messageToShow: Int, typeAction: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.messageDialogTitle)
-   //set title for alert dialog
+        //set title for alert dialog
         builder.setTitle(R.string.messageDialogTitle)
         //set message for alert dialog
         builder.setMessage(messageToShow)
@@ -121,13 +119,12 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
 
         //performing positive action
         builder.setPositiveButton("Si") { dialogInterface, which ->
-            if(device.isNetworkConnected(this)){
+            if (device.isNetworkConnected(this)) {
                 val firebaseData = FirebaseData()
                 if (typeAction == "remove") {
                     if (firebaseData.removeAccount(account.id)) {
-                        val intentListAccount = Intent(this, AccountActivity::class.java)
-                        startActivity(intentListAccount)
-                        Animatoo.animateSlideRight(this);
+                        Animatoo.animateSlideRight(this)
+                        finish()
                     } else {
                         // problem when try update an account
                         device.messageMistakeSnack(
@@ -136,9 +133,9 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
                         )
                     }
                 } else {
-                    if(account.money != typeMoney){
+                    if (account.money != typeMoney) {
                         val exchangeRate = ExchangeRate()
-                        exchangeRate.execute(typeMoney,account.money,account.amount.toString())
+                        exchangeRate.execute(typeMoney, account.money, account.amount.toString())
                         account.amount = exchangeRate.get()
                     }
                     if (firebaseData.updateAccount(account)) {
@@ -156,8 +153,11 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
                     }
 
                 }
-            }else{
-                device.messageSuccessfulSnack("El dispositivo no se encuentra conectado a internet",txtDescription)
+            } else {
+                device.messageSuccessfulSnack(
+                    "El dispositivo no se encuentra conectado a internet",
+                    txtDescription
+                )
             }
         }
 
@@ -184,15 +184,16 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         val provider = Device().getProviderUser()
-        if(provider == Authentication.BASIC.name){
+        if (provider == Authentication.BASIC.name) {
             inflater.inflate(R.menu.list_setting, menu)
-        }else{
+        } else {
             inflater.inflate(R.menu.list_setting_without_personal_information, menu)
         }
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id: Int = item.getItemId()
+        val id: Int = item.itemId
         return when (id) {
             R.id.action_item_one -> {
                 dialogConfirmationAction(R.string.messageDialogDelete, "remove")
@@ -207,7 +208,8 @@ class AccountUpdateDeleteActivity : AppCompatActivity() {
             }
             R.id.editPersonalInformation -> {
                 //edit personal information
-                val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
+                val intentUpdateInformationUser =
+                    Intent(this, EditAccountPersonalActivity::class.java)
                 startActivity(intentUpdateInformationUser)
                 Animatoo.animateSlideLeft(this);
                 finish()

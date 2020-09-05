@@ -170,9 +170,8 @@ class DetailTransactionActivity : AppCompatActivity() {
         builder.setPositiveButton("Si") { dialogInterface, which ->
             if (FirebaseTransaction().removeTransaction(transaction.id)) {
                 //success
-                val intentTransaction = Intent(this, TransactionActivity::class.java)
-                startActivity(intentTransaction)
                 Animatoo.animateSlideRight(this)
+                finish()
             } else {
                 //problem with delete that transaction
                 Device().messageMistakeSnack(

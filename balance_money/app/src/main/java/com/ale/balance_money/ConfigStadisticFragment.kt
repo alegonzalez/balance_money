@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.ale.balance_money.logic.setting.Device
 import com.ale.balance_money.logic.statistics.Stadistics
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -121,15 +122,20 @@ class ConfigStadisticFragment : Fragment() {
                     bundle.putString("startDate", startDate.text.toString())
                     bundle.putString("endDate", endDate.text.toString())
                     graficFragment.arguments = bundle
+                    val ft = activity?.supportFragmentManager?.beginTransaction()
+                    ft?.setCustomAnimations(
+                        R.anim.slide_in_left, R.anim.slide_out_left,
+                        R.anim.slide_out_right, R.anim.slide_in_right
+                    )
                     if (!typeDevice) {
-                        activity?.supportFragmentManager
-                            ?.beginTransaction()
-                            ?.replace(R.id.containerGrapficFragment, graficFragment)
-                            ?.addToBackStack("")?.commit()
+                        ft?.replace(R.id.containerGrapficFragment, graficFragment)
+                        ft?.addToBackStack(null)
+                        ft?.commit()
                     } else {
-                        activity?.supportFragmentManager
-                            ?.beginTransaction()?.replace(R.id.containerFragment, graficFragment)
-                            ?.addToBackStack("")?.commit()
+
+                        ft?.replace(R.id.containerFragment, graficFragment)
+                        ft?.addToBackStack(null)
+                        ft?.commit()
                     }
                 }
             } else {
@@ -142,3 +148,4 @@ class ConfigStadisticFragment : Fragment() {
         }
     }
 }
+

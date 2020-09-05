@@ -84,6 +84,7 @@ class CreateNewCategoryActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         Animatoo.animateSlideRight(this);
+        finish()
     }
     /**
      * This function put menu for new category

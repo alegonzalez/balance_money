@@ -21,10 +21,11 @@ class StadisticActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stadistic)
+        val device = Device()
         val typeDevice = Device().detectTypeDevice(windowManager)
         configStadistic = ConfigStadisticFragment()
-        if(!Device().isNetworkConnected(this)){
-            Device().messageMistakeSnack("Para visualizar el gráfico con los resultados, debes estar conectado a internet",window.decorView)
+        if(!device.isNetworkConnected(this)){
+            device.messageMistakeSnack("Para visualizar el gráfico con los resultados, debes estar conectado a internet",window.decorView)
         }
         if (savedInstanceState == null) {
             //call fragment for select dates
@@ -39,7 +40,7 @@ class StadisticActivity : AppCompatActivity() {
      * @param typeDevice
      * @return void
      */
-    fun checkDevice(typeDevice:Boolean) {
+    private fun checkDevice(typeDevice:Boolean) {
         //detect if type device
         if (!typeDevice) {
             graphic = GraphicFragment()
@@ -88,7 +89,6 @@ class StadisticActivity : AppCompatActivity() {
                 true
             }
             R.id.editPersonalInformation -> {
-                //edit user
                 //edit user
                 val intentUpdateInformationUser = Intent(this, EditAccountPersonalActivity::class.java)
                 startActivity(intentUpdateInformationUser)
