@@ -110,8 +110,9 @@ class GraphicFragment : Fragment() {
                 )
             }
         }
+        val nameAccount = if(arguments?.getString("account") == null) "" else arguments?.getString("account")
         if (viewModelTransaction.listTransaction == null) {
-            observeTransactions(piechart, startDate, endDate)
+            observeTransactions(piechart, startDate, endDate, nameAccount!!)
         } else {
             this.listTransaction = viewModelTransaction.listTransaction!!
             this.createGraphic(
@@ -167,8 +168,9 @@ class GraphicFragment : Fragment() {
      * @param dropdownAccount
      * @param dropdownCategory
      */
-    private fun observeTransactions(pieChart: PieChart, startDate: Date, endDate: Date) {
-        viewModelTransaction.getListTransaction()
+
+    private fun observeTransactions(pieChart: PieChart, startDate: Date, endDate: Date,nameAccount:String) {
+        viewModelTransaction.getListTransactionByAccount(nameAccount)
             .observe(viewLifecycleOwner, Observer { listTransactions ->
                 viewModelTransaction.listTransaction = listTransactions
                 this.listTransaction = listTransactions
@@ -182,6 +184,8 @@ class GraphicFragment : Fragment() {
                 )
             })
     }
+
+
 
     /**
      * This function create stadistic for user

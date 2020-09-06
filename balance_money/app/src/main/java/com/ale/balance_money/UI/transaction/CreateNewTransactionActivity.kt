@@ -297,6 +297,7 @@ class CreateNewTransactionActivity : AppCompatActivity() {
      * @param amountTransaction
      */
     fun createNewTransaction(amountTransaction: EditText) {
+        progressDialog.show()
         transaction.amount =
             if (amountTransaction.text.toString() == "") 0.0 else amountTransaction.text.toString()
                 .toDouble()
@@ -305,16 +306,18 @@ class CreateNewTransactionActivity : AppCompatActivity() {
         if (money != transaction.money) {
             val exchangeRate = ExchangeRate()
             exchangeRate.execute(transaction.money, money, transaction.amount.toString())
+            val amountWithoutConvert = transaction.amount
             transaction.amount = exchangeRate.get()
             account.amount =
                 if (transaction.typeTransaction == "Ingreso") transaction.remainingAmount + transaction.amount else transaction.remainingAmount - transaction.amount
+            transaction.amount = amountWithoutConvert
         } else {
             account.amount =
                 if (transaction.typeTransaction == "Ingreso") transaction.remainingAmount + transaction.amount else transaction.remainingAmount - transaction.amount
         }
         val listError = transaction.validateFieldToMakeTransaction(transaction)
         if (listError.get(0) == "" && listError.get(1) == "") {
-            //insert in firebase new transactio
+            //insert in firebase new transaction
             if (FirebaseTransaction().insertNewTransaction(transaction)) {
                 FirebaseData().updateAccount(account)
                 Device().messageSuccessfulSnack(
@@ -337,6 +340,7 @@ class CreateNewTransactionActivity : AppCompatActivity() {
                 Device().messageMistakeSnack(listError.get(1), rdGroup)
             }
         }
+        progressDialog.dismiss()
     }
 
     /**

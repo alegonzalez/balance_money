@@ -12,7 +12,7 @@
       android:id="@+id/btnAccount"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginTop="96dp"
+      android:layout_marginTop="116dp"
       android:background="@drawable/custom_shape_account"
       android:drawableStart="@drawable/account"
       android:paddingStart="76dp"

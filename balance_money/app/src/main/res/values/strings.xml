@@ -113,7 +113,7 @@
     <string name="field_text_date_end">Ingresa la fecha final</string>
     <string name="btn_generate_graphic">Generar gráfico </string>
     <string name="title_activity_test">TestActivity</string>
-
+    <string name="name_toolbar_stadistic">Estadística</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="loading">Cargando...</string>

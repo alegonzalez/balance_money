@@ -96,6 +96,7 @@ class LoginActivity : AppCompatActivity() {
             buttonFacebook.registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult?> {
                     override fun onSuccess(loginResult: LoginResult?) {
+                        startDialog()
                         loginResult?.let {
                             val token = it.accessToken
                             val credential = FacebookAuthProvider.getCredential(token.token)
@@ -131,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
+            this.startDialog()
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
@@ -193,6 +195,7 @@ class LoginActivity : AppCompatActivity() {
                     window.decorView.rootView
                 )
             }
+            mDialog.dismiss()
         }
 
     }

@@ -76,4 +76,42 @@ class FirebaseTransaction {
         }
         return true
     }
+
+    /**
+     * This function get account selected by user for select transaction of the account
+     * @param nameAccount
+     * @return mutableData LiveData<List<Transaction>>
+     */
+    fun getTrasactionByAccount(nameAccount: String): LiveData<List<Transaction>> {
+        val mutableData = MutableLiveData<List<Transaction>>()
+        val listTransaction = mutableListOf<Transaction>()
+        ref.child("transaction").child(uidUser.toString()).addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                listTransaction.clear()
+                for (data in dataSnapshot.children) {
+                    val transaction = Transaction()
+                    transaction.account = data.child("account").value.toString()
+                    if(transaction.account == nameAccount){
+                        transaction.id = data.key.toString()
+                        transaction.amount = data.child("amount").value.toString().toDouble()
+                        transaction.category = data.child("category").value.toString()
+                        transaction.dateOfTrasaction = data.child("dateOfTrasaction").value.toString()
+                        transaction.description = data.child("description").value.toString()
+                        transaction.money = data.child("money").value.toString()
+                        transaction.typeTransaction = data.child("typeTransaction").value.toString()
+                        listTransaction.add(transaction)
+                    }
+                }
+                mutableData.value = listTransaction
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                //Log.w(TAG, "getUser:onCancelled", databaseError.toException())
+                // ...
+            }
+
+        })
+        return mutableData
+    }
 }

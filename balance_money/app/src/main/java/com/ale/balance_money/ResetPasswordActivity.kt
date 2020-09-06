@@ -149,4 +149,12 @@ class ResetPasswordActivity : AppCompatActivity() {
         email?.error = "El correo ingresado no se encuentra registrado."
         return false
     }
+    /**
+     * method when user back the previous activity, I do animation between activities
+     */
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Animatoo.animateSlideRight(this)
+        finish()
+    }
 }

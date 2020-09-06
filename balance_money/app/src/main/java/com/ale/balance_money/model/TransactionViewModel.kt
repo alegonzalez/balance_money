@@ -12,5 +12,8 @@ class TransactionViewModel:ViewModel() {
     return FirebaseTransaction().getAllTransactions()
   }
 
+fun getListTransactionByAccount(nameAccount:String):LiveData<List<Transaction>>{
+  return  FirebaseTransaction().getTrasactionByAccount(nameAccount)
+}
 
 }

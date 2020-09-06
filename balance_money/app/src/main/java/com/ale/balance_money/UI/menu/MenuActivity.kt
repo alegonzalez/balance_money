@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ale.balance_money.ChangePasswordActivity
 import com.ale.balance_money.EditAccountPersonalActivity
@@ -18,8 +17,7 @@ import com.ale.balance_money.logic.Authentication
 import com.ale.balance_money.logic.Person
 import com.ale.balance_money.logic.setting.Device
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
-import com.facebook.FacebookSdk
-import com.google.firebase.auth.FirebaseAuth
+
 
 
 class MenuActivity : AppCompatActivity() {

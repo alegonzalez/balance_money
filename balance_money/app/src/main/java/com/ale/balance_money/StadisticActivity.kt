@@ -31,7 +31,7 @@ class StadisticActivity : AppCompatActivity() {
             //call fragment for select dates
             supportFragmentManager.beginTransaction().add(R.id.containerFragment, configStadistic)
                 .commit()
-            checkDevice(typeDevice)
+           // checkDevice(typeDevice)
         }
     }
 

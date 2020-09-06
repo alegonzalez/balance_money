@@ -29,8 +29,7 @@ class UpdateDeleteCategoryActivity : AppCompatActivity() {
         category.id = intentDetailCategory.getStringExtra("id")
         category.name = intentDetailCategory.getStringExtra("name")
         category.description = intentDetailCategory.getStringExtra("description")
-
-         nameCategory = findViewById<EditText>(R.id.txtNameCategoryDetail)
+        nameCategory = findViewById<EditText>(R.id.txtNameCategoryDetail)
         val descriptionCategory = findViewById<EditText>(R.id.txtDescriptionCategoryDetail)
         val buttonUpdate = findViewById<Button>(R.id.btnUpdateCategory)
         nameCategory.setText(category.name)
