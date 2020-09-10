@@ -42,6 +42,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.android.synthetic.main.activity_create_account.*
 
 /**
  * This class show all provider for authentication
@@ -66,9 +67,9 @@ class LoginActivity : AppCompatActivity() {
         val txtCreateNewAccount = findViewById<TextView>(R.id.txtCreateNewAccount)
         val resetPassword = findViewById<TextView>(R.id.txtForgetPassword)
         val password = findViewById<EditText>(R.id.txtPassword)
+        val device = Device()
         txtCreateNewAccount.paintFlags = txtCreateNewAccount.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         resetPassword.paintFlags = resetPassword.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
         buttonFacebook.setCompoundDrawablesWithIntrinsicBounds(
             resources.getDrawable(R.drawable.facebook),
             null,
@@ -77,57 +78,66 @@ class LoginActivity : AppCompatActivity() {
         )
         buttonFacebook.compoundDrawablePadding = 25;
         buttonFacebook.setPermissions("public_profile", "email")
-
+        if (!device.isNetworkConnected(this)) {
+            device.messageMistakeSnack("Debes de estar conectado a internet", window.decorView)
+        }
         //onclick login with google
         buttonGoogle.setOnClickListener {
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-
-
-            googleClient = GoogleSignIn.getClient(this, gso)
-            googleClient.signOut()
-            startActivityForResult(googleClient.signInIntent, RC_SIGN_IN)
+            if (!device.isNetworkConnected(this)) {
+                device.messageMistakeSnack("Debes de estar conectado a internet", window.decorView)
+            } else {
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build()
+                googleClient = GoogleSignIn.getClient(this, gso)
+                googleClient.signOut()
+                startActivityForResult(googleClient.signInIntent, RC_SIGN_IN)
+            }
         }
 
         //onclick login with facebook
         buttonFacebook.setOnClickListener {
-            buttonFacebook.registerCallback(callbackManager,
-                object : FacebookCallback<LoginResult?> {
-                    override fun onSuccess(loginResult: LoginResult?) {
-                        startDialog()
-                        loginResult?.let {
-                            val token = it.accessToken
-                            val credential = FacebookAuthProvider.getCredential(token.token)
-                            authenticationProvider(Authentication.FACEBOOK, credential)
+            if (!device.isNetworkConnected(this)) {
+                device.messageMistakeSnack("Debes de estar conectado a internet", window.decorView)
+            } else {
+                buttonFacebook.registerCallback(callbackManager,
+                    object : FacebookCallback<LoginResult?> {
+                        override fun onSuccess(loginResult: LoginResult?) {
+                            startDialog()
+                            loginResult?.let {
+                                val token = it.accessToken
+                                val credential = FacebookAuthProvider.getCredential(token.token)
+                                authenticationProvider(Authentication.FACEBOOK, credential)
+                            }
                         }
-                    }
 
-                    override fun onCancel() {}
+                        override fun onCancel() {}
 
-                    override fun onError(exception: FacebookException) {
-                        Device().messageMistakeSnack(
-                            "No se pudo autenticarse con facebook, por favor intentelo nuevamente",
-                            window.decorView.rootView
-                        )
-                    }
-                })
+                        override fun onError(exception: FacebookException) {
+                            Device().messageMistakeSnack(
+                                "No se pudo autenticarse con facebook, por favor intentelo nuevamente",
+                                window.decorView.rootView
+                            )
+                        }
+                    })
+            }
         }
         //click in icon field for password to  show or hide password
         password.setOnTouchListener(View.OnTouchListener { v, event ->
             showHidePassword(event, password)
         })
-    }
+ }
 
     override fun onResume() {
         super.onResume()
-        if(this::googleClient.isInitialized){
+        if (this::googleClient.isInitialized) {
             googleClient.signOut()
         }
 
         LoginManager.getInstance().logOut()
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
@@ -146,6 +156,7 @@ class LoginActivity : AppCompatActivity() {
                     "No se pudo obtener la cuenta, por favor intentalo nuevamente",
                     window.decorView.rootView
                 )
+                mDialog.dismiss()
             }
         }
     }
@@ -371,7 +382,7 @@ class LoginActivity : AppCompatActivity() {
      */
     override fun onBackPressed() {
         super.onBackPressed()
-       Animatoo.animateSlideRight(this)
+        Animatoo.animateSlideRight(this)
         finish()
         System.exit(0)
     }

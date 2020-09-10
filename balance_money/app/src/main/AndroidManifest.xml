@@ -56,7 +56,8 @@
             android:name=".UI.account.AccountActivity"
             android:label="@string/name_toolbar_account"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UI.login.CreateAccountActivity" /> <!-- Menu -->
+        <activity android:name=".UI.login.CreateAccountActivity"
+            android:label="@string/name_toolbar_create_personal_information"/> <!-- Menu -->
         <activity
             android:name=".UI.menu.MenuActivity"
             android:label="@string/name_menu" />

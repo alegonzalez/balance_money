@@ -130,7 +130,8 @@ class TransactionActivity : AppCompatActivity(), TransactionAdapter.OnListenerTr
         intentDetailTransaction.putExtra("description", description)
         intentDetailTransaction.putExtra("date", date)
         startActivity(intentDetailTransaction)
-        Animatoo.animateSlideLeft(this);
+        Animatoo.animateSlideLeft(this)
+        finish()
     }
 
     /**

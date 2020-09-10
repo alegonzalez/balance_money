@@ -26,6 +26,7 @@
     <string name="label_confirm_password">Confirmar contraseña</string>
     <string name="button__create_account">Crear</string>
     <string name="name_toolbar_update_personal_information">Actualizar información</string>
+    <string name="name_toolbar_create_personal_information">Crear cuenta</string>
     <string name="change_password_account_user">Cambiar mi contraseña</string>
     <!-- change password-->
     <string name="old_password">Contraseña actual</string>
